@@ -2,232 +2,659 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
     <title>行业早报 - 2026-03-11</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
             min-height: 100vh;
-            padding: 20px 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
         }
-        .container { max-width: 800px; margin: 0 auto; padding: 0 15px; }
-        .header { text-align: center; color: white; padding: 30px 0; }
-        .header h1 { font-size: 28px; margin-bottom: 10px; }
-        .header .date { font-size: 16px; opacity: 0.9; }
-        .card {
-            background: white;
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+
+        /* 顶部导航 */
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .section-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 3px solid #667eea;
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
             display: flex;
             align-items: center;
             gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
         }
-        .news-item { padding: 16px 0; border-bottom: 1px solid #f0f0f0; }
-        .news-item:last-child { border-bottom: none; }
-        .news-number {
-            display: inline-flex;
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            width: 28px;
-            height: 28px;
-            min-width: 28px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 50%;
-            font-size: 14px;
-            font-weight: 600;
-            margin-right: 12px;
-            flex-shrink: 0;
+            font-size: 20px;
         }
-        .news-title {
-            font-size: 17px;
-            font-weight: 600;
-            color: #1a1a1a;
-            line-height: 1.5;
-            margin-bottom: 8px;
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        /* 头部统计卡片 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* 新闻板块 */
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title {
+            flex: 1;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        /* 新闻条目 */
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-item:hover {
+            background: linear-gradient(90deg, rgba(99,102,241,0.03) 0%, rgba(139,92,246,0.03) 100%);
+        }
+
+        .news-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .news-item:hover::before {
+            opacity: 1;
+        }
+
+        .news-header {
             display: flex;
             align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
         }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(99,102,241,0.4);
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
         .news-content {
-            font-size: 15px;
-            color: #555;
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
             line-height: 1.7;
-            margin-left: 40px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
         .news-source {
-            font-size: 13px;
-            color: #999;
-            margin-left: 40px;
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
         }
-        .news-source a { color: #667eea; text-decoration: none; }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .news-source a:hover {
+            text-decoration: underline;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        /* 空状态 */
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+
+        /* 底部 */
         .footer {
             text-align: center;
-            color: white;
-            padding: 30px 0;
-            font-size: 14px;
-            opacity: 0.8;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
         }
+
+        .footer-brand {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        /* 动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+
+        /* 移动端适配 */
         @media (max-width: 640px) {
-            .container { padding: 0 12px; }
-            .news-content { margin-left: 0; margin-top: 8px; }
-            .news-source { margin-left: 0; }
-            .news-number { width: 26px; height: 26px; min-width: 26px; font-size: 13px; }
+            .navbar-content {
+                padding: 0 16px;
+            }
+
+            .brand {
+                font-size: 16px;
+            }
+
+            .nav-date {
+                font-size: 12px;
+                padding: 4px 10px;
+            }
+
+            .container {
+                padding: 16px 12px 32px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+
+            .stat-card {
+                padding: 12px 8px;
+            }
+
+            .stat-number {
+                font-size: 22px;
+            }
+
+            .stat-label {
+                font-size: 10px;
+            }
+
+            .section-header {
+                padding: 16px 20px;
+            }
+
+            .section-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+            }
+
+            .section-title h2 {
+                font-size: 16px;
+            }
+
+            .section-title p {
+                font-size: 12px;
+            }
+
+            .news-item {
+                padding: 16px 20px;
+            }
+
+            .news-rank {
+                width: 28px;
+                height: 28px;
+                min-width: 28px;
+                font-size: 12px;
+            }
+
+            .news-title {
+                font-size: 15px;
+            }
+
+            .news-content,
+            .news-meta {
+                margin-left: 40px;
+            }
+
+            .news-content {
+                font-size: 13px;
+            }
+        }
+
+        /* 深色模式支持 */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-card: #1e293b;
+                --text-primary: #f1f5f9;
+                --text-secondary: #94a3b8;
+                --text-muted: #64748b;
+                --border: #334155;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 顶部导航 -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-03-11</div>
+        </div>
+    </nav>
+
+    <!-- 主内容 -->
     <div class="container">
-        <div class="header">
-            <h1>📰 行业早报</h1>
-            <div class="date">2026-03-11</div>
-        </div>
-        
-        <div class="card">
-            <div class="section-title">
-                <span>🔥</span>
-                <span>全网热度 Top10 互联网新闻</span>
+        <!-- 统计卡片 -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">10</div>
+                <div class="stat-label">互联网新闻</div>
             </div>
-            
-            <div class="news-item">
-                <div class="news-title">
-                    <span class="news-number">1</span>
-                    "海上新广东"如何乘风破浪？国际大咖看到这些机遇
-                </div>
-                <div class="news-content">坐拥全国1/5的海洋生产总值，广东正以"六湾区一半岛"为指引，推动海洋产业向深海、智能、绿色转型。从湛江的智能养殖平台到茂名破纪录的水产出口，广东不仅展示了强大的海洋科技实力，更通过红树林生态养殖模式探索可持续发展路径，吸引了全球渔业巨头与外交使节寻求技术与贸易合作。</div>
-                <div class="news-source">——源自：<a href="https://www.21jingji.com/article/20260311/herald/bfe2eec33a38a3e47c5fb8c5e0d3d666.html" target="_blank">21世纪经济报道</a></div>
+            <div class="stat-card">
+                <div class="stat-number">2</div>
+                <div class="stat-label">社交/直播</div>
             </div>
-
-            <div class="news-item">
-                <div class="news-title">
-                    <span class="news-number">2</span>
-                    国家互联网应急中心提示"龙虾"风险；杨立昆拿下欧洲最大种子轮
-                </div>
-                <div class="news-content">国家互联网应急中心发布网络安全预警，提示名为"龙虾"（Lobster）的恶意软件正在针对国内关键信息基础设施发动攻击，建议相关单位立即排查加固。同期，深度学习先驱杨立昆（Yann LeCun）创立的AI研究公司宣布完成欧洲史上最大种子轮融资，估值突破10亿美元，资金将用于开发不依赖大模型范式的新一代AI架构。</div>
-                <div class="news-source">——源自：<a href="https://www.21jingji.com/article/20260311/herald/dc7ed9c7e35d172d5056f43c1dffad2a.html" target="_blank">21世纪经济报道</a></div>
-            </div>
-
-            <div class="news-item">
-                <div class="news-title">
-                    <span class="news-number">3</span>
-                    21评论｜"十五五"起好步，推动中国经济向新向优
-                </div>
-                <div class="news-content">展望"十五五"时期，中国经济正处于从量的扩张向质的提升转变的关键阶段。以DeepSeek为代表的中国AI创新正在引发全球关注，这种"井喷式"创新正在从人工智能向新能源、生物医药、高端制造等领域扩散，为中国经济高质量发展注入新动能，需抓住新一轮科技革命窗口期实现跨越式发展。</div>
-                <div class="news-source">——源自：<a href="https://www.21jingji.com/article/20260311/herald/bf4923e16df5c3829616bf961cc7b8ad.html" target="_blank">21世纪经济报道</a></div>
-            </div>
-
-            <div class="news-item">
-                <div class="news-title">
-                    <span class="news-number">4</span>
-                    牛津经济研究院卢姿蕙：中国制造攀高向新，外企在华迎新机遇
-                </div>
-                <div class="news-content">牛津经济研究院高级经济学家卢姿蕙在报告中指出，中国制造业正在经历从"世界工厂"向"创新高地"的转型升级，这为跨国企业带来了全新合作机遇。她建议外企重点关注中国高品质服务消费、产业数字化转型、绿色低碳技术等赛道，把握中国超大规模市场提质扩容的历史机遇。</div>
-                <div class="news-source">——源自：<a href="https://www.21jingji.com/article/20260310/herald/c27cd1ad68aaee486fb2d88800b50e63.html" target="_blank">21世纪经济报道</a></div>
-            </div>
-
-            <div class="news-item">
-                <div class="news-title">
-                    <span class="news-number">5</span>
-                    港股通标的调整落地，医疗医药板块分化明显
-                </div>
-                <div class="news-content">港股通标的名单迎来季度调整，多家创新药、生物科技新贵获纳入，而部分传统医药流通企业被调出。此次调整反映出国际资本对中国医药产业升级方向的判断——从仿制药向创新药、从营销驱动向研发驱动转变。市场预计2026-2027年将迎来生物科技企业的融资高峰，板块分化将进一步加剧。</div>
-                <div class="news-source">——源自：<a href="https://www.21jingji.com/article/20260310/herald/57a414cfe2650bae426a1a6f5e29d0a0.html" target="_blank">21世纪经济报道</a></div>
-            </div>
-
-            <div class="news-item">
-                <div class="news-title">
-                    <span class="news-number">6</span>
-                    13家互联网大厂跟进"养龙虾"；泡泡玛特起诉拓竹
-                </div>
-                <div class="news-content">AI赋能传统产业再掀热潮，已有13家互联网巨头宣布布局AI水产养殖，其中"AI养龙虾"项目因技术门槛适中、市场潜力巨大成为切入点。另一方面，潮玩龙头泡泡玛特正式起诉3D打印厂商拓竹，指控其3D打印模型侵犯旗下IP版权，案件将直接影响3D打印行业与IP授权产业的边界划分。</div>
-                <div class="news-source">——源自：<a href="https://www.21jingji.com/article/20260310/herald/b80f134daef357e44fc1a592feb6617c.html" target="_blank">21世纪经济报道</a></div>
-            </div>
-
-            <div class="news-item">
-                <div class="news-title">
-                    <span class="news-number">7</span>
-                    【AI演员】Tilly Norwood发布新歌引发争议，AI艺术创作边界再引讨论
-                </div>
-                <div class="news-content">AI虚拟演员Tilly Norwood发布新单曲《The Show》，歌曲试图表达AI群体渴望被人类认可的心声，但因歌词空洞、旋律平庸遭到广泛批评。评论认为这一案例揭示了当前AI生成内容的根本局限：技术可以模拟形式，但难以复制真正的情感体验和艺术灵魂，AI艺术创作仍停留在"模仿"而非"创造"阶段。</div>
-                <div class="news-source">——源自：<a href="https://techcrunch.com/2026/03/11/ai-actor-tilly-norwood-put-out-the-worst-song-ive-ever-heard/" target="_blank">TechCrunch</a></div>
-            </div>
-
-            <div class="news-item">
-                <div class="news-title">
-                    <span class="news-number">8</span>
-                    Nuro自动驾驶首次进军日本，东京街头开启路测
-                </div>
-                <div class="news-content">美国自动驾驶配送公司Nuro宣布在日本东京启动公共道路测试，这是该公司首次进军美国以外的市场。测试将聚焦于适应日本狭窄街道、密集人流和复杂的交通规则，为后续与当地便利店、超市合作推出无人配送服务做准备。Nuro此举被视为全球自动驾驶产业向亚洲市场扩张的重要信号。</div>
-                <div class="news-source">——源自：<a href="https://techcrunch.com/2026/03/11/nuro-is-testing-its-autonomous-vehicle-tech-on-tokyos-streets/" target="_blank">TechCrunch</a></div>
-            </div>
-
-            <div class="news-item">
-                <div class="news-title">
-                    <span class="news-number">9</span>
-                    Google Play商店大改版：新增PC游戏、试玩功能、社区板块
-                </div>
-                <div class="news-content">Google Play商店宣布一系列重大更新：新增付费游戏专区、PC游戏串流服务、限时试玩功能以及游戏社区板块。谷歌表示这些改旨在将Play商店从单纯的"下载渠道"转型为"游戏发现与社交平台"，帮助优质游戏更容易触达目标用户，同时提升玩家发现和体验新游戏的便利性。</div>
-                <div class="news-source">——源自：<a href="https://techcrunch.com/2026/03/11/google-play-is-adding-new-paid-and-pc-games-game-trials-community-posts-and-more/" target="_blank">TechCrunch</a></div>
-            </div>
-
-            <div class="news-item">
-                <div class="news-title">
-                    <span class="news-number">10</span>
-                    福特推出AI车队助手，实时监控安全带与驾驶行为
-                </div>
-                <div class="news-content">福特推出Pro AI智能车队管理系统，利用AI算法实时分析车辆传感器数据，可自动监测驾驶员安全带佩戴情况、驾驶行为模式以及车辆健康状态。该系统已面向全美Ford Pro商业客户开放，旨在帮助企业降低事故率、优化维保成本，预计每年可为大型车队节省数百万美元运营费用。</div>
-                <div class="news-source">——源自：<a href="https://techcrunch.com/2026/03/11/fords-new-ai-assistant-will-help-fleet-owners-know-if-seatbelts-are-being-used/" target="_blank">TechCrunch</a></div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">中文内容</div>
             </div>
         </div>
 
-        <div class="card">
-            <div class="section-title">
-                <span>📱</span>
-                <span>社交/直播行业新闻</span>
-            </div>
-            
-            <div class="news-item">
-                <div class="news-title">
-                    <span class="news-number">1</span>
-                    网约车平台inDrive收购巴基斯坦Krave Mart，进军即时配送市场
+        <!-- Top10互联网新闻 -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
                 </div>
-                <div class="news-content">全球增长最快的网约车平台inDrive宣布收购巴基斯坦即时配送初创公司Krave Mart，正式进军杂货配送领域。Krave Mart在卡拉奇、拉合尔等城市拥有成熟的配送网络，此次收购将帮助inDrive在被Foodpanda主导的巴基斯坦市场中建立竞争据点，拓展多元化收入来源。</div>
-                <div class="news-source">——源自：<a href="https://techcrunch.com/2026/03/11/ride-hailing-indrive-acquires-pakistans-krave-mart-to-bolster-grocery-delivery/" target="_blank">TechCrunch</a></div>
             </div>
-
-            <div class="news-item">
-                <div class="news-title">
-                    <span class="news-number">2</span>
-                    印度政府就盗版内容向Telegram发出通知，标记超3100个频道
+            <div class="section-body">
+<div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">"海上新广东"如何乘风破浪？国际大咖看到这些机遇</div>
+                    </div>
+                    <div class="news-content">坐拥全国1/5的海洋生产总值，广东正以"六湾区一半岛"为指引，推动海洋产业向深海、智能、绿色转型。从湛江的智能养殖平台到茂名破纪录的水产出口，广东不仅展示了强大的海洋科技实力，更通过红树林生态养殖模式探索可持续发展路径，吸引了全球渔业巨头与外交使节寻求技术与贸易合作。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.21jingji.com/article/20260311/herald/bfe2eec33a38a3e47c5fb8c5e0d3d666.html" target="_blank">21世纪经济报道</a></span>
+                        <span class="tag">海洋经济</span>
+                    </div>
                 </div>
-                <div class="news-content">印度信息与广播部就盗版内容泛滥问题向Telegram发出正式通知，已识别并标记超过3100个传播盗版影视、音乐、电子书和课程资料的频道。政府要求Telegram在72小时内移除相关内容并加强审核机制，否则将面临根据印度信息技术法采取的法律行动。</div>
-                <div class="news-source">——源自：<a href="https://www.lokmattimes.com/technology/centre-issues-notice-to-telegram-over-pirated-content-flags-over-3100-channels/" target="_blank">Lokmat Times</a></div>
-            </div>
-        </div>
 
-        <div class="card">
-            <div class="section-title">
-                <span>🇮🇩</span>
-                <span>印尼热点新闻</span>
-            </div>
-            <div style="text-align:center;color:#999;padding:30px;">今日暂无印尼相关报道</div>
-        </div>
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">国家互联网应急中心提示"龙虾"风险；杨立昆拿下欧洲最大种子轮</div>
+                    </div>
+                    <div class="news-content">国家互联网应急中心发布网络安全预警，提示名为"龙虾"（Lobster）的恶意软件正在针对国内关键信息基础设施发动攻击，建议相关单位立即排查加固。同期，深度学习先驱杨立昆（Yann LeCun）创立的AI研究公司宣布完成欧洲史上最大种子轮融资，估值突破10亿美元，资金将用于开发不依赖大模型范式的新一代AI架构。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.21jingji.com/article/20260311/herald/dc7ed9c7e35d172d5056f43c1dffad2a.html" target="_blank">21世纪经济报道</a></span>
+                        <span class="tag">AI安全</span>
+                    </div>
+                </div>
 
-        <div class="footer">
-            <p>—— K姐 · 每日10:00推送 ——</p>
-            <p style="margin-top: 10px; font-size: 12px;">Generated by OpenClaw · 内容由K姐AI提炼生成</p>
-        </div>
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">21评论｜"十五五"起好步，推动中国经济向新向优</div>
+                    </div>
+                    <div class="news-content">展望"十五五"时期，中国经济正处于从量的扩张向质的提升转变的关键阶段。以DeepSeek为代表的中国AI创新正在引发全球关注，这种"井喷式"创新正在从人工智能向新能源、生物医药、高端制造等领域扩散，为中国经济高质量发展注入新动能，需抓住新一轮科技革命窗口期实现跨越式发展。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.21jingji.com/article/20260311/herald/bf4923e16df5c3829616bf961cc7b8ad.html" target="_blank">21世纪经济报道</a></span>
+                        <span class="tag">宏观经济</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">牛津经济研究院卢姿蕙：中国制造攀高向新，外企在华迎新机遇</div>
+                    </div>
+                    <div class="news-content">牛津经济研究院高级经济学家卢姿蕙在报告中指出，中国制造业正在经历从"世界工厂"向"创新高地"的转型升级，这为跨国企业带来了全新合作机遇。她建议外企重点关注中国高品质服务消费、产业数字化转型、绿色低碳技术等赛道，把握中国超大规模市场提质扩容的历史机遇。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.21jingji.com/article/20260310/herald/c27cd1ad68aaee486fb2d88800b50e63.html" target="_blank">21世纪经济报道</a></span>
+                        <span class="tag">制造业</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">港股通标的调整落地，医疗医药板块分化明显</div>
+                    </div>
+                    <div class="news-content">港股通标的名单迎来季度调整，多家创新药、生物科技新贵获纳入，而部分传统医药流通企业被调出。此次调整反映出国际资本对中国医药产业升级方向的判断——从仿制药向创新药、从营销驱动向研发驱动转变。市场预计2026-2027年将迎来生物科技企业的融资高峰，板块分化将进一步加剧。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.21jingji.com/article/20260310/herald/57a414cfe2650bae426a1a6f5e29d0a0.html" target="_blank">21世纪经济报道</a></span>
+                        <span class="tag">医疗健康</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">13家互联网大厂跟进"养龙虾"；泡泡玛特起诉拓竹</div>
+                    </div>
+                    <div class="news-content">AI赋能传统产业再掀热潮，已有13家互联网巨头宣布布局AI水产养殖，其中"AI养龙虾"项目因技术门槛适中、市场潜力巨大成为切入点。另一方面，潮玩龙头泡泡玛特正式起诉3D打印厂商拓竹，指控其3D打印模型侵犯旗下IP版权，案件将直接影响3D打印行业与IP授权产业的边界划分。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.21jingji.com/article/20260310/herald/b80f134daef357e44fc1a592feb6617c.html" target="_blank">21世纪经济报道</a></span>
+                        <span class="tag">AI应用</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">【AI演员】Tilly Norwood发布新歌引发争议，AI艺术创作边界再引讨论</div>
+                    </div>
+                    <div class="news-content">AI虚拟演员Tilly Norwood发布新单曲《The Show》，歌曲试图表达AI群体渴望被人类认可的心声，但因歌词空洞、旋律平庸遭到广泛批评。评论认为这一案例揭示了当前AI生成内容的根本局限：技术可以模拟形式，但难以复制真正的情感体验和艺术灵魂，AI艺术创作仍停留在"模仿"而非"创造"阶段。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/11/ai-actor-tilly-norwood-put-out-the-worst-song-ive-ever-heard/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI创作</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">Nuro自动驾驶首次进军日本，东京街头开启路测</div>
+                    </div>
+                    <div class="news-content">美国自动驾驶配送公司Nuro宣布在日本东京启动公共道路测试，这是该公司首次进军美国以外的市场。测试将聚焦于适应日本狭窄街道、密集人流和复杂的交通规则，为后续与当地便利店、超市合作推出无人配送服务做准备。Nuro此举被视为全球自动驾驶产业向亚洲市场扩张的重要信号。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/11/nuro-is-testing-its-autonomous-vehicle-tech-on-tokyos-streets/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">自动驾驶</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">Google Play商店大改版：新增PC游戏、试玩功能、社区板块</div>
+                    </div>
+                    <div class="news-content">Google Play商店宣布一系列重大更新：新增付费游戏专区、PC游戏串流服务、限时试玩功能以及游戏社区板块。谷歌表示这些改旨在将Play商店从单纯的"下载渠道"转型为"游戏发现与社交平台"，帮助优质游戏更容易触达目标用户，同时提升玩家发现和体验新游戏的便利性。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/11/google-play-is-adding-new-paid-and-pc-games-game-trials-community-posts-and-more/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">游戏平台</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">福特推出AI车队助手，实时监控安全带与驾驶行为</div>
+                    </div>
+                    <div class="news-content">福特推出Pro AI智能车队管理系统，利用AI算法实时分析车辆传感器数据，可自动监测驾驶员安全带佩戴情况、驾驶行为模式以及车辆健康状态。该系统已面向全美Ford Pro商业客户开放，旨在帮助企业降低事故率、优化维保成本，预计每年可为大型车队节省数百万美元运营费用。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/11/fords-new-ai-assistant-will-help-fleet-owners-know-if-seatbelts-are-being-used/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">智能汽车</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 社交/直播新闻 -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+<div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">网约车平台inDrive收购巴基斯坦Krave Mart，进军即时配送市场</div>
+                    </div>
+                    <div class="news-content">全球增长最快的网约车平台inDrive宣布收购巴基斯坦即时配送初创公司Krave Mart，正式进军杂货配送领域。Krave Mart在卡拉奇、拉合尔等城市拥有成熟的配送网络，此次收购将帮助inDrive在被Foodpanda主导的巴基斯坦市场中建立竞争据点，拓展多元化收入来源。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/11/ride-hailing-indrive-acquires-pakistans-krave-mart-to-bolster-grocery-delivery/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">即时配送</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">印度政府就盗版内容向Telegram发出通知，标记超3100个频道</div>
+                    </div>
+                    <div class="news-content">印度信息与广播部就盗版内容泛滥问题向Telegram发出正式通知，已识别并标记超过3100个传播盗版影视、音乐、电子书和课程资料的频道。政府要求Telegram在72小时内移除相关内容并加强审核机制，否则将面临根据印度信息技术法采取的法律行动。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.lokmattimes.com/technology/centre-issues-notice-to-telegram-over-pirated-content-flags-over-3100-channels/" target="_blank">Lokmat Times</a></span>
+                        <span class="tag">内容审核</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 印尼新闻 -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚科技市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+<div class="empty-state">
+                    <div class="empty-state-icon">📭</div>
+                    <div>今日暂无印尼相关报道</div>
+                </div>
+            </div>
+        </section>
     </div>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <div class="footer-brand">
+            <span>📰</span>
+            <span>News Daily</span>
+        </div>
+        <div class="footer-text">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
 </body>
 </html>
