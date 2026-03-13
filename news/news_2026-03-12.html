@@ -36,7 +36,6 @@
             color: var(--text-primary);
         }
 
-        /* 顶部导航 */
         .navbar {
             background: rgba(255,255,255,0.1);
             backdrop-filter: blur(20px);
@@ -85,14 +84,12 @@
             border-radius: 20px;
         }
 
-        /* 主容器 */
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 24px 16px 40px;
         }
 
-        /* 头部统计卡片 */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -131,7 +128,6 @@
             font-weight: 500;
         }
 
-        /* 新闻板块 */
         .section {
             background: var(--bg-card);
             border-radius: var(--radius);
@@ -180,7 +176,6 @@
             padding: 8px 0;
         }
 
-        /* 新闻条目 */
         .news-item {
             padding: 20px 24px;
             border-bottom: 1px solid var(--border);
@@ -286,7 +281,6 @@
             border: 1px solid rgba(99,102,241,0.2);
         }
 
-        /* 空状态 */
         .empty-state {
             text-align: center;
             padding: 48px 24px;
@@ -299,7 +293,6 @@
             opacity: 0.5;
         }
 
-        /* 底部 */
         .footer {
             text-align: center;
             padding: 32px 20px;
@@ -321,16 +314,9 @@
             opacity: 0.7;
         }
 
-        /* 动画 */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .section {
@@ -341,86 +327,26 @@
         .section:nth-child(3) { animation-delay: 0.2s; }
         .section:nth-child(4) { animation-delay: 0.3s; }
 
-        /* 移动端适配 */
         @media (max-width: 640px) {
-            .navbar-content {
-                padding: 0 16px;
-            }
-
-            .brand {
-                font-size: 16px;
-            }
-
-            .nav-date {
-                font-size: 12px;
-                padding: 4px 10px;
-            }
-
-            .container {
-                padding: 16px 12px 32px;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 8px;
-            }
-
-            .stat-card {
-                padding: 12px 8px;
-            }
-
-            .stat-number {
-                font-size: 22px;
-            }
-
-            .stat-label {
-                font-size: 10px;
-            }
-
-            .section-header {
-                padding: 16px 20px;
-            }
-
-            .section-icon {
-                width: 36px;
-                height: 36px;
-                font-size: 18px;
-            }
-
-            .section-title h2 {
-                font-size: 16px;
-            }
-
-            .section-title p {
-                font-size: 12px;
-            }
-
-            .news-item {
-                padding: 16px 20px;
-            }
-
-            .news-rank {
-                width: 28px;
-                height: 28px;
-                min-width: 28px;
-                font-size: 12px;
-            }
-
-            .news-title {
-                font-size: 15px;
-            }
-
-            .news-content,
-            .news-meta {
-                margin-left: 40px;
-            }
-
-            .news-content {
-                font-size: 13px;
-            }
+            .navbar-content { padding: 0 16px; }
+            .brand { font-size: 16px; }
+            .nav-date { font-size: 12px; padding: 4px 10px; }
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .stat-card { padding: 12px 8px; }
+            .stat-number { font-size: 22px; }
+            .stat-label { font-size: 10px; }
+            .section-header { padding: 16px 20px; }
+            .section-icon { width: 36px; height: 36px; font-size: 18px; }
+            .section-title h2 { font-size: 16px; }
+            .section-title p { font-size: 12px; }
+            .news-item { padding: 16px 20px; }
+            .news-rank { width: 28px; height: 28px; min-width: 28px; font-size: 12px; }
+            .news-title { font-size: 15px; }
+            .news-content, .news-meta { margin-left: 40px; }
+            .news-content { font-size: 13px; }
         }
 
-        /* 深色模式支持 */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-card: #1e293b;
@@ -433,7 +359,6 @@
     </style>
 </head>
 <body>
-    <!-- 顶部导航 -->
     <nav class="navbar">
         <div class="navbar-content">
             <div class="brand">
@@ -444,25 +369,22 @@
         </div>
     </nav>
 
-    <!-- 主内容 -->
     <div class="container">
-        <!-- 统计卡片 -->
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-number">10</div>
-                <div class="stat-label">互联网新闻</div>
+                <div class="stat-label">热门新闻</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">2</div>
                 <div class="stat-label">社交/直播</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">6</div>
-                <div class="stat-label">中文内容</div>
+                <div class="stat-number">10</div>
+                <div class="stat-label">印尼新闻</div>
             </div>
         </div>
 
-        <!-- Top10互联网新闻 -->
         <section class="section">
             <div class="section-header">
                 <div class="section-icon">🔥</div>
@@ -472,11 +394,128 @@
                 </div>
             </div>
             <div class="section-body">
-NEWS_SECTION_1
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">黄仁勋发布长文谈AI；马化腾官宣全系“龙虾”矩阵丨新鲜早科技</div>
+                    </div>
+                    <div class="news-content">每天清晨为你带来有趣有料的新鲜早科技。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.21jingji.com/article/20260312/herald/a54ebbe504fe721e819d3c51c4b15ff1.html" target="_blank">21st Century Business Herald </a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">出海焦虑何解？AI时代女性何为？这场论坛给出答案</div>
+                    </div>
+                    <div class="news-content">从“走出去”到“走进去”，出海是一场需要长期主义的深耕；AI降低了技术和产品门槛，而女性视角正为科技注入光。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.21jingji.com/article/20260312/herald/0eaa3aba583399bd2f0afadde395fa4a.html" target="_blank">21st Century Business Herald </a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">“海上新广东”如何乘风破浪？国际大咖看到这些机遇</div>
+                    </div>
+                    <div class="news-content">用科技重新定义“靠海吃饭”。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.21jingji.com/article/20260311/herald/bfe2eec33a38a3e47c5fb8c5e0d3d666.html" target="_blank">21st Century Business Herald </a></span>
+                        <span class="tag">热点</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">国家互联网应急中心提示“龙虾”风险；杨立昆拿下欧洲最大种子轮</div>
+                    </div>
+                    <div class="news-content">每天清晨为你带来有趣有料的新鲜早科技。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.21jingji.com/article/20260311/herald/dc7ed9c7e35d172d5056f43c1dffad2a.html" target="_blank">21st Century Business Herald </a></span>
+                        <span class="tag">热点</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">21评论｜“十五五”起好步，推动中国经济向新向优</div>
+                    </div>
+                    <div class="news-content">2025年DeepSeek掀起的中国科技创新“井喷”潮，正在向不同的领域扩散。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.21jingji.com/article/20260311/herald/bf4923e16df5c3829616bf961cc7b8ad.html" target="_blank">21st Century Business Herald </a></span>
+                        <span class="tag">商业</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">How to watch Jensen Huang’s Nvidia GTC 2026 keynote</div>
+                    </div>
+                    <div class="news-content"> GTC — which stands for GPU Technology Conference — is Nvidia s flagship annual event, where the chipmaker typically uses the spotlight to announce new products, champion partnerships, and lay out its vision for the future of computing. Huang s keynote will focus on Nvidia s role in the future of co</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/12/how-to-watch-jensen-huangs-nvidia-gtc-2026-keynote/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">热点</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">Sales automation startup Rox AI hits $1.2B valuation, sources say</div>
+                    </div>
+                    <div class="news-content"> Rox, founded in 2024 by the former chief growth officer of New Relic, offers an AI-native alternative to CRM tools. </div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/12/sales-automation-startup-rox-ai-hits-1-2b-valuation-sources-say/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">Channel Surfer lets you watch YouTube like it&amp;#8217;s old-school cable TV</div>
+                    </div>
+                    <div class="news-content"> The web app lets you turn on YouTube and surf channels like you re watching cable TV in the 90s. </div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/12/channel-surfer-watch-youtube-retro-cable-tv-guide/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">热点</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">Why Rivian is holding the $45,000 base model R2 until &amp;#8216;late 2027&amp;#8217;</div>
+                    </div>
+                    <div class="news-content"> Rivian spent the last two years promoting the R2 as a $45,000 SUV. But buyers won t be able to pay that price until late next year if at all. </div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/12/why-rivian-is-holding-the-45000-base-model-r2-until-late-2027/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">热点</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">Substack launches a built-in recording studio</div>
+                    </div>
+                    <div class="news-content"> Substack creators can pre-record video conversations with up to two guests, then publish directly on the platform. </div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/12/substack-launches-a-built-in-recording-studio/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">热点</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- 社交/直播新闻 -->
         <section class="section">
             <div class="section-header">
                 <div class="section-icon">📱</div>
@@ -486,26 +525,164 @@ NEWS_SECTION_1
                 </div>
             </div>
             <div class="section-body">
-NEWS_SECTION_2
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">Channel Surfer lets you watch YouTube like it&amp;#8217;s old-school cable TV</div>
+                    </div>
+                    <div class="news-content"> The web app lets you turn on YouTube and surf channels like you re watching cable TV in the 90s. </div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/12/channel-surfer-watch-youtube-retro-cable-tv-guide/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">热点</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">Facebook Marketplace now lets Meta AI respond to buyers&amp;#8217; messages</div>
+                    </div>
+                    <div class="news-content"> When buyers inquire about an item’s availability, sellers can use Meta AI to automatically draft replies using information from their listing, such as the description, availability, pickup location, and price. </div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/12/facebook-marketplace-now-lets-meta-ai-respond-to-buyers-messages/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- 印尼新闻 -->
         <section class="section">
             <div class="section-header">
                 <div class="section-icon">🇮🇩</div>
                 <div class="section-title">
                     <h2>印尼热点</h2>
-                    <p>东南亚科技市场动态</p>
+                    <p>东南亚市场动态</p>
                 </div>
             </div>
             <div class="section-body">
-NEWS_SECTION_3
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">West Asia Crisis: Indian paper industry faces rising energy cost, export disruption</div>
+                    </div>
+                    <div class="news-content">India's paper sector confronts rising energy expenses and potential export market disruptions. West Asia is a significant buyer of Indian paper and paperboard. Geopolitical tensions in the region are impacting energy supplies and chemical imports. Export-oriented nations like China and Indonesia may</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://economictimes.indiatimes.com/industry/indl-goods/svs/paper-/-wood-/-glass/-plastic/-marbles/west-asia-crisis-indian-paper-industry-faces-rising-energy-cost-export-disruption/articleshow/129512464.cms" target="_blank">The Economic Times</a></span>
+                        <span class="tag">热点</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">GAC Ranks Top 3 Overall and Second Among Chinese Brands in Hong Kong EV Sales</div>
+                    </div>
+                    <div class="news-content">/PRNewswire/ -- GAC's overseas markets saw strong growth early this year: Asia-Pacific sales rose 130% YoY in Jan-Feb, with gains in Singapore, Indonesia, and...</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.prnewswire.co.uk/news-releases/gac-ranks-top-3-overall-and-second-among-chinese-brands-in-hong-kong-ev-sales-302712427.html" target="_blank">PR Newswire UK</a></span>
+                        <span class="tag">热点</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">Geopolitical Tensions Threaten Indian Paper Industry's Future</div>
+                    </div>
+                    <div class="news-content">The Indian paper industry is grappling with rising energy costs and export disruptions due to West Asia's crisis. Key markets face instability, and raw material supply is strained, posing significant challenges to production. Surplus from China and Indonesia may flood Indian markets, escalating comp</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/business/3835773-geopolitical-tensions-threaten-indian-paper-industrys-future" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">热点</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">Measles surge in Indonesia amid vaccine hesitancy</div>
+                    </div>
+                    <div class="news-content">Measles cases are surging in Indonesia due to rising vaccine hesitancy post-Covid. Read more at straitstimes.com.</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.straitstimes.com/asia/se-asia/measles-cases-surge-in-indonesia-as-anti-vaccine-attitudes-persist-after-covid-19-pandemic" target="_blank">The Straits Times</a></span>
+                        <span class="tag">热点</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">Jaishankar talks with Indonesia's FM Sugiono on West Asia conflict; agrees on early Joint Commission meeting</div>
+                    </div>
+                    <div class="news-content">In a post on X, Jaishankar wrote, 'Pleased to talk to FM Sugiono of Indonesia. Exchanged perspectives on the West Asia conflict. Discussed bilateral ties and agreed to hold the Joint Commission meeting at an early date.'</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.tribuneindia.com/news/world/jaishankar-talks-with-indonesias-fm-sugiono-on-west-asia-conflict-agrees-on-early-joint-commission-meeting/" target="_blank">The Tribune</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">Indonesia Highlights Forest Governance and Traceability System in Dialogue with Japanese Energy Companies</div>
+                    </div>
+                    <div class="news-content">JAKARTA, Indonesia, March 12, 2026 /PRNewswire/ -- The Ministry of Forestry of the Republic of Indonesia reaffirmed the country's commitment to sustainable forest governance and transparent supply chains during a meeting with representatives from Tokyo Gas Co., Ltd. and Hanwa Co., Ltd. at the Minist</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.manilatimes.net/2026/03/12/tmt-newswire/pr-newswire/indonesia-highlights-forest-governance-and-traceability-system-in-dialogue-with-japanese-energy-companies/2298708" target="_blank">The Manila Times</a></span>
+                        <span class="tag">热点</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">Indonesia, Australia to broaden security cooperation to include Japan, Papua New Guinea</div>
+                    </div>
+                    <div class="news-content">The possibility of developing a training defence facility in eastern Indonesia was also discussed. Read more at straitstimes.com.</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.straitstimes.com/asia/se-asia/indonesia-australia-to-broaden-security-cooperation-to-include-japan-papua-new-guinea" target="_blank">The Straits Times</a></span>
+                        <span class="tag">热点</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">State Power Over Minerals Grows, Raising Risks For Global Supply Chains</div>
+                    </div>
+                    <div class="news-content">Resource nationalism is surging in 2026. Explore how Mongolia, Ghana, and Indonesia are reshaping global commodity markets and mining deals.</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.benzinga.com/markets/commodities/26/03/51208064/state-power-over-minerals-grows-raising-risks-for-global-supply-chains" target="_blank">Benzinga</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">India's Feb palm oil imports jump 11% to six-month high on price discount</div>
+                    </div>
+                    <div class="news-content">In February, India witnessed a remarkable surge in palm oil imports, climbing to a six-month peak. This uptick was fueled by competitive pricing compared to alternative oils, prompting refiners to increase their palm oil acquisitions and subsequently scale back on sunflower oil imports. This transit</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://economictimes.indiatimes.com/industry/cons-products/food/indias-palm-oil-imports-surge-11-to-record-high-amid-price-discounts-and-supply-concerns/articleshow/129503412.cms" target="_blank">The Economic Times</a></span>
+                        <span class="tag">热点</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">Bank Indonesia to hold key rate at 4.75% on March 17 as Middle East war weighs on rupiah - Reuters poll</div>
+                    </div>
+                    <div class="news-content">Bank Indonesia will keep interest rates steady for a sixth consecutive meeting on Tuesday, according to a majority of economists in a Reuters poll, as renewed pressure on the rupiah from the Middle...</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.marketscreener.com/news/bank-indonesia-to-hold-key-rate-at-4-75-on-march-17-as-middle-east-war-weighs-on-rupiah-reuters-p-ce7e5fdddc8df62c" target="_blank">MarketScreener</a></span>
+                        <span class="tag">热点</span>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
 
-    <!-- 底部 -->
     <footer class="footer">
         <div class="footer-brand">
             <span>📰</span>
