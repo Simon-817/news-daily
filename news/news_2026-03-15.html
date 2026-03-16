@@ -2,267 +2,443 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
     <title>行业早报 - 2026-03-15</title>
     <style>
-        body { font-family: sans-serif; background: #f4f7f6; padding: 20px; color: #333; }
-        .container { max-width: 800px; margin: 0 auto; }
-        .section { background: white; margin-bottom: 20px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .header { background: #6366f1; color: white; padding: 15px 20px; font-size: 1.2em; font-weight: bold; }
-        .news-item { padding: 15px 20px; border-bottom: 1px solid #eee; }
-        .news-header { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 5px; }
-        .news-rank { background: #6366f1; color: white; min-width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8em; }
-        .news-title { font-weight: bold; }
-        .news-content { font-size: 0.9em; color: #666; margin: 5px 0 10px 34px; }
-        .news-meta { margin-left: 34px; font-size: 0.8em; color: #999; }
-        .tag { background: #eef2ff; color: #6366f1; padding: 2px 8px; border-radius: 10px; margin-left: 10px; }
-        a { color: #6366f1; text-decoration: none; }
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-03-15</div>
+        </div>
+    </nav>
+
     <div class="container">
-        <h1>📰 行业早报 2026-03-15</h1>
-        <div class="section"><div class="header">🔥 全网热度 Top10</div>
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">1</div>
-            <div class="news-title">调查发现，由以色列组织安排的从加沙撤离巴勒斯坦人的航班</div>
-        </div>
-        <div class="news-content">自5月以来，已有至少三架载有加沙居民的航班降落在印度尼西亚和南非，这些居民正逃离饱受战火蹂躏的加沙地带</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.theglobeandmail.com/world/article-gaza-flights-palestine-israel/" target="_blank">The Globe and Mail</a></span>
-            <span class="tag">科技</span>
-        </div>
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📭</div>
+                    <div>今日暂无相关报道</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📭</div>
+                    <div>今日暂无相关报道</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">调查发现，由以色列组织安排的从加沙撤离巴勒斯坦人的航班</div>
+                    </div>
+                    <div class="news-content">自5月以来，已有至少三架载有加沙居民的航班降落在印度尼西亚和南非，这些居民正逃离饱受战火蹂躏的加沙地带</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.theglobeandmail.com/world/article-gaza-flights-palestine-israel/" target="_blank">The Globe and Mail</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">雅加达新增16处文化遗产，其中包括印尼举世闻名的默德卡宫和萨里纳大厦</div>
+                    </div>
+                    <div class="news-content">雅加达新增了16处景点，其中包括印尼总统官邸——默德卡宫，以及该国第一家现代百货商店——萨里纳大厦</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/03/15/indonesia039s-world-famous-merdeka-palace-and-sarinah-building-among-16-new-heritage-sites-in-jakarta" target="_blank">The Star</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">调查发现，巴勒斯坦撤离航班背后是某个以色列组织</div>
+                    </div>
+                    <div class="news-content">11月，约有150名巴勒斯坦人抵达约翰内斯堡——这是自去年5月以来，至少有三架载有加沙居民的航班抵达印度尼西亚和南非之一。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.africanews.com/2026/03/15/investigation-finds-israeli-group-behind-palestinian-evacuation-flights/" target="_blank">Africanews</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">伊朗战争给印尼带来燃油供应风险，恰逢开斋节出行高峰</div>
+                    </div>
+                    <div class="news-content">正值超过1亿印尼人踏上旅途之际，波斯湾战争打乱了燃料供应，导致该地区燃料价格飙升，雅加达正为此苦苦应对。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/03/15/iran-war-brings-fuel-risk-to-indonesia-ahead-of-eid-travel-surge" target="_blank">The Star</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">由……主演的电影《Lakadbaggha 2：猴子大闹》定档排灯节上映</div>
+                    </div>
+                    <div class="news-content">这部影片聚焦于濒危的苏拉威西冠猴，这种稀有的灵长类动物原产于印度尼西亚，也被称为北苏拉威西“雅基猴”。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.tribuneindia.com/news/entertainment/anshuman-jha-starrer-lakadbaggha-2-the-monkey-business-sets-diwali-release/" target="_blank">The Tribune</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">印度尼西亚谴责以色列对黎巴嫩南部的袭击，敦促停止敌对行动</div>
+                    </div>
+                    <div class="news-content">雅加达：（伯纳马通讯社）印度尼西亚强烈谴责以色列对黎巴嫩南部的袭击，敦促立即停止敌对行动，并呼吁各方保持克制，以防止该地区局势进一步升级。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/03/15/indonesia-condemns-israeli-attacks-in-southern-lebanon-urges-end-to-hostilities" target="_blank">The Star</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">印尼的普拉博沃对伊朗战争感到“惊讶”，称美国的轰炸不会引发政权更迭</div>
+                    </div>
+                    <div class="news-content">总统表示，他认为此次军事行动毫无“理性可言”，并敦促各方“寻求和平方案”以结束战争。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.scmp.com/news/asia/southeast-asia/article/3346646/indonesias-prabowo-surprised-iran-war-says-us-bombing-wont-spark-regime-change" target="_blank">South China Morning Post</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">全球油价震荡下的印尼财政赤字困境</div>
+                    </div>
+                    <div class="news-content">总统普拉博沃表示，由于地缘政治紧张局势导致油价持续高企，印度尼西亚可能将财政赤字上限上调至国内生产总值（GDP）的3%以上。尽管燃油价格可能上涨，但其政府计划转向太阳能发电，这将对补贴和税收产生影响。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/headlines/3838667-indonesias-deficit-dilemma-amid-global-oil-shocks" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">印尼预计将迎来1.439亿名开斋节返乡旅客</div>
+                    </div>
+                    <div class="news-content">雅加达：（伯纳马通讯社）据政府预测，2026年开斋节返乡期间预计将有1.439亿人出行，印尼正为这一年度返乡传统——当地人称之为“mudik”的大规模返乡潮——做准备。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/03/15/indonesia-braces-for-1439-million-eid-homecoming-travellers" target="_blank">The Star</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">普拉博沃表示，仅在危机期间才考虑突破印尼财政赤字上限</div>
+                    </div>
+                    <div class="news-content">总统普拉博沃·苏比安托表示，他只会在紧急情况下考虑暂时突破印尼法定预算赤字上限，并补充说他仍致力于财政纪律，国家必须“量入为出”。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.bloomberg.com/news/articles/2026-03-15/prabowo-open-to-breach-indonesia-deficit-cap-only-during-crisis" target="_blank">Bloomberg</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">2</div>
-            <div class="news-title">雅加达新增16处文化遗产，其中包括印尼举世闻名的默德卡宫和萨里纳大厦</div>
-        </div>
-        <div class="news-content">雅加达新增了16处景点，其中包括印尼总统官邸——默德卡宫，以及该国第一家现代百货商店——萨里纳大厦</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/03/15/indonesia039s-world-famous-merdeka-palace-and-sarinah-building-among-16-new-heritage-sites-in-jakarta" target="_blank">The Star</a></span>
-            <span class="tag">科技</span>
-        </div>
-    </div>
-
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">3</div>
-            <div class="news-title">调查发现，巴勒斯坦撤离航班背后是某个以色列组织</div>
-        </div>
-        <div class="news-content">11月，约有150名巴勒斯坦人抵达约翰内斯堡——这是自去年5月以来，至少有三架载有加沙居民的航班抵达印度尼西亚和南非之一。</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.africanews.com/2026/03/15/investigation-finds-israeli-group-behind-palestinian-evacuation-flights/" target="_blank">Africanews</a></span>
-            <span class="tag">科技</span>
-        </div>
-    </div>
-
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">4</div>
-            <div class="news-title">伊朗战争给印尼带来燃油供应风险，恰逢开斋节出行高峰</div>
-        </div>
-        <div class="news-content">正值超过1亿印尼人踏上旅途之际，波斯湾战争打乱了燃料供应，导致该地区燃料价格飙升，雅加达正为此苦苦应对。</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/03/15/iran-war-brings-fuel-risk-to-indonesia-ahead-of-eid-travel-surge" target="_blank">The Star</a></span>
-            <span class="tag">科技</span>
-        </div>
-    </div>
-
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">5</div>
-            <div class="news-title">由……主演的电影《Lakadbaggha 2：猴子大闹》定档排灯节上映</div>
-        </div>
-        <div class="news-content">这部影片聚焦于濒危的苏拉威西冠猴，这种稀有的灵长类动物原产于印度尼西亚，也被称为北苏拉威西“雅基猴”。</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.tribuneindia.com/news/entertainment/anshuman-jha-starrer-lakadbaggha-2-the-monkey-business-sets-diwali-release/" target="_blank">The Tribune</a></span>
-            <span class="tag">科技</span>
-        </div>
-    </div>
-
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">6</div>
-            <div class="news-title">印度尼西亚谴责以色列对黎巴嫩南部的袭击，敦促停止敌对行动</div>
-        </div>
-        <div class="news-content">雅加达：（伯纳马通讯社）印度尼西亚强烈谴责以色列对黎巴嫩南部的袭击，敦促立即停止敌对行动，并呼吁各方保持克制，以防止该地区局势进一步升级。</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/03/15/indonesia-condemns-israeli-attacks-in-southern-lebanon-urges-end-to-hostilities" target="_blank">The Star</a></span>
-            <span class="tag">科技</span>
-        </div>
-    </div>
-
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">7</div>
-            <div class="news-title">印尼的普拉博沃对伊朗战争感到“惊讶”，称美国的轰炸不会引发政权更迭</div>
-        </div>
-        <div class="news-content">总统表示，他认为此次军事行动毫无“理性可言”，并敦促各方“寻求和平方案”以结束战争。</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.scmp.com/news/asia/southeast-asia/article/3346646/indonesias-prabowo-surprised-iran-war-says-us-bombing-wont-spark-regime-change" target="_blank">South China Morning Post</a></span>
-            <span class="tag">科技</span>
-        </div>
-    </div>
-
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">8</div>
-            <div class="news-title">全球油价震荡下的印尼财政赤字困境</div>
-        </div>
-        <div class="news-content">总统普拉博沃表示，由于地缘政治紧张局势导致油价持续高企，印度尼西亚可能将财政赤字上限上调至国内生产总值（GDP）的3%以上。尽管燃油价格可能上涨，但其政府计划转向太阳能发电，这将对补贴和税收产生影响。</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/headlines/3838667-indonesias-deficit-dilemma-amid-global-oil-shocks" target="_blank">Devdiscourse</a></span>
-            <span class="tag">科技</span>
-        </div>
-    </div>
-
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">9</div>
-            <div class="news-title">印尼预计将迎来1.439亿名开斋节返乡旅客</div>
-        </div>
-        <div class="news-content">雅加达：（伯纳马通讯社）据政府预测，2026年开斋节返乡期间预计将有1.439亿人出行，印尼正为这一年度返乡传统——当地人称之为“mudik”的大规模返乡潮——做准备。</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/03/15/indonesia-braces-for-1439-million-eid-homecoming-travellers" target="_blank">The Star</a></span>
-            <span class="tag">科技</span>
-        </div>
-    </div>
-
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">10</div>
-            <div class="news-title">普拉博沃表示，仅在危机期间才考虑突破印尼财政赤字上限</div>
-        </div>
-        <div class="news-content">总统普拉博沃·苏比安托表示，他只会在紧急情况下考虑暂时突破印尼法定预算赤字上限，并补充说他仍致力于财政纪律，国家必须“量入为出”。</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.bloomberg.com/news/articles/2026-03-15/prabowo-open-to-breach-indonesia-deficit-cap-only-during-crisis" target="_blank">Bloomberg</a></span>
-            <span class="tag">科技</span>
-        </div>
-    </div></div>
-        <div class="section"><div class="header">📱 社交/直播行业</div><div class="empty-state">今日暂无相关报道</div></div>
-        <div class="section"><div class="header">🇮🇩 印尼热点</div>
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">1</div>
-            <div class="news-title">调查发现，由以色列组织安排的从加沙撤离巴勒斯坦人的航班</div>
-        </div>
-        <div class="news-content">自5月以来，已有至少三架载有加沙居民的航班降落在印度尼西亚和南非，这些居民正逃离饱受战火蹂躏的加沙地带</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.theglobeandmail.com/world/article-gaza-flights-palestine-israel/" target="_blank">The Globe and Mail</a></span>
-            <span class="tag">科技</span>
-        </div>
-    </div>
-
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">2</div>
-            <div class="news-title">雅加达新增16处文化遗产，其中包括印尼举世闻名的默德卡宫和萨里纳大厦</div>
-        </div>
-        <div class="news-content">雅加达新增了16处景点，其中包括印尼总统官邸——默德卡宫，以及该国第一家现代百货商店——萨里纳大厦</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/03/15/indonesia039s-world-famous-merdeka-palace-and-sarinah-building-among-16-new-heritage-sites-in-jakarta" target="_blank">The Star</a></span>
-            <span class="tag">科技</span>
-        </div>
-    </div>
-
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">3</div>
-            <div class="news-title">调查发现，巴勒斯坦撤离航班背后是某个以色列组织</div>
-        </div>
-        <div class="news-content">11月，约有150名巴勒斯坦人抵达约翰内斯堡——这是自去年5月以来，至少有三架载有加沙居民的航班抵达印度尼西亚和南非之一。</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.africanews.com/2026/03/15/investigation-finds-israeli-group-behind-palestinian-evacuation-flights/" target="_blank">Africanews</a></span>
-            <span class="tag">科技</span>
-        </div>
-    </div>
-
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">4</div>
-            <div class="news-title">伊朗战争给印尼带来燃油供应风险，恰逢开斋节出行高峰</div>
-        </div>
-        <div class="news-content">正值超过1亿印尼人踏上旅途之际，波斯湾战争打乱了燃料供应，导致该地区燃料价格飙升，雅加达正为此苦苦应对。</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/03/15/iran-war-brings-fuel-risk-to-indonesia-ahead-of-eid-travel-surge" target="_blank">The Star</a></span>
-            <span class="tag">科技</span>
-        </div>
-    </div>
-
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">5</div>
-            <div class="news-title">由……主演的电影《Lakadbaggha 2：猴子大闹》定档排灯节上映</div>
-        </div>
-        <div class="news-content">这部影片聚焦于濒危的苏拉威西冠猴，这种稀有的灵长类动物原产于印度尼西亚，也被称为北苏拉威西“雅基猴”。</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.tribuneindia.com/news/entertainment/anshuman-jha-starrer-lakadbaggha-2-the-monkey-business-sets-diwali-release/" target="_blank">The Tribune</a></span>
-            <span class="tag">科技</span>
-        </div>
-    </div>
-
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">6</div>
-            <div class="news-title">印度尼西亚谴责以色列对黎巴嫩南部的袭击，敦促停止敌对行动</div>
-        </div>
-        <div class="news-content">雅加达：（伯纳马通讯社）印度尼西亚强烈谴责以色列对黎巴嫩南部的袭击，敦促立即停止敌对行动，并呼吁各方保持克制，以防止该地区局势进一步升级。</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/03/15/indonesia-condemns-israeli-attacks-in-southern-lebanon-urges-end-to-hostilities" target="_blank">The Star</a></span>
-            <span class="tag">科技</span>
-        </div>
-    </div>
-
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">7</div>
-            <div class="news-title">印尼的普拉博沃对伊朗战争感到“惊讶”，称美国的轰炸不会引发政权更迭</div>
-        </div>
-        <div class="news-content">总统表示，他认为此次军事行动毫无“理性可言”，并敦促各方“寻求和平方案”以结束战争。</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.scmp.com/news/asia/southeast-asia/article/3346646/indonesias-prabowo-surprised-iran-war-says-us-bombing-wont-spark-regime-change" target="_blank">South China Morning Post</a></span>
-            <span class="tag">科技</span>
-        </div>
-    </div>
-
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">8</div>
-            <div class="news-title">全球油价震荡下的印尼财政赤字困境</div>
-        </div>
-        <div class="news-content">总统普拉博沃表示，由于地缘政治紧张局势导致油价持续高企，印度尼西亚可能将财政赤字上限上调至国内生产总值（GDP）的3%以上。尽管燃油价格可能上涨，但其政府计划转向太阳能发电，这将对补贴和税收产生影响。</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/headlines/3838667-indonesias-deficit-dilemma-amid-global-oil-shocks" target="_blank">Devdiscourse</a></span>
-            <span class="tag">科技</span>
-        </div>
-    </div>
-
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">9</div>
-            <div class="news-title">印尼预计将迎来1.439亿名开斋节返乡旅客</div>
-        </div>
-        <div class="news-content">雅加达：（伯纳马通讯社）据政府预测，2026年开斋节返乡期间预计将有1.439亿人出行，印尼正为这一年度返乡传统——当地人称之为“mudik”的大规模返乡潮——做准备。</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/03/15/indonesia-braces-for-1439-million-eid-homecoming-travellers" target="_blank">The Star</a></span>
-            <span class="tag">科技</span>
-        </div>
-    </div>
-
-    <div class="news-item">
-        <div class="news-header">
-            <div class="news-rank">10</div>
-            <div class="news-title">普拉博沃表示，仅在危机期间才考虑突破印尼财政赤字上限</div>
-        </div>
-        <div class="news-content">总统普拉博沃·苏比安托表示，他只会在紧急情况下考虑暂时突破印尼法定预算赤字上限，并补充说他仍致力于财政纪律，国家必须“量入为出”。</div>
-        <div class="news-meta">
-            <span class="news-source">源自：<a href="https://www.bloomberg.com/news/articles/2026-03-15/prabowo-open-to-breach-indonesia-deficit-cap-only-during-crisis" target="_blank">Bloomberg</a></span>
-            <span class="tag">科技</span>
-        </div>
-    </div></div>
-    </div>
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
 </body>
 </html>
