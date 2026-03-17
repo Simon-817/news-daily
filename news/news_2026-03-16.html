@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-03-16</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-03-16</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">美国证券交易委员会考虑将财报发布频率调整为每年两次</div>
+                    </div>
+                    <div class="news-content"> 据《华尔街日报》报道，美国证券交易委员会（SEC）正在制定一项提案，拟允许上市公司每年发布两次财报，而非每季度发布一次。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/16/sec-eyes-shift-to-twice-yearly-earnings-reports/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">英伟达版的OpenClaw或许能解决其最大的问题：安全性</div>
+                    </div>
+                    <div class="news-content"> 英伟达宣布推出一款名为 NemoClaw 的开放式企业级 AI 代理平台，该平台基于广受欢迎的 OpenClaw 构建。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/16/nvidias-version-of-openclaw-could-solve-its-biggest-problem-security/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">黄仁勋刚刚将英伟达Blackwell和Vera Rubin的销售预期推升至万亿美元的天价水平</div>
+                    </div>
+                    <div class="news-content"> 英伟达首席执行官黄仁勋表示，他预计该芯片的订单总额将达到1万亿美元。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/16/jensen-just-put-nvidias-blackwell-and-vera-rubin-sales-projections-into-the-1-trillion-stratosphere/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">沃伦就五角大楼允许xAI接入机密网络的决定向其施压</div>
+                    </div>
+                    <div class="news-content"> 参议员伊丽莎白·沃伦指出，xAI旗下备受争议的聊天机器人Grok向用户生成有害内容，并构成潜在的国家安全风险。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/16/warren-presses-pentagon-over-decision-to-grant-xai-access-to-classified-networks/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">Memories AI 正致力于为可穿戴设备和机器人构建视觉记忆层</div>
+                    </div>
+                    <div class="news-content"> Memories.ai 正在构建一个大型视觉记忆模型，该模型能够为物理人工智能索引和检索视频记录的记忆。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/16/memories-ai-is-building-the-visual-memory-layer-for-wearables-and-robotics/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">三星押注这家岛屿初创企业能凭借软件和电池技术实现电网优化</div>
+                    </div>
+                    <div class="news-content"> GridBeyond 的软硬件系统协调数吉瓦的供需，以帮助平衡电网中的电力流动。这一理念吸引了三星风投等投资者的关注。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/16/samsung-bets-this-island-startup-can-tame-the-grid-with-software-and-batteries/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">苹果收购视频编辑软件公司MotionVFX</div>
+                    </div>
+                    <div class="news-content"> 此举或将有助于苹果更好地与Adobe Premiere Pro及Adobe Creative Cloud套件展开竞争。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/16/apple-acquires-video-editing-software-company-motionvfx/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">埃隆·马斯克旗下的xAI面临未成年人提起的儿童色情诉讼，据称Grok曾被剥光衣服</div>
+                    </div>
+                    <div class="news-content"> 这三名原告希望代表所有未成年时期的真实照片被Grok篡改为色情内容的人士。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/16/elon-musks-xai-faces-child-porn-lawsuit-from-minors-grok-allegedly-undressed/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">英伟达的DLSS 5利用生成式人工智能提升视频游戏的逼真度，其雄心壮志已超越游戏领域</div>
+                    </div>
+                    <div class="news-content"> 英伟达的新一代DLSS 5技术利用生成式人工智能和结构化图形数据，使电子游戏画面更加逼真。首席执行官黄仁勋表示，这种方法最终可能会推广到其他行业。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/16/nvidias-dlss-5-uses-generative-ai-to-boost-photo-realism-in-video-games-with-ambitions-beyond-gaming/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">据iFixit称，MacBook Neo是近年来“最易于维修的MacBook”</div>
+                    </div>
+                    <div class="news-content"> 苹果新款 MacBook Neo 不仅是价格最亲民的 MacBook，也是该公司“大约十四年来”最易于维修的笔记本电脑。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/16/macbook-neo-ifixit-most-repairable-macbook-in-years-battery-replacement/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">英伟达版的OpenClaw或许能解决其最大的问题：安全性</div>
+                    </div>
+                    <div class="news-content"> 英伟达宣布推出一款名为 NemoClaw 的开放式企业级 AI 代理平台，该平台基于广受欢迎的 OpenClaw 构建。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/16/nvidias-version-of-openclaw-could-solve-its-biggest-problem-security/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">黄仁勋刚刚将英伟达Blackwell和Vera Rubin的销售预期推升至万亿美元的天价水平</div>
+                    </div>
+                    <div class="news-content"> 英伟达首席执行官黄仁勋表示，他预计该芯片的订单总额将达到1万亿美元。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/16/jensen-just-put-nvidias-blackwell-and-vera-rubin-sales-projections-into-the-1-trillion-stratosphere/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">沃伦就五角大楼允许xAI接入机密网络的决定向其施压</div>
+                    </div>
+                    <div class="news-content"> 参议员伊丽莎白·沃伦指出，xAI旗下备受争议的聊天机器人Grok向用户生成有害内容，并构成潜在的国家安全风险。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/16/warren-presses-pentagon-over-decision-to-grant-xai-access-to-classified-networks/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">Memories AI 正致力于为可穿戴设备和机器人构建视觉记忆层</div>
+                    </div>
+                    <div class="news-content"> Memories.ai is building a large visual memory model that can index and retrieve video-recorded memories for physical AI. </div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/16/memories-ai-is-building-the-visual-memory-layer-for-wearables-and-robotics/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">苹果收购视频编辑软件公司MotionVFX</div>
+                    </div>
+                    <div class="news-content"> 此举或将有助于苹果更好地与Adobe Premiere Pro及Adobe Creative Cloud套件展开竞争。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/16/apple-acquires-video-editing-software-company-motionvfx/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">埃隆·马斯克旗下的xAI面临未成年人提起的儿童色情诉讼，据称Grok被剥光了衣服</div>
+                    </div>
+                    <div class="news-content"> 这三名原告希望代表所有未成年时期的真实照片被Grok篡改为色情内容的人士。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/16/elon-musks-xai-faces-child-porn-lawsuit-from-minors-grok-allegedly-undressed/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">英伟达的DLSS 5利用生成式人工智能提升视频游戏的逼真度，其雄心壮志已超越游戏领域</div>
+                    </div>
+                    <div class="news-content"> 英伟达的新一代DLSS 5技术利用生成式人工智能和结构化图形数据，使电子游戏画面更加逼真。首席执行官黄仁勋表示，这种方法最终可能会推广到其他行业。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/16/nvidias-dlss-5-uses-generative-ai-to-boost-photo-realism-in-video-games-with-ambitions-beyond-gaming/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">据iFixit称，MacBook Neo是近年来“最易于维修的MacBook”</div>
+                    </div>
+                    <div class="news-content"> 苹果新款 MacBook Neo 不仅是价格最亲民的 MacBook，也是该公司“大约十四年来”最易于维修的笔记本电脑。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/16/macbook-neo-ifixit-most-repairable-macbook-in-years-battery-replacement/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">A vehicle to encourage people to stay in the countryside</div>
+                    </div>
+                    <div class="news-content">These monorail cabins never stop, ensuring passenger safety is a priority. Monitoring is continuous and the technology is discreet; in this new mode of transport.</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.euronews.com/my-europe/2026/03/16/a-vehicle-to-encourage-people-to-stay-in-the-countryside" target="_blank">Euronews</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">代理式人工智能是销售的未来：如何正确运用它</div>
+                    </div>
+                    <div class="news-content">能否掌握这项技术，将决定你的成败。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.inc.com/fast-company-2/agentic-ai-is-the-future-of-sales-heres-how-to-get-it-right/91317130" target="_blank">Inc. Magazine</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">VinFast Extends Free EV Charging In India, Philippines And Indonesia Until March 2029</div>
+                    </div>
+                    <div class="news-content">为加速电动汽车的普及，VinFast已将其在印度、印度尼西亚和菲律宾的免费电动汽车充电计划延长至2029年3月。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.ndtv.com/auto/vinfast-extends-free-ev-charging-in-india-philippines-and-indonesia-until-march-2029-11223036" target="_blank">NDTV.com</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">印度尼西亚表示，应对油价上涨的首要措施将是削减预算，而非财政赤字激增</div>
+                    </div>
+                    <div class="news-content">印度尼西亚财政部长周一表示，如果全球油价持续高企，该国将对部分政府项目进行预算削减，并将于近期公布相关计划，同时淡化了外界对……的担忧。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.marketscreener.com/news/indonesia-says-budget-cuts-will-be-first-response-to-oil-price-rise-not-fiscal-deficit-spike-ce7e5edadd8ff027" target="_blank">MarketScreener</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">Marina Bay City Lombok Issues Official Statement Rejecting False Ownership Claims by Lux Projects Bali and Jamie McIntyre</div>
+                    </div>
+                    <div class="news-content">印度尼西亚龙目岛讯——PT Marina Bay Group 发布官方声明，证实位于龙目岛南部海岸线的滨海整体规划开发项目“滨海湾城”（Marina Bay City）正在顺利推进，且不受任何干扰，目前正积极欢迎开发商的咨询——此前，Lux Proje 曾散布虚假言论。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techbullion.com/marina-bay-city-lombok-issues-official-statement-rejecting-false-ownership-claims-by-lux-projects-bali-and-jamie-mcintyre/" target="_blank">TechBullion</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">印尼部长称，该国正考虑对大宗商品征收“暴利税”</div>
+                    </div>
+                    <div class="news-content">经济统筹部长艾尔朗加·哈塔托在雅加达表示，政府正在考虑对大宗商品征收“暴利税”，但尚未作出决定。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://news.bloombergtax.com/daily-tax-report/indonesia-mulling-windfall-tax-on-commodities-minister-says" target="_blank">Bloomberg Tax News</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">Global Energy Crisis: Nations React to U.S.-Israeli Conflict Impact</div>
+                    </div>
+                    <div class="news-content">面对油价飙升以及美以与伊朗冲突引发的经济担忧，亚洲各国正采取各种应对策略。日本释放石油储备，韩国加大煤炭和核能发电力度，中国实施燃料出口禁令，而印度和印度尼西亚等国则……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/headlines/3839845-global-energy-crisis-nations-react-to-us-israeli-conflict-impact" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">Market Jitters: Emerging Economies Face Budget Cap Breach Concerns</div>
+                    </div>
+                    <div class="news-content">Emerging market stocks showed mixed performance, with Indonesia's market hitting an eight-month low due to budget cap breach fears. President Prabowo signaled deficit increases if oil prices persist. Global central banks are on alert for energy-driven inflation pressures. Middle East tensions influe</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/headlines/3839771-market-jitters-emerging-economies-face-budget-cap-breach-concerns" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">印尼警方通缉四名涉嫌对活动人士实施酸液袭击的嫌疑人</div>
+                    </div>
+                    <div class="news-content">Rest of World News: JAKARTA: Indonesian police are hunting for four people wanted for an acid attack that maimed an activist critical of the military's growing role in go.</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://timesofindia.indiatimes.com/world/rest-of-world/indonesia-police-seek-four-suspects-for-acid-attack-on-activist/articleshow/129605477.cms" target="_blank">Times of India</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">印尼警方通缉四名涉嫌对活动人士实施酸液袭击的嫌疑人</div>
+                    </div>
+                    <div class="news-content">受害者曾公开批评军方试图扩大其在印尼政府中的影响力的举措。更多详情请访问straitstimes.com。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.straitstimes.com/asia/se-asia/indonesia-police-seek-four-suspects-for-acid-attack-on-activist" target="_blank">The Straits Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">Indonesia stocks tumble, rupiah nears 17,000 on budget deficit worries</div>
+                    </div>
+                    <div class="news-content">INDONESIAN stocks slid to an eight-month low on Monday, while the rupiah neared the 17,000-per-dollar mark, as investors feared that the net oil importer could breach its budget deficit limit due to the Middle East war.</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thestar.com.my/business/business-news/2026/03/16/indonesia-stocks-tumble-rupiah-nears-17000-on-budget-deficit-worries" target="_blank">The Star</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">菲律宾称，各国应在出口限制期间遵守石油协议</div>
+                    </div>
+                    <div class="news-content">随着菲律宾加紧确保燃料供应，该国正与印度尼西亚和俄罗斯进行磋商。更多详情请访问 straitstimes.com。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.straitstimes.com/asia/se-asia/philippines-says-nations-must-honour-oil-pacts-amid-export-curbs" target="_blank">The Straits Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
