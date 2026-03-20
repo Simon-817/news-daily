@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-03-19</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-03-19</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">亚马逊收购了楼梯爬行配送机器人制造商Rivr</div>
+                    </div>
+                    <div class="news-content"> 亚马逊和杰夫·贝索斯此前曾向这家初创公司投资。这笔交易表明，这家电商巨头对上门配送业务表现出兴趣。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/19/amazon-acquires-rivr-maker-of-a-stair-climbing-delivery-robot/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">据报道，杰夫·贝索斯希望筹集1000亿美元，用于收购并利用人工智能改造老牌制造企业</div>
+                    </div>
+                    <div class="news-content"> 这位亚马逊大亨启动了一个新项目，旨在收购工业企业，并利用人工智能技术对其进行改造。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/19/jeff-bezos-reportedly-wants-100-billion-to-buy-and-transform-old-manufacturing-firms-with-ai/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">一名类人型机器人在加利福尼亚州一家餐厅失控狂舞，员工们不得不将其制伏</div>
+                    </div>
+                    <div class="news-content"> 海迪劳火锅店里的一台跳舞机器人跳得太起劲了。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/19/restaurant-dancing-robot-went-wild-hot-pot-cupertino-haidilao-agibot/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">Polymarket继续拓展合作伙伴关系，与美国职业棒球大联盟达成合作协议</div>
+                    </div>
+                    <div class="news-content"> 美国职业棒球大联盟（MLB）只是近期一系列涉及预测市场的合作中的最新一例。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/19/polymarket-continues-its-partnership-spree-with-a-major-league-baseball-deal/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">Cloudflare首席执行官表示，到2027年，网络机器人流量将超过人类流量</div>
+                    </div>
+                    <div class="news-content"> Cloudflare首席执行官马修·普林斯表示，到2027年，网络上的AI机器人数量可能会超过人类，因为生成式AI代理正大幅增加网络流量和基础设施需求。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/19/online-bot-traffic-will-exceed-human-traffic-by-2027-cloudflare-ceo-says/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">Bluesky在CEO更迭后宣布完成1亿美元B轮融资</div>
+                    </div>
+                    <div class="news-content"> 这笔额外资金已用于扩充Bluesky的团队，与此同时，该公司仍在继续开发Bluesky的应用程序及其底层驱动引擎ATProto。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/19/bluesky-announces-100m-series-b-after-ceo-transition/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">地热初创公司Fervo成功跨越“死亡谷”</div>
+                    </div>
+                    <div class="news-content"> Fervo成功获得了一笔大额新贷款，其条款强烈暗示该公司最动荡的时期已经过去。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/19/geothermal-startup-fervo-catapults-itself-over-the-valley-of-death/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">Meta 推出新的 AI 内容监管系统，同时减少对第三方供应商的依赖</div>
+                    </div>
+                    <div class="news-content"> Meta认为，这些人工智能系统能够更准确地发现更多违规行为，更有效地防范诈骗，更迅速地应对现实世界中的事件，并减少过度执法。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/19/meta-rolls-out-new-ai-content-enforcement-systems-while-reducing-reliance-on-third-party-vendors/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">谷歌推出了一种新的方式，让用户能够旁载安卓应用，同时仍能防范诈骗</div>
+                    </div>
+                    <div class="news-content"> 谷歌推出了一项新的高级设置，让用户在完成多步骤安全验证后即可禁用应用验证功能，从而使安卓系统的侧载操作更加便捷。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/19/google-introduces-a-new-way-for-users-to-sideload-android-apps-that-still-protects-against-scams/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">DoorDash 推出了一款名为“Tasks”的新应用，该应用会向外卖员支付报酬，以换取他们提交用于训练人工智能的视频</div>
+                    </div>
+                    <div class="news-content"> 快递员可以通过完成拍摄日常任务或录制自己用外语说话等活动来赚取收入。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/19/doordash-launches-a-new-tasks-app-that-pays-couriers-to-submit-videos-to-train-ai/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">某航空公司捐赠500台平板电脑，以消除教育领域的“数字鸿沟”</div>
+                    </div>
+                    <div class="news-content">一家航空公司将价值15万英镑的前机组人员闲置平板电脑捐赠给了缺乏学习设备的儿童。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.kentlive.news/news/uk-world-news/airline-tackles-digital-divide-tendendo-10875655" target="_blank">Kentlive</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">某航空公司捐赠500台平板电脑，以消除教育领域的“数字鸿沟”</div>
+                    </div>
+                    <div class="news-content">一家航空公司将价值15万英镑的前机组人员闲置平板电脑捐赠给了缺乏学习设备的儿童。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devonlive.com/news/uk-world-news/airline-tackles-digital-divide-tendendo-10875655" target="_blank">Devon Live</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">烟草大亨、印尼首富迈克尔·班邦·哈托诺去世，享年86岁</div>
+                    </div>
+                    <div class="news-content">印度尼西亚雅加达（美联社）——印度尼西亚首富迈克尔·班邦·哈托诺曾助力将达鲁姆香烟公司打造成该国最大的……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://wtop.com/world/2026/03/michael-bambang-hartono-tobacco-tycoon-and-indonesias-richest-man-dies-at-86/" target="_blank">WTOP</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">印尼首富、烟草大亨迈克尔·班邦·哈托诺去世，享年86岁</div>
+                    </div>
+                    <div class="news-content">哈托诺兄弟的净资产超过438亿美元。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://fortune.com/2026/03/19/indonesias-richest-man-tobacco-tycoon-michael-bambang-hartono-dies-at-86/" target="_blank">Fortune</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">印尼首富迈克尔·班邦·哈托诺去世，享年86岁</div>
+                    </div>
+                    <div class="news-content">雅加达（美联社）——印尼首富迈克尔·班邦·哈托诺曾助力将达鲁姆香烟公司打造成该国最大的企业之一……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://asia.nikkei.com/life-arts/obituaries/michael-bambang-hartono-indonesia-s-richest-man-dies-at-86" target="_blank">Nikkei Asia</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">印尼首富巨擘的遗产：迈克尔·哈托诺</div>
+                    </div>
+                    <div class="news-content">印尼首富、著名商业巨头迈克尔·班邦·哈托诺于86岁逝世。他将达鲁姆（Djarum）打造为全球品牌，并曾是中亚银行（Bank Central Asia）的大股东。作为一位著名的桥牌选手，哈托诺为印尼体育界做出了重大贡献，其净资产达</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/business/3843477-legacy-of-indonesias-richest-titan-michael-hartono" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">烟草大亨、印尼首富迈克尔·班邦·哈托诺去世，享年86岁</div>
+                    </div>
+                    <div class="news-content">雅加达：印尼首富迈克尔·班邦·哈托诺于周四（3月19日）去世。他曾助力将达鲁姆香烟公司打造成该国最大的商业帝国之一，后成为印尼最大私营银行——中亚银行的控股股东。享年86岁。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/03/19/michael-bambang-hartono-tobacco-tycoon-and-indonesia039s-richest-man-dies-at-86" target="_blank">The Star</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">印尼首富迈克尔·班邦·哈托诺去世，享年86岁</div>
+                    </div>
+                    <div class="news-content">印尼首富迈克尔·班邦·哈托诺于86岁逝世。哈托诺与其兄弟共同将达鲁姆香烟公司打造成该国最大的商业帝国之一，后来还成为了印尼最大私营银行——中亚银行的控股股东。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://apnews.com/article/indonesia-richest-man-michael-hartono-died-tycoon-efd8de76a0b811edacd93c219cee77e8" target="_blank">The Associated Press</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">烟草大亨、印尼首富迈克尔·班邦·哈托诺去世，享年86岁</div>
+                    </div>
+                    <div class="news-content">印尼首富迈克尔·班邦·哈托诺已于86岁高龄去世。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.clickondetroit.com/business/2026/03/19/michael-bambang-hartono-tobacco-tycoon-and-indonesias-richest-man-dies-at-86/" target="_blank">WDIV ClickOnDetroit</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">烟草大亨、印尼首富迈克尔·班邦·哈托诺去世，享年86岁</div>
+                    </div>
+                    <div class="news-content">印度尼西亚雅加达（美联社）——印度尼西亚首富迈克尔·班邦·哈托诺于周四去世。他曾助力将达鲁姆香烟公司打造成该国最大的商业帝国之一，并后来成为印度尼西亚最大私营银行——中亚银行的控股股东。享年86岁。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.usnews.com/news/business/articles/2026-03-19/michael-bambang-hartono-tobacco-tycoon-and-indonesias-richest-man-dies-at-86" target="_blank">U.S. News & World Report</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">OMS Energy Technologies（纳斯达克代码：OMSE）获得约260万美元的地面井口系统（SWS）订单</div>
+                    </div>
+                    <div class="news-content">在巴基斯坦成功拿下首个10,000 PSI井口系统项目，以及在阿曼和印度尼西亚获得的新订单，推动了OMS的全球SWS扩张战略</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.manilatimes.net/2026/03/19/tmt-newswire/globenewswire/oms-energy-technologies-nasdaq-omse-secures-approximately-us26-million-in-surface-wellhead-system-sws-orders/2303522" target="_blank">The Manila Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">是解决温饱还是填满油箱？随着油价飙升，经济学家敦促印尼缩减免费供餐计划</div>
+                    </div>
+                    <div class="news-content">雅加达：一些专家敦促印尼政府缩减总统普拉博沃·苏比安托的标志性项目——免费营养餐（MBG）计划，此举有助于在中东冲突不断升级、能源价格飙升之际削减政府开支。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/03/19/to-feed-or-fuel-economists-urge-indonesia-to-downsize-free-meals-programme-as-oil-prices-soar" target="_blank">The Star</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
