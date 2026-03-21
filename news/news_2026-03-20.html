@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-03-20</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-03-20</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">最新法庭文件显示，五角大楼曾告知Anthropic双方立场几乎一致——而就在一周前，特朗普才刚宣布双方关系已告终结</div>
+                    </div>
+                    <div class="news-content"> 上周五下午晚些时候，Anthropic向加州联邦法院提交了两份宣誓书，反驳了五角大楼关于这家人工智能公司对国家安全构成不可接受风险的说法，并辩称政府的指控基于技术上的误解，同时声称……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/20/new-court-filing-reveals-pentagon-told-anthropic-the-two-sides-were-nearly-aligned-a-week-after-trump-declared-the-relationship-kaput/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">陪审团称，埃隆·马斯克在试图退出收购交易时误导了推特投资者</div>
+                    </div>
+                    <div class="news-content"> 当时，马斯克曾在推特上发文称，推特上的机器人账号太多，这就是他试图反悔收购该公司的承诺的原因。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/20/elon-musk-misled-twitter-investors-while-trying-to-get-out-of-acquisition-jury-says/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">微软在 Windows 上撤回了部分 Copilot AI 的冗余功能</div>
+                    </div>
+                    <div class="news-content"> 该公司正在减少 Windows 系统上 Copilot 的入口，首先从“照片”、“小工具”、“记事本”及其他应用开始。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/20/microsoft-rolls-back-some-of-its-copilot-ai-bloat-on-windows/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">在法律纠纷的背景下，Kalshi在内华达州被暂时禁用</div>
+                    </div>
+                    <div class="news-content"> 这是围绕预测市场未来展开的监管之争中最新的一次升级。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/20/amidst-legal-turmoil-kalshi-is-temporarily-banned-in-nevada/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">Pinterest首席执行官呼吁各国政府禁止16岁以下用户使用社交媒体</div>
+                    </div>
+                    <div class="news-content"> Pinterest首席执行官将社交媒体比作烟草和酒精，称儿童需要类似的保护措施。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/20/pinterest-ceo-calls-on-governments-to-ban-social-media-for-users-under-16/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">为什么科学家总是让人笑不出来</div>
+                    </div>
+                    <div class="news-content"> 在冷冰冰的观众面前，幽默很难奏效，这一点毋庸置疑。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/20/why-scientists-cant-get-a-laugh/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">一名法国海军军官在Strava上记录跑步路线时，无意中泄露了一艘航空母舰的位置</div>
+                    </div>
+                    <div class="news-content"> 一名法国海军军官在“戴高乐”号航空母舰的甲板上跑步锻炼，却在将锻炼数据上传至Strava时，无意中泄露了该军舰的位置。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/20/a-french-navy-officer-accidentally-leaked-the-location-of-an-aircraft-carrier-by-logging-his-run-on-strava/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">WordPress.com 现已支持由 AI 代理撰写和发布文章，以及更多功能</div>
+                    </div>
+                    <div class="news-content"> WordPress.com 上的新人工智能代理可能会降低发布门槛，同时增加网络上由机器生成的内容。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/20/wordpress-com-now-lets-ai-agents-write-and-publish-posts-and-more/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">杰夫·贝索斯的“蓝色起源”进军太空数据中心领域</div>
+                    </div>
+                    <div class="news-content"> “日出计划”将包括5万多颗在轨执行高强度计算任务的卫星。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/20/jeff-bezos-blue-origin-enters-the-space-data-center-game/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">美国指责伊朗政府操控了一个黑客组织，该组织对“斯特赖克”装甲车进行了网络攻击</div>
+                    </div>
+                    <div class="news-content"> 美国司法部表示，伊朗安全部门操控了一个名为“汉达拉”（Handala）的虚假活动家账号，该账号宣称对针对医疗技术巨头史赛克（Stryker）的破坏性黑客攻击负责。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/20/u-s-accuses-irans-government-of-operating-hacktivist-group-that-hacked-stryker/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">亚马逊、Meta、谷歌和微软的“AI困境”波及中国，两家中国最大科技公司不到一天内市值蒸发660亿美元</div>
+                    </div>
+                    <div class="news-content">科技新闻：投资者似乎对企业为推动其人工智能（AI）基础设施和战略而增加资本支出的情况感到担忧。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://timesofindia.indiatimes.com/technology/tech-news/amazon-meta-google-and-microsofts-ai-problem-reaches-china-as-two-biggest-chinese-technology-companies-lose-66-billion-in-less-than-a-day/articleshow/129696894.cms" target="_blank">Times of India</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">Wipro 推出 GIFT City 中心，拥有 500 个</div>
+                    </div>
+                    <div class="news-content">Wipro Limited 正式在甘地纳格尔的 GIFT City 启用了一个新中心，该中心目前配备 150 个可立即投入使用的工位，并可根据客户需求扩展至 500 个工位。该中心致力于利用 Wipro Intelligence™ 平台，为全球 BFSI 客户提供基于人工智能的转型服务，涵盖数字银行、资本</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://scanx.trade/stock-market-news/companies/wipro-launches-gift-city-hub-to-accelerate-ai-driven-transformation-in-bfsi-sector/35469917" target="_blank">scanx.trade</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">战略性印太联盟：印度与东盟市场的新曙光</div>
+                    </div>
+                    <div class="news-content">孟加拉工商会、Intueri Consulting LLP 以及总部位于印度尼西亚的 Arthashastra 研究所已建立战略联盟，旨在加强在印太市场的咨询与政策情报服务。该举措旨在通过提升印度中小微企业（MSMEs）进入东南亚市场的渠道，为其提供支持。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/business/3844856-strategic-indo-pacific-alliance-a-new-dawn-for-indian-and-asean-markets" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">Hire4Event.com 进一步巩固了其在全球会展市场（MICE）中于企业会议、活动策划、艺人邀约及场地解决方案领域的领导地位</div>
+                    </div>
+                    <div class="news-content">新德里[印度]，3月20日：总部位于诺伊达的企业活动管理公司Hire4Event.com，通过提供专注于企业会议、大型活动策划、艺人邀约及场地预订的综合解决方案，持续巩固其在活动行业的领导地位。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.tribuneindia.com/news/business/hire4event-com-strengthens-leadership-in-corporate-conferences-event-production-artist-booking-and-venue-solutions-across-global-mice-markets/" target="_blank">The Tribune</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">2月份，清新的冬季空气导致中国大陆和台湾地区出现显著的辐射通量盈余</div>
+                    </div>
+                    <div class="news-content">在为《pv magazine》撰写的一份最新周报中，DNV旗下公司Solcast指出，2月份东亚地区的太阳能状况呈现出鲜明对比：由于天空晴朗且气溶胶含量低，中国南部和台湾地区日照强度创下历史新高；而东南亚沿海地区则遭遇强降雨，日照强度低于平均水平。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.pv-magazine.com/2026/03/20/clean-winter-air-drives-major-irradiance-surplus-across-china-and-taiwan-in-february/" target="_blank">pv magazine</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">一名美国游客因在印尼散步，违反了巴厘岛“静默日”的规定而被拘留</div>
+                    </div>
+                    <div class="news-content">一名美国游客因违反巴厘岛的一项法律，于周四被当地安全人员拘留。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.perthnow.com.au/news/bali/us-tourist-detained-after-breaking-the-balinese-day-of-silence-by-going-for-a-walk-in-indonesia--c-22006124" target="_blank">PerthNow</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">印尼政府承诺不提高燃油价格</div>
+                    </div>
+                    <div class="news-content">“如果我们放任（燃油价格上涨）……人们可能会恐慌，”印度尼西亚财政部长表示。更多内容请访问straitstimes.com。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.straitstimes.com/asia/se-asia/indonesian-government-pledges-not-to-increase-fuel-prices" target="_blank">The Straits Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">印尼总统普拉博沃将针对活动人士的酸液袭击事件称为“恐怖主义”</div>
+                    </div>
+                    <div class="news-content">军方拘留了武装部队情报部门的四名士兵，怀疑他们涉案。更多详情请访问straitstimes.com。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.straitstimes.com/asia/se-asia/indonesia-president-calls-acid-attack-on-activist-terrorism" target="_blank">The Straits Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">2026年伊利线上巡展启动：全球招募“伊利品质大使”现已开启！</div>
+                    </div>
+                    <div class="news-content">北京，2026年3月20日 /美通社/ -- 作为全球乳业领军企业，伊利集团宣布即将启动“2026伊利线上之旅”，并正式启动“伊利品质大使”全球招募活动。伊利诚邀全球爱好者共同踏上“品味</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.manilatimes.net/2026/03/20/tmt-newswire/pr-newswire/2026-yili-online-tour-kick-off-global-recruitment-for-yili-quality-ambassadors-now-open/2304267" target="_blank">The Manila Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">我辞职去亚洲背包旅行了。我并不介意重返职场。</div>
+                    </div>
+                    <div class="news-content">都柏林一位时尚行业从业者分享了她为何辞去心仪的工作，前往中国、印度尼西亚和越南旅行四个月。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.businessinsider.com/marketing-employee-quit-job-backpack-asia-bali-solo-travel-surfing-2026-3" target="_blank">Business Insider</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">WePlay在印度尼西亚启动慈善活动：为雅加达一所孤儿院的孩子们送去温暖与希望</div>
+                    </div>
+                    <div class="news-content">WePlay在印度尼西亚启动慈善活动：为雅加达一所孤儿院的孩子们送去温暖与希望</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.manilatimes.net/2026/03/20/tmt-newswire/globenewswire/weplay-launches-charity-initiative-in-indonesia-bringing-warmth-and-hope-to-children-at-a-jakarta-orphanage/2304201" target="_blank">The Manila Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">诺德安格利亚教育集团整合亚洲地区媒体业务</div>
+                    </div>
+                    <div class="news-content">诺德安格利亚教育集团已任命奥美媒体（OM）越南公司为其在亚洲的指定媒体代理机构，负责泰国、印度、新加坡、印度尼西亚、马来西亚和乌兹别克斯坦共18所学校的整合媒体策略、策划及采购工作。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.marketing-interactive.com/nord-anglia-education-unifies-regional-media-operations-in-asia" target="_blank">Marketing Interactive</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
