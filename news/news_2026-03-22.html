@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-03-22</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-03-22</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">美国证券交易委员会（SEC）终止了对电动汽车初创公司法拉第未来（Faraday Future）长达四年的调查</div>
+                    </div>
+                    <div class="news-content"> 历经四年，以及多次传票和证词陈述，这家举步维艰的初创公司又一次化险为夷。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/22/the-sec-drops-its-four-year-old-investigation-into-ev-startup-faraday-future/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">你想做个机器人雪人吗？</div>
+                    </div>
+                    <div class="news-content"> 在最新一期的《Equity》播客中，我们回顾了首席执行官黄仁勋在GTC大会上的主题演讲，并探讨了这对英伟达未来意味着什么。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/22/do-you-want-to-build-a-robot-snowman/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">Cursor承认其新的编程模型是基于Moonshot AI的Kimi构建的</div>
+                    </div>
+                    <div class="news-content"> 眼下，基于中国模式进行建设似乎面临诸多挑战。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/22/cursor-admits-its-new-coding-model-was-built-on-top-of-moonshot-ais-kimi/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">埃隆·马斯克公布SpaceX和特斯拉的芯片制造计划</div>
+                    </div>
+                    <div class="news-content"> 埃隆·马斯克最近概述了特斯拉与SpaceX在芯片制造方面开展合作的宏伟计划——但他过去曾有过言过其实的记录。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/22/elon-musk-unveils-chip-manufacturing-plans-for-spacex-and-tesla/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">TechCrunch Mobility：优步无处不在，一网打尽</div>
+                    </div>
+                    <div class="news-content"> 欢迎回到 TechCrunch Mobility，这里是您获取交通未来相关新闻与洞察的中心平台。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/22/techcrunch-mobility-uber-everywhere-all-at-once/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">Delve被指控通过“虚假合规”误导客户</div>
+                    </div>
+                    <div class="news-content"> 一篇匿名发布的Substack文章指控合规初创公司Delve“虚假地”让“数百名客户相信他们已符合”隐私和安全法规的要求。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/22/delve-accused-of-misleading-customers-with-fake-compliance/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">独家探访亚马逊的Trainium实验室：这款芯片赢得了Anthropic、OpenAI，甚至苹果的青睐</div>
+                    </div>
+                    <div class="news-content"> 亚马逊宣布向OpenAI投资500亿美元后不久，AWS便邀请我参观了这笔交易核心所在的芯片实验室。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/22/an-exclusive-tour-of-amazons-trainium-lab-the-chip-thats-won-over-anthropic-openai-even-apple/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">亿万富翁彼得·蒂尔旗下的风投公司以20亿美元估值投资了一家人工智能牛项圈初创公司</div>
+                    </div>
+                    <div class="news-content">这项由初创公司Halter设计的技术，为牛群建立了一道虚拟围栏，使农民能够通过一款应用程序监控牲畜的位置和健康状况。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://theprint.in/economy/billionaire-peter-thiels-capital-firm-backs-ai-cow-collar-startup-at-2-billion-valuation/2885895/" target="_blank">ThePrint</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">洛杉矶长寿产业：健康寿命初创企业投资</div>
+                    </div>
+                    <div class="news-content">了解洛杉矶长寿产业如何通过生物技术、人工智能诊断和风险投资，将老龄化转变为一个值得投资的新领域。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.latimes.com/b2b/health-life-science/story/2026-03-22/los-angeles-longevity-industry-trends" target="_blank">Los Angeles Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">埃隆·马斯克公布SpaceX和特斯拉的芯片制造计划</div>
+                    </div>
+                    <div class="news-content"> 埃隆·马斯克最近概述了特斯拉与SpaceX在芯片制造方面开展合作的宏伟计划——但他过去曾有过言过其实的记录。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/22/elon-musk-unveils-chip-manufacturing-plans-for-spacex-and-tesla/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">原住民的智慧可以为印度尼西亚建设可持续海洋经济提供指引</div>
+                    </div>
+                    <div class="news-content">通往可持续未来的解决方案，有时可以从拥有数百年历史的传统中找到。印度尼西亚的《蓝色经济路线图》旨在通过可持续利用海洋资源来推动经济增长，同时为子孙后代保护海洋生态系统。实现这一目标的一个有前景的方法是……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://phys.org/news/2026-03-indigenous-wisdom-indonesia-efforts-sustainable.html" target="_blank">Phys.org</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">为何权力的气息在香料史上挥之不去</div>
+                    </div>
+                    <div class="news-content">四百多年前，隶属于印度尼西亚马鲁古省的班达群岛，曾发生过一场几乎被世人遗忘的种族灭绝事件。在一周的时间里，超过15,000名班达人惨遭荷兰东印度公司屠杀，只为残忍地垄断肉豆蔻和肉豆蔻皮的贸易。A</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.tribuneindia.com/news/book-reviews/why-the-flavour-of-power-lingers-in-the-history-of-spice/" target="_blank">The Tribune</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">亚洲的“电动车革命”：印尼的镍资源推动全球电动汽车热潮，但这对该国而言代价几何？</div>
+                    </div>
+                    <div class="news-content">随着电动汽车普及率较高的城市成功削减了排放，而供应电池的乡村却背负着环境破坏的重担。在关于亚洲电动汽车的系列报道最新一期中，CNA前往印度尼西亚北马鲁古省进行实地探访。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.channelnewsasia.com/asia/electric-vehicles-indonesia-nickel-mining-environment-5983106" target="_blank">CNA</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">印度尼西亚发生的酸液袭击事件是否预示着该国民主的瓦解？</div>
+                    </div>
+                    <div class="news-content">一名印尼人权活动家遭酸液袭击并受重伤，这反映出威权主义卷土重来的趋势，在此背景下，任何形式的对抗性抗争都被视为对国家的威胁。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.abc.net.au/news/2026-03-22/acid-attacks-and-indonesia-democracy/106476114" target="_blank">ABC (Australian Broadcasting Corporation)</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">印尼寻求50亿美元预算以应对伊朗战争的影响</div>
+                    </div>
+                    <div class="news-content">雅加达——印尼总统发言人普拉塞蒂奥·哈迪在周六发表的一篇采访中表示，印尼正寻求节省约80万亿印尼盾（50亿美元）的预算，以应对美以对伊战争带来的影响。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.manilatimes.net/2026/03/22/world/asia-oceania/indonesia-seeks-5b-budget-for-iran-war-impact/2304878" target="_blank">The Manila Times</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">随着霍尔木兹海峡运输受阻，炼油商转而采购这些替代原油，且溢价创下历史新高</div>
+                    </div>
+                    <div class="news-content">马来西亚的拉布安原油、印度尼西亚的米纳斯原油以及越南的巴赫霍原油，这些油种在国际石油市场上鲜少引起广泛关注。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.news18.com/world/with-hormuz-disrupted-refiners-turn-to-these-alternative-crudes-at-record-premiums-ws-l-9990321.html" target="_blank">News18</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">普拉博沃为何必须坚持取消加沙维和部队的部署</div>
+                    </div>
+                    <div class="news-content">印度尼西亚向加沙地带派遣维和部队的计划，曾被誉为该国军事外交的里程碑，如今却陷入了关键性的僵局。这一雄心勃勃的承诺……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.middleeastmonitor.com/20260321-why-prabowo-must-follow-through-on-cancelling-the-gaza-peacekeeping-deployment/" target="_blank">Middle East Monitor</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">现存的6种虎亚种及其野生栖息地</div>
+                    </div>
+                    <div class="news-content">老虎作为大型猫科动物中体型最大的物种，曾经栖息于从土耳其东部到俄罗斯远东地区，再向南延伸至印度尼西亚的整个亚洲地区。如今，它们的栖息地已大幅缩减，野外仅存六种亚种。这些亚种各自都已适应了特定的</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://timesofindia.indiatimes.com/life-style/travel/things-to-do/6-living-tiger-subspecies-and-where-you-can-see-them-in-the-wild/photostory/129715583.cms" target="_blank">Times of India</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
