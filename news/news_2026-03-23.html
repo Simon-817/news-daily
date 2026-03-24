@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-03-23</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-03-23</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">现任五角大楼高级官员的埃米尔·迈克尔表示，他永远不会原谅那些将他和卡兰尼克赶下台的优步投资者</div>
+                    </div>
+                    <div class="news-content"> 当被问及是否仍对与联合创始人特拉维斯·卡兰尼克一同被优步扫地出门一事耿耿于怀时，迈克尔没有含糊其辞。“我永远不会忘记，也不会原谅，”他说。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/23/emil-michael-now-a-senior-pentagon-official-says-hell-never-forgive-uber-investors-who-ousted-him-and-kalanick/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">班加罗尔外卖初创公司Swish完成3800万美元融资，这是该公司18个月内的第三轮融资</div>
+                    </div>
+                    <div class="news-content"> Swish 的估值在一年内翻了一番多，其全栈式、超本地化商业模式将超快速外卖服务打造为一种高频消费习惯。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/23/bengaluru-food-startup-swish-raises-38m-in-its-third-round-in-18-months/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">尽管双方竞争激烈，Kalshi和Polymarket的首席执行官们仍支持这支规模达3500万美元的预测市场风险投资基金</div>
+                    </div>
+                    <div class="news-content"> 随着预测市场蓬勃发展，一家名为5(c) Capital的新公司将投资支持这一新兴领域的初创企业。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/23/despite-bitter-rivalry-kalshi-polymarket-ceos-back-35m-predictions-markets-vc-fund/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">Air Street凭借2.32亿美元的基金规模，成为欧洲规模最大的独立风投机构之一</div>
+                    </div>
+                    <div class="news-content"> 伦敦的Air Street Capital已成功募集了一支规模庞大的第三期基金，旨在重点投资欧洲和北美地区的早期人工智能公司。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/23/air-street-becomes-one-of-the-largest-solo-vcs-in-europe-with-232m-fund/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">Apple Maps 可能即将推出广告</div>
+                    </div>
+                    <div class="news-content"> 当用户搜索“餐厅”等关键词时，Apple Maps 可能很快会在搜索结果的顶部展示广告。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/23/apple-maps-may-be-about-to-get-ads/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">有人公然泄露了一个能够入侵数百万部iPhone的漏洞利用工具包</div>
+                    </div>
+                    <div class="news-content"> 据网络安全研究人员称，泄露的DarkSword漏洞利用程序已发布至GitHub，这使得黑客和网络犯罪分子能够利用间谍软件针对运行旧版iOS系统的iPhone用户发起攻击。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/23/someone-has-publicly-leaked-an-exploit-kit-that-can-hack-millions-of-iphones/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">Zipline再获2亿美元融资，用于推动无人机配送业务扩张</div>
+                    </div>
+                    <div class="news-content"> 此轮融资是在今年1月宣布的上一轮融资基础上进行的，当时这家无人机初创公司的估值为76亿美元。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/23/zipline-snaps-up-another-200m-to-fuel-its-drone-delivery-expansion/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">伯尼·桑德斯那段关于人工智能的“抓包”视频反响平平，但衍生出的网络梗却很精彩</div>
+                    </div>
+                    <div class="news-content"> 参议员伯尼·桑德斯以为自己骗得克劳德透露了人工智能行业的秘密，但他实际上只是揭示了聊天机器人可以变得多么顺从。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/23/bernie-sanders-ai-gotcha-video-flops-but-the-memes-are-great/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">俄罗斯当局封锁了可绕过付费墙的网站Archive.today</div>
+                    </div>
+                    <div class="news-content"> 热门付费墙绕过网站Archive.today上的一则通知称，该网站因[俄罗斯]公共当局的决定而被封锁。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/23/russian-authorities-block-paywall-removal-site-archive-today/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">两党共同提出的法案旨在禁止在Kalshi和Polymarket平台进行体育博彩</div>
+                    </div>
+                    <div class="news-content"> 由于FanDuel和DraftKings受各州赌博法律约束，而非联邦法律，因此该法案不会对其产生影响。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/23/bipartisan-bill-seeks-to-ban-sports-betting-on-kalshi-and-polymarket/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">斯克里普斯公司在新直播频道的预售推介会上，将女性体育作为重点押注方向</div>
+                    </div>
+                    <div class="news-content">斯克里普斯体育频道（Scripps Sports Network）是一个免费的、靠广告支持的流媒体频道，今年将从100场直播赛事开始。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.adweek.com/convergent-tv/scripps-womens-sports-live-streaming-channel-upfront-pitch/" target="_blank">Adweek</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">巴里·科甘坦诚谈及网络霸凌的挑战</div>
+                    </div>
+                    <div class="news-content">以出演《盐伯恩》、《伊尼舍林的报丧女妖》等作品而闻名的巴里·科甘，谈到了网络霸凌对其生活和职业生涯的影响。他担心这种现象会对自己的儿子以及演艺表现产生影响。尽管已停用Instagram账号，科甘仍觉得很难摆脱这些负面情绪。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/entertainment/3847554-barry-keoghan-opens-up-about-online-abuse-challenges" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">杜贾·卡特（Doja Cat）的父亲声称，她的“白人犹太裔”母亲对她进行了“洗脑”</div>
+                    </div>
+                    <div class="news-content">多娅·卡特此前曾在TikTok上发布的一段视频中公开指责父亲，称他拒绝了参加她演唱会的邀请。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.hotnewhiphop.com/984869-doja-cat-father-white-jewish-mother-brainwashed" target="_blank">HotNewHipHop</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">“嘿，特朗普，你被解雇了”：伊朗军方发言人嘲讽美国总统</div>
+                    </div>
+                    <div class="news-content">伊朗军方发言人易卜拉欣·佐尔法加里在最近一次伊斯兰革命卫队作战简报会上，直接向唐纳德·特朗普传达了一则信息，告诉这位美国总统：“你被解雇了”。“嘿，特朗普——你被解雇了。你对这句话应该很熟悉，”佐尔法加里在简报结束时说道。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.independent.co.uk/tv/news/iran-military-spokesman-mock-trump-fired-video-b2943840.html" target="_blank">The Independent</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">汤姆·霍兰德盛赞《The Drama》，引发与赞达亚结婚的传闻</div>
+                    </div>
+                    <div class="news-content">汤姆·霍兰德在社交媒体上盛赞赞达亚即将上映的电影《The Drama》，此举进一步引发了两人将要结婚的传闻。此前，赞达亚的造型师曾暗示两人将举行一场秘密婚礼，这使得外界对这对情侣关系的猜测愈演愈烈。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.outlookindia.com/art-entertainment/hollywood/tom-holland-fuels-zendaya-wedding-rumours-with-praise-for-the-drama" target="_blank">Outlook India</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">Reels 的暂停功能</div>
+                    </div>
+                    <div class="news-content">Instagram 更新：Meta 为 Instagram Reels 推出了“轻点暂停”功能，让用户能更好地掌控观看体验。了解 Google 的 3D 沉浸式地图功能，以及 Meta 决定在 2026 年 5 月前终止 Instagram 私信的加密功能。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.deccanherald.com/technology/meta-brings-tap-to-pause-feature-for-instagram-reels-3941380" target="_blank">Deccan Herald</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">德里警方挫败恐怖组织招募行动；主要嫌犯被捕</div>
+                    </div>
+                    <div class="news-content">德里警方特别行动组逮捕了18岁的哈曼迪普·辛格，他与盘踞在巴基斯坦的恐怖分子沙赫扎德·巴蒂有关联。辛格涉嫌通过社交媒体招募印度青年参与恐怖活动。此次逮捕瓦解了一个以弱势群体为目标的远程操控恐怖团伙</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/law-order/3847543-delhi-police-thwarts-terror-module-recruitment-key-operative-arrested" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">丹妮尔·柯林斯因涉嫌暧昧短信和私信风波与科伦丁·穆特爆发争执；查看详情</div>
+                    </div>
+                    <div class="news-content">科伦丁·穆特在社交媒体上予以回击，完全驳斥了丹妮尔·柯林斯的指控。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.livemint.com/us/danielle-collins-sparks-row-with-corentin-moutet-over-alleged-flirty-messages-and-dm-drama-check-details-miami-open-11774270798272.html" target="_blank">Livemint</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">Meta因涉及儿童安全措施的诉讼面临可能高达数十亿美元的罚款</div>
+                    </div>
+                    <div class="news-content">在一场具有里程碑意义的庭审中，新墨西哥州检方指控社交媒体巨头Meta就其平台对儿童的安全性问题误导公众，该案的结案陈词已定于近日进行</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.latimes.com/business/story/2026-03-23/meta-faces-potential-billions-in-fines-in-trial-over-childrens-safety-practices" target="_blank">Los Angeles Times</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">俄亥俄州关于设立“特朗普野生动物保护区”的提案在社交媒体上引发争议</div>
+                    </div>
+                    <div class="news-content">一位Reddit用户写道，将这片野生动物保护区更名传递出“明显带有党派倾向的信息”。特朗普长期以来一直是环保主义者的攻击目标。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.beaconjournal.com/story/news/2026/03/23/ohio-trump-wildlife-preserve/89282825007/" target="_blank">Akron Beacon Journal</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">伊朗战争导致亚洲化肥和氦气供应中断，威胁到农业和芯片制造商</div>
+                    </div>
+                    <div class="news-content">农业是印尼、泰国和越南等许多东盟国家经济的支柱。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://fortune.com/2026/03/23/iran-war-hormuz-closure-fertilizer-helium-asia/" target="_blank">Fortune</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">印度和印度尼西亚该喊“做好准备，做好准备，做好准备……”了</div>
+                    </div>
+                    <div class="news-content">这两个亚洲主要经济体面临因伊朗战争引发的硬着陆风险。更多内容请访问straitstimes.com。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.straitstimes.com/opinion/time-for-india-indonesia-to-say-brace-brace-brace" target="_blank">The Straits Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">在印度尼西亚，社区居民齐心协力修补路面坑洼</div>
+                    </div>
+                    <div class="news-content">在西爪哇省的勿加泗，一个自称“Generasi Burgeract”（行动一代）的五人好友团体，因在全市范围内清理公交车站和填补路面坑洞的行动而在社交媒体上引起热议。更多详情请访问straitstimes.com。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.straitstimes.com/asia/se-asia/in-indonesia-communities-band-together-to-fix-potholes-when-local-governments-falter" target="_blank">The Straits Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">印尼表示不会为特朗普的“和平委员会”支付10亿美元费用</div>
+                    </div>
+                    <div class="news-content">印度尼西亚总统普拉博沃已加入特朗普的“和平委员会”，并承诺向加沙派遣部队，但他声称自己并未作出任何财政承诺。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.ndtv.com/world-news/indonesia-says-it-wont-pay-1-billion-fee-for-president-donald-trump-board-of-peace-11253893" target="_blank">NDTV.com</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">印尼计划节省47亿美元，以应对中东战争的影响</div>
+                    </div>
+                    <div class="news-content">该国还在考虑采取节油措施，包括要求政府及部分公共部门员工每周进行一天远程办公。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.channelnewsasia.com/asia/indonesia-us-47-billion-savings-brace-middle-east-war-fuel-6011121" target="_blank">CNA</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">“我们从未说过要出资10亿美元”：印尼拒绝支付“和平委员会”费用</div>
+                    </div>
+                    <div class="news-content">印尼总统表示，尽管该国参与此事遭到批评，但印尼并未向“和平委员会”作出任何财政承诺</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.firstpost.com/world/we-never-said-that-we-wanted-to-contribute-1-billion-indonesia-rejects-board-of-peace-fee-13992256.html" target="_blank">Firstpost</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">印度尼西亚逮捕一名瑞士男子，因其涉嫌侮辱印度教节日</div>
+                    </div>
+                    <div class="news-content">他曾在社交媒体上多次使用粗俗言语来指代巴厘岛的“静默日”。更多详情请访问straitstimes.com。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.straitstimes.com/asia/se-asia/indonesia-arrests-swiss-man-for-allegedly-insulting-hindu-holiday" target="_blank">The Straits Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">普拉博沃表示，印度尼西亚不会支付10亿美元的“和平委员会”入会费</div>
+                    </div>
+                    <div class="news-content">印度尼西亚总统否认曾作出任何财务承诺，并警告称，如果该组织辜负巴勒斯坦人，雅加达将退出董事会。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.scmp.com/news/asia/southeast-asia/article/3347565/indonesia-will-not-pay-us1-billion-fee-board-peace-membership-prabowo-says" target="_blank">South China Morning Post</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">印尼拒绝支付12.8亿美元费用以换取特朗普“和平委员会”席位</div>
+                    </div>
+                    <div class="news-content">印度尼西亚总统普拉博沃表示，雅加达方面仅为此项倡议派遣了维和部队。更多内容请访问straitstimes.com。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.straitstimes.com/asia/se-asia/indonesia-says-no-to-1-28b-fee-for-trumps-board-of-peace-seat" target="_blank">The Straits Times</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
