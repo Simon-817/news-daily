@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-03-24</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-03-24</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">亚马逊刚刚收购了一家生产儿童尺寸类人型机器人的初创公司</div>
+                    </div>
+                    <div class="news-content"> 收购Fauna Robotics是亚马逊本月收购的第二家机器人初创公司。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/24/amazon-just-bought-a-startup-making-kid-size-humanoid-robots/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">凭借35亿美元的新资金，凯鹏华盈正全力押注人工智能</div>
+                    </div>
+                    <div class="news-content"> 此次融资包括10亿美元用于投资早期初创企业，以及25亿美元用于投资后期成长型企业。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/24/with-3-5b-in-fresh-capital-kleiner-perkins-is-going-all-in-on-ai/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">新墨西哥州刚刚在儿童安全问题上让Meta遭遇了首次法庭败诉，全美其他地区都在密切关注</div>
+                    </div>
+                    <div class="news-content"> 金额本身并不重要，重要的是这是针对Meta对青少年造成伤害的首例此类陪审团裁决。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/24/new-mexico-just-handed-meta-its-first-courtroom-defeat-over-child-safety-and-the-rest-of-the-country-is-watching/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">露露柠檬押注Epoch Biodesign能“吃掉”它的短裤——字面意思</div>
+                    </div>
+                    <div class="news-content"> 初创公司Epoch Biodesign利用酶将塑料废弃物分解为单体——这些化学基元可用于制造新的塑料。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/24/lululemon-bets-epoch-biodesign-can-eat-its-shorts-literally/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">OpenAI的Sora曾是你手机上最令人毛骨悚然的应用程序——如今它即将下线</div>
+                    </div>
+                    <div class="news-content"> 尽管支撑Sora 2的视频和音频生成模型令人惊叹，但人们对纯AI社交信息流的兴趣并未持久。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/24/openais-sora-was-the-creepiest-app-on-your-phone-now-its-shutting-down/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">Accel 和 Prosus 为首届印度孵化班选出了六家“鲜为人知”的初创企业</div>
+                    </div>
+                    <div class="news-content"> 这六家初创企业是从2000多份申请中脱颖而出的，每家将获得50万至200万美元的资助。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/24/accel-prosus-pick-six-off-the-map-startups-for-inaugural-india-cohort-atoms/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">肯塔基州一名女子拒绝了将她的农场改建成数据中心的2600万美元报价</div>
+                    </div>
+                    <div class="news-content"> 据报道，一家大型人工智能公司向肯塔基州的一个家庭开出了2600万美元的报价，希望在其农场上建设一个数据中心。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/24/kentucky-woman-rejects-26-million-offer-to-turn-her-farm-into-a-data-center/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">Anthropic赋予Claude Code更多控制权，但仍对其加以限制</div>
+                    </div>
+                    <div class="news-content"> Anthropic为Claude Code推出的全新自动模式，使AI能够在更少的审批情况下执行任务，这反映了行业正朝着更自主的工具方向转变——这类工具通过内置的安全防护措施，在速度与安全之间取得了平衡。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/24/anthropic-hands-claude-code-more-control-but-keeps-it-on-a-leash/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">Spotify 测试新工具，防止 AI 生成的垃圾内容被归功于真实艺术家</div>
+                    </div>
+                    <div class="news-content"> 这款新工具的初衷是让艺术家能够更好地控制哪些歌曲在 Spotify 上与他们的名字相关联。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/24/spotify-tests-new-tool-to-stop-ai-slop-from-being-attributed-to-real-artists/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">Databricks收购了两家初创公司，以支撑其新推出的AI安全产品</div>
+                    </div>
+                    <div class="news-content"> 凭借近期50亿美元融资带来的充裕资金，Databricks正积极收购初创公司，并计划继续拓展。该公司已收购了Antimatter和SiftD.ai。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/24/databricks-buys-two-startups-lakewatch-antimatter-siftd-ai-security/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">红袜队首席执行官就约翰·亨利在社交媒体上的意外动态作出回应</div>
+                    </div>
+                    <div class="news-content">波士顿红袜队的主要所有者约翰·亨利本周仅用一个词就引起了球迷群体的轩然大波。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.si.com/mlb/red-sox/onsi/boston-red-sox-news/red-sox-ceo-responds-to-john-henry-s-surprising-social-media-activity-jackson3" target="_blank">Sports Illustrated</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">网络犯罪激增：2025年喜马偕尔邦损失13.2亿卢比</div>
+                    </div>
+                    <div class="news-content">诈骗分子正利用“数字逮捕”、钓鱼链接、虚假投资平台、求职诈骗以及社交媒体冒充等手段对人们进行诈骗。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.tribuneindia.com/news/himachal/cybercrime-surge-himachal-pradesh-loses-rs-132-crore-in-2025/" target="_blank">The Tribune</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">“或许我能挺过去，或许不能……”：安努拉格·多巴尔（又名UK07车手）在自杀未遂后分享令人心碎的健康近况——观看视频</div>
+                    </div>
+                    <div class="news-content">阿努拉格·多巴尔（人称“UK07车手”）透露，在一场严重事故后，他的右腿已完全失去知觉。当他发布了一段展示自身状况及伤情严重程度的视频后，粉丝们纷纷在社交媒体上留言表示支持。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.freepressjournal.in/entertainment/shayad-chal-paunga-ya-nahi-anurag-dobhal-aka-uk07-rider-shares-heartbreaking-health-update-after-surviving-suicide-attempt-watch-video" target="_blank">Free Press Journal</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">阿南雅·潘迪在纳格什瓦尔·乔蒂林加寺祈祷，并与粉丝分享灵性时刻</div>
+                    </div>
+                    <div class="news-content">阿南亚·潘迪与母亲一同造访了纳格什瓦尔·乔蒂林加，向湿婆神祈祷，并在社交媒体上分享了她灵性之旅的点滴。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://zeenews.india.com/people/ananya-panday-offers-prayers-at-nageshwar-jyotirlinga-shares-spiritual-moments-with-fans-3030175.html" target="_blank">Zee News</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">威尔士党议会候选人就“不当”社交媒体帖子致歉</div>
+                    </div>
+                    <div class="news-content">奥利弗·布拉德利-休斯在该党克卢伊德选区的候选人名单上排名第三</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.walesonline.co.uk/news/politics/plaid-cymru-senedd-candidate-apologises-33648266" target="_blank">South Wales Echo</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">印度理工学院毕业生38岁辞去美国银行工作，卖掉四居室公寓，游历35个国家：“头衔无法滋养我的灵魂”</div>
+                    </div>
+                    <div class="news-content">热门新闻：社交媒体上正在疯传的一则故事让人们不禁驻足思考。这并非关于某项重大成就或职业生涯中的重大突破，而是……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://timesofindia.indiatimes.com/etimes/trending/iit-graduate-quits-us-bank-job-at-38-sells-4bhk-travels-across-35-countries-titles-didnt-feed-my-soul/articleshow/129778473.cms" target="_blank">Times of India</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">制作Instagram Reels免费AI视频的五大应用</div>
+                    </div>
+                    <div class="news-content">如果你喜欢在Instagram上制作视频，却苦于找不到适合制作AI视频的应用程序，那么这5款应用将助你在几秒钟内制作出热门且适合Instagram的短视频。 , 科技与科学, Times Now</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.timesnownews.com/technology-science/top-5-apps-to-create-free-ai-videos-for-instagram-reels-photo-gallery-153910576" target="_blank">Times Now</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">“请停止纷争”：游牧民族演员约翰·康诺斯在母亲遭路边袭击后呼吁和平</div>
+                    </div>
+                    <div class="news-content">上周六，蒂珀雷里郡伯德希尔发生一起针对利默里克一名旅行者妇女的恶性袭击事件后，康纳斯先生在社交媒体上发声</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.breakingnews.ie/ireland/please-stop-the-feuds-traveller-actor-john-connors-calls-for-peace-after-mother-attacked-on-roadside-1878608.html" target="_blank">BreakingNews.ie</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">利物浦新闻：FSG打破沉默，就费德里科·基耶萨一事发表声明</div>
+                    </div>
+                    <div class="news-content">在利物浦经历一个充满挑战的英超赛季之际，安菲尔德传来了多项重要消息，其中包括俱乐部老板罕见地在社交媒体上发文。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.express.co.uk/sport/football/2186003/Liverpool-news-Chiesa-FSG-owners" target="_blank">Daily Express</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">TikTok广告策略调整：新更新对用户意味着什么</div>
+                    </div>
+                    <div class="news-content">TikTok 此次更新推出了“Logo Takeover”、“Prime Time”和“Top Reach”等全新广告形式，旨在从第一秒起提升品牌曝光度。这些 TikTok 广告旨在更快地触达用户，但在使用应用时可能会显得更加频繁且引人注目。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.indiatimes.com/technology/tiktok-ads-strategy-changes-what-the-new-update-means-for-users/articleshow/129778362.html" target="_blank">Indiatimes</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">金达尔不锈钢公司在印度尼西亚投产年产能120万吨的工厂</div>
+                    </div>
+                    <div class="news-content">金达尔不锈钢公司在印度尼西亚投产了一座年产能120万吨的工厂，投资90亿卢比以扩大产能并进军全球市场。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thehindubusinessline.com/news/jindal-stainless-commissions-12-mtpa-plant-in-indonesia/article70779226.ece" target="_blank">The Hindu Business Line</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">金达尔不锈钢公司投产印尼熔炼车间，计划投入90亿卢比资本支出</div>
+                    </div>
+                    <div class="news-content">金达尔不锈钢已在印度尼西亚投产了一座年产能120万吨的熔炼厂，并计划投资90亿卢比以扩大在印度的冷轧产能</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.business-standard.com/companies/news/jindal-stainless-commissions-indonesia-melt-shop-plans-rs-900-cr-investment-126032401079_1.html" target="_blank">Business Standard</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">金达尔不锈钢通过在印尼推出SMS业务拓展全球版图</div>
+                    </div>
+                    <div class="news-content">金达尔不锈钢公司已在印度尼西亚投产了一座年产能120万吨的新不锈钢熔炼厂，这是其570亿卢比扩建计划的一部分。此举将使该公司的年熔炼产能提升至420万吨。此举旨在提升销量并保持强劲的增长势头。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/business/3848822-jindal-stainless-boosts-global-footprint-with-indonesia-sms-launch" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">DeepSnitch AI 是当前最值得关注的加密货币预售项目，距离3月正式上线仅剩数日，且具备1000倍的增长潜力；与此同时，Bittensor 和 Arweave 也正稳步提升市场地位</div>
+                    </div>
+                    <div class="news-content">过去一年间，随着各国政府在社会动荡期间关闭集中式平台，马达加斯加、尼泊尔、印度尼西亚和伊朗的去中心化即时通讯应用下载量激增。过去五天内，用户对去中心化社交媒体的搜索兴趣飙升了145%以上……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.tribuneindia.com/news/business/best-crypto-presale-is-deepsnitch-ai-with-march-launch-days-out-and-1000x-potential-while-bittensor-and-arweave-gain-some-ground/" target="_blank">The Tribune</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">2026年全球最美景点榜单揭晓——英国有三处景点跻身前20名</div>
+                    </div>
+                    <div class="news-content">从西班牙和印度尼西亚的国家公园，到纽约的一座图书馆，以下是由旅游专家评选出的全球51处最美景点。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.dailymail.co.uk/travel/article-15673859/world-beautiful-places-2026-revealed-three-UK-spots.html" target="_blank">Daily Mail Online</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">安瓦尔表示，与中、泰、印尼的本地货币贸易额激增至821亿林吉特</div>
+                    </div>
+                    <div class="news-content">八打灵再也：马来西亚财政部表示，作为减少对美元及SWIFT等传统系统依赖的举措之一，马来西亚在与中、泰、印尼的贸易中大幅增加了本币的使用。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thestar.com.my/news/nation/2026/03/24/local-currency-trade-with-china-thailand-and-indonesia-surges-to-rm821bil-says-anwar" target="_blank">The Star</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">为什么印度人正悄然爱上印度尼西亚的民丹岛</div>
+                    </div>
+                    <div class="news-content">由于毗邻新加坡，印度尼西亚的民丹岛在2025年已成为13,000多名印度游客青睐的短途旅行目的地。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.ndtv.com/travel/why-indians-are-quietly-falling-in-love-with-bintan-island-indonesia-11259638" target="_blank">NDTV.com</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">金达尔不锈钢公司投产年产能120万吨的印尼工厂，并承诺在2028财年前投入90亿卢比用于扩建</div>
+                    </div>
+                    <div class="news-content">金达尔不锈钢已在印度尼西亚投产了一座年产能120万吨的不锈钢熔炼厂，并宣布追加投资90亿卢比以扩大下游产能。该公司计划将总熔炼产能提升至每年420万吨，并力争在2029财年实现350万吨的年销售量。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.freepressjournal.in/business/jindal-stainless-commissions-12-mtpa-indonesia-facility-commits-900-crore-expansion-by-fy28" target="_blank">Free Press Journal</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">印度尼西亚通过国家战略和疫苗创新，加大力度抗击结核病</div>
+                    </div>
+                    <div class="news-content">印尼通过国家战略和疫苗创新加强抗击结核病力度——雅加达，3月24日 值此世界结核病日之际，印尼正加大力度抗击结核病（TB）……仅在 lokmattimes.com 获取最新健康资讯</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.lokmattimes.com/health/indonesia-intensifies-tuberculosis-battle-with-national-strategy-vaccine-innovation/" target="_blank">Lokmat Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
