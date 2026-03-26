@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-03-25</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-03-25</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">据消息人士透露，Mercor的竞争对手Deccan AI已筹集2500万美元，并从印度引进专家</div>
+                    </div>
+                    <div class="news-content"> Deccan AI 将其员工主要集中在印度，以在快速增长但高度分散的人工智能培训市场中确保质量。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/25/deccan-ai-raises-25m-as-ai-training-push-relies-on-india-based-workforce/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">Delve 对曾遭恶意软件攻击的 AI 项目 LiteLLM 进行了安全合规性评估</div>
+                    </div>
+                    <div class="news-content"> LiteLLM 是一个拥有数百万用户的开源 AI 项目，该项目曾遭到窃取凭证的恶意软件感染。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/25/delve-did-the-security-compliance-on-litellm-an-ai-project-hit-by-malware/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">一家人工智能公司表示，人工智能技能缺口已经出现，而资深用户正逐渐领先</div>
+                    </div>
+                    <div class="news-content"> Anthropic发现，人工智能目前尚未取代人类工作岗位，但早期数据显示，随着经验丰富的用户逐渐占据优势，不平等现象正在加剧，这引发了人们对未来就业岗位被取代以及劳动力分化问题的担忧。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/25/the-ai-skills-gap-is-here-says-ai-company-and-power-users-are-pulling-ahead/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">被定罪的间谍软件公司负责人暗示，希腊政府是数十起电话窃听事件的幕后黑手</div>
+                    </div>
+                    <div class="news-content"> 这位间谍软件创始人的言论，是Intellexa内部人士迄今为止最直接的暗示，表明米佐塔基斯政府授权对数十部手机进行了黑客攻击，这些手机的主人包括希腊政府高级部长、反对派领导人、军方官员和记者。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/25/convicted-spyware-chief-hints-that-greeces-government-was-behind-dozens-of-phone-hacks/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">谁在驾驶Waymo的自动驾驶汽车？有时是警察。</div>
+                    </div>
+                    <div class="news-content"> TechCrunch 发现，在紧急情况下，急救人员曾不得不接管 Waymo 车辆并将其移走，其中包括至少两处正在处理的犯罪现场。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/25/waymo-robotaxi-roadside-assistance-emergency-first-responders/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">谷歌推出了一款名为TurboQuant的新型AI内存压缩算法——没错，网友们都称它为“ Pied Piper”</div>
+                    </div>
+                    <div class="news-content"> 谷歌的TurboQuant引发了网络热议，人们纷纷将其与HBO剧集《硅谷》中的“ Pied Piper”相提并论。该压缩算法声称能将人工智能的“工作内存”缩减多达6倍，但目前仍仅处于实验室实验阶段。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/25/google-turboquant-ai-memory-compression-silicon-valley-pied-piper/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">梅拉尼娅·特朗普希望用机器人来给你的孩子进行家庭教育</div>
+                    </div>
+                    <div class="news-content"> 第一夫人认为，人工智能和机器人技术将在美国教育的未来发挥重要作用。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/25/melania-trump-wants-a-robot-to-homeschool-your-child/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">借势GLP-1热潮，VITL获750万美元融资，旨在重塑自费诊所的处方模式</div>
+                    </div>
+                    <div class="news-content"> 这家初创公司为蓬勃发展的自费诊所市场提供了一个电子处方交易平台。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/25/riding-the-glp-1-boom-vitl-lands-7-5m-to-overhaul-cash-pay-clinic-prescribing/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">陪审团在一场具有里程碑意义的社交媒体成瘾诉讼案中裁定Meta和谷歌存在过失</div>
+                    </div>
+                    <div class="news-content"> 庭审中提交的证据使陪审团倾向于原告一方，这些证据表明Meta清楚其平台对青少年具有极强的成瘾性，且该公司不仅积极研究这一问题，还利用研究成果来提高年轻用户的参与度。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/25/jury-finds-meta-and-youtube-negligent-in-landmark-social-media-addiction-trial/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">Meta将裁员数百人</div>
+                    </div>
+                    <div class="news-content"> Meta正在裁减多个团队的数百名员工，包括销售、招聘以及Reality Labs部门。此次裁员将影响美国及其他国际市场的员工。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/25/meta-is-cutting-several-hundred-jobs/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">“我向一位巴基斯坦人打听《Dhurandhar》”：一位社交媒体博主关于《Dhurandhar》的评论因巴基斯坦观众的反馈而走红</div>
+                    </div>
+                    <div class="news-content">热点新闻：电影的影响往往远不止于影院。一个场景、一段台词或一个角色都可能引发跨国反响，尤其是当观众……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://timesofindia.indiatimes.com/etimes/trending/i-asked-a-pakistani-about-dhurandhar-social-media-creators-dhurandhar-review-from-pakistani-viewer-goes-viral/articleshow/129797184.cms" target="_blank">Times of India</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">Meta在Reality Labs和社交媒体部门裁员数百人</div>
+                    </div>
+                    <div class="news-content">Meta在Reality Labs和社交媒体部门裁员数百人</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.newsmax.com/finance/streettalk/meta-layoffs-ai/2026/03/25/id/1250707/" target="_blank">Newsmax</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">罗莎娜·鲁安在暂停社交媒体活动后，透露了2026年“缓慢”开局的点滴</div>
+                    </div>
+                    <div class="news-content">罗莎娜·鲁安在暂停更新三个月后重返社交媒体，并分享了她一家人一直以来所享受的“慢生活”点滴。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://extra.ie/2026/03/25/entertainment/roseanna-ruane-returns" target="_blank">Extra.ie</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">陪审团在一场具有里程碑意义的社交媒体成瘾诉讼案中裁定Instagram和YouTube需承担责任</div>
+                    </div>
+                    <div class="news-content">在一场开创先河的社交媒体成瘾诉讼中，陪审团裁定Meta和YouTube需承担责任。（美联社图片）</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.wltx.com/article/news/nation-world/social-media-additction-trial-meta-youtube-los-angeles/507-76cea765-f04a-4b50-b86d-b6813869bb1e" target="_blank">WLTX.com</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">陪审团认定Meta为牟利而明知故犯地伤害儿童，并作出具有里程碑意义的裁决</div>
+                    </div>
+                    <div class="news-content">新墨西哥州一个陪审团裁定，社交媒体巨头Meta对儿童心理健康有害，且违反了该州的消费者保护法</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.latimes.com/business/story/2026-03-25/jury-says-meta-knowingly-harmed-children-for-profit-awarding-landmark-verdict" target="_blank">Los Angeles Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">特朗普将任命扎克伯格、埃里森和黄奕森加入美国科技顾问委员会</div>
+                    </div>
+                    <div class="news-content">据报道，美国总统唐纳德·特朗普计划任命Meta Platforms首席执行官马克·扎克伯格、甲骨文执行董事长拉里·埃里森以及英伟达首席执行官黄仁勋加入一个新的技术顾问委员会……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thenews.com.pk/latest/1396696-trump-to-appoint-zuckerberg-ellison-huang-for-us-tech-panel" target="_blank">The News International</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">艾伦·蒂奇马什列举了三种他“绝对不会”在新花园里种植的花卉</div>
+                    </div>
+                    <div class="news-content">ITV园艺专家艾伦·蒂奇马什经常在其新开设的YouTube频道上分享专业知识，并带粉丝们一睹他新打造的户外空间</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.express.co.uk/life-style/garden/2186503/Alan-Titchmarsh-names-three-flowers-he-will-certainly-not-be-planting-in-new-garden" target="_blank">Daily Express</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">一位“热爱镜头”的迷人电视体育主持人透露了令人震惊的职业新动向</div>
+                    </div>
+                    <div class="news-content">凭借板球赛事报道和社交媒体粉丝群而走红的迷人电视主持人格蕾丝·海登，近日做出了一个令人大为惊讶的职业选择</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.dailystar.co.uk/sport/football/grace-hayden-tv-presenter-career-36921465" target="_blank">The daily Star</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">独家：人工智能驱动的福利管理平台Origin完成3000万美元新一轮融资</div>
+                    </div>
+                    <div class="news-content">Notion Capital 领投了这轮融资，该初创公司致力于为首席人力资源官（CHRO）提供关于福利使用情况和支出的洞察</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://fortune.com/2026/03/25/exclusive-ai-powered-benefits-platform-origin-raises-30-million-in-fresh-funding-to-bring-chros-visibility-into-benefits-usage-and-spend/" target="_blank">Fortune</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📭</div>
+                    <div>今日暂无相关报道</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
