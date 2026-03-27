@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-03-26</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-03-26</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">大卫·萨克斯卸任人工智能沙皇一职——以下是他接下来要做的事</div>
+                    </div>
+                    <div class="news-content"> 萨克斯距离华盛顿的权力中心将比特朗普第二届政府上台以来任何时候都更远。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/26/david-sacks-is-done-as-ai-czar-heres-what-hes-doing-instead/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">Anthropic就国防部风波一案成功获得针对特朗普政府的禁令</div>
+                    </div>
+                    <div class="news-content"> 一名联邦法官已下令特朗普政府撤销近期对这家人工智能公司实施的限制措施。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/26/anthropic-wins-injunction-against-trump-administration-over-defense-department-saga/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">现在，您可以将其他聊天机器人中的聊天记录和个人信息直接导入 Gemini</div>
+                    </div>
+                    <div class="news-content"> 谷歌即将推出切换工具，顾名思义，这些工具将使其他聊天机器人的用户更轻松地切换到Gemini。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/26/you-can-now-transfer-your-chats-and-personal-information-from-other-chatbots-directly-into-gemini/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">维基百科严禁在撰写条目时使用人工智能</div>
+                    </div>
+                    <div class="news-content"> 该网站的政策可能会有所调整，目前正面临人工智能生成内容的难题。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/26/wikipedia-cracks-down-on-the-use-of-ai-in-article-writing/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">Mastodon 通过最新改版，使其去中心化社交网络更加易于使用</div>
+                    </div>
+                    <div class="news-content"> Mastodon 正在重新设计用户个人资料页面，以简化使用体验，并更好地吸引主流用户和机构。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/26/mastodon-is-making-its-decentralized-social-network-easier-to-use-with-its-latest-revamp/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">Netflix确认将再次涨价</div>
+                    </div>
+                    <div class="news-content"> 无广告的标准套餐现价为每月19.99美元，较之前的17.99美元订阅费上涨了2美元；而高级套餐同样上涨2美元，现价为每月26.99美元。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/26/netflix-confirms-its-raising-prices-again/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">YC W26 展示日上最引人注目的16家初创公司</div>
+                    </div>
+                    <div class="news-content"> 从引导用户摆脱“末日滚动”到训练类人机器人，在这批人才济济的YC孵化班中，这16家初创公司脱颖而出，成为最引人注目的项目。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/26/16-of-the-most-interesting-startups-from-yc-w26-demo-day/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">Google 翻译的实时耳机翻译功能已扩展至 iOS 系统及更多国家/地区</div>
+                    </div>
+                    <div class="news-content"> 实时耳机翻译功能能完整保留每位发言者的语调、重音和语速，因此更容易跟上对话内容，并分辨出谁在说什么。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/26/google-translates-real-time-headphone-translations-feature-expands-to-ios-and-more-countries/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">OpenAI 又放弃了一个分支项目：ChatGPT 的情色模式</div>
+                    </div>
+                    <div class="news-content"> 这只是这家人工智能初创公司过去一周放弃的多个副项目中的最新一个。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/26/openai-abandons-yet-another-side-quest-chatgpts-erotic-mode/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">数据中心请做好准备——参议院要查阅你们的电费账单</div>
+                    </div>
+                    <div class="news-content"> 参议员乔什·霍利和伊丽莎白·沃伦希望能源信息署收集更多关于数据中心用电情况的详细信息——以及这如何影响电网。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/26/data-centers-get-ready-the-senate-wants-to-see-your-power-bills/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">独家：人工智能驱动的福利管理平台Origin完成3000万美元新一轮融资</div>
+                    </div>
+                    <div class="news-content">Notion Capital 领投了这轮融资，该初创公司致力于为首席人力资源官（CHRO）提供关于福利使用情况和支出的洞察</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://fortune.com/2026/03/25/exclusive-ai-powered-benefits-platform-origin-raises-30-million-in-fresh-funding-to-bring-chros-visibility-into-benefits-usage-and-spend/" target="_blank">Fortune</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">Pentathlon Ventures宣布其第二支基金以25.5亿卢比完成最终关闭</div>
+                    </div>
+                    <div class="news-content">新德里，3月26日：早期风险投资公司Pentathlon Ventures周四宣布，其第二支基金已完成最终关闭，规模达25.5亿卢比，旨在支持B2B科技初创企业。该公司将投资16至20家种子轮初创企业，并继续专注于支持那些致力于开拓全球市场的印度本土创始人。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.dailyexcelsior.com/pentathlon-ventures-announces-final-close-of-second-fund-at-rs-255-crore/" target="_blank">Daily Excelsior</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">在管理层动荡之际，印尼万隆动物园两只幼虎死亡</div>
+                    </div>
+                    <div class="news-content">雅加达：西爪哇万隆动物园的两只孟加拉虎（Panthera tigris tigris）幼崽因感染一种极具传染性的病毒性疾病而死亡。鉴于该动物园因管理层的不确定性而持续关闭，此事引发了新的担忧。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/03/26/two-tiger-cubs-die-at-indonesia039s-bandung-zoo-amid-management-uncertainty" target="_blank">The Star</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">能源需求旺盛的亚洲国家争相采购俄罗斯石油</div>
+                    </div>
+                    <div class="news-content">包括越南、泰国、菲律宾、印度尼西亚和斯里兰卡在内的亚洲国家正争相购买俄罗斯石油，因为伊朗战争阻碍了石油供应，这使得需求可能超过供应的可能性增加，包括俄罗斯在内的多个消息来源表示。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.reuters.com/business/energy/fuel-thirsty-asian-countries-line-up-russian-oil-2026-03-26/" target="_blank">Reuters</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">印尼P2P借贷业务增长25%，JULO提升信贷质量</div>
+                    </div>
+                    <div class="news-content">雅加达[印度尼西亚]，3月26日：印度尼西亚的金融科技借贷（P2P借贷）行业持续展现强劲增长势头。印度尼西亚金融服务管理局（OJK）的数据显示，截至2026年1月，金融科技借贷的未偿还贷款余额达到98.54万亿印尼盾，同比增长25.52%。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.tribuneindia.com/news/business/indonesias-p2p-lending-grows-25-julo-strengthens-credit-quality/" target="_blank">The Tribune</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">霍尔木兹海峡危机与印尼居家办公政策的经济代价</div>
+                    </div>
+                    <div class="news-content">印度尼西亚政府计划在2026年开斋节假期后，对公务员实施每周一天居家办公（WFH）的政策，这表明政府正因持续……而感到财政压力。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.middleeastmonitor.com/20260326-hormuz-crisis-and-the-economic-cost-of-indonesias-work-from-home-policy/" target="_blank">Middle East Monitor</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">印度对进口受补贴的中国和印度尼西亚纸板启动调查</div>
+                    </div>
+                    <div class="news-content">印度已针对自中国和印度尼西亚进口的纸板展开调查。此次调查源于有关指控，称这些国家提供的补贴正在损害印度制造商的利益。贸易救济总局将裁定这些进口产品是否造成了损害。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://economictimes.indiatimes.com/news/economy/foreign-trade/india-initiates-probe-against-imports-of-subsidised-chinese-indonesian-paperboards/articleshow/129822110.cms" target="_blank">The Economic Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">印度对受补贴的纸板发起调查并审查反倾销税</div>
+                    </div>
+                    <div class="news-content">印度已针对从中国和印度尼西亚进口的受补贴纸板展开调查，这些进口产品对国内企业造成了影响。贸易救济总局采取此举是应印度制造商的投诉而作出的。此外，针对某些铝产品的反倾销税也正在进行复审。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/business/3851373-india-initiates-probe-on-subsidised-paperboards-and-reviews-anti-dumping-duties" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">Global Constellation 售出以印尼为背景的惊悚剧《天堂之门》</div>
+                    </div>
+                    <div class="news-content">Global Constellation已获得五集限定剧《天堂之门》的全球发行权。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://variety.com/2026/tv/global/global-constellation-heavens-gate-1236699153/" target="_blank">Variety</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">印尼一名军官因活动人士遭酸液袭击而辞职</div>
+                    </div>
+                    <div class="news-content">印尼国内对民主价值观遭到侵蚀的担忧日益加剧。更多内容请访问straitstimes.com。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.straitstimes.com/asia/se-asia/indonesia-military-officer-steps-down-following-acid-attack-on-activist" target="_blank">The Straits Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
