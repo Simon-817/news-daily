@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-03-30</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-03-30</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">一项最新民调显示，15%的美国人表示愿意为人工智能老板工作</div>
+                    </div>
+                    <div class="news-content"> 根据昆尼皮亚克大学的一项民调，15%的美国人表示，他们愿意从事一份由人工智能程序担任直接上司的工作，由该程序分配任务并安排日程。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/30/ai-work-boss-supervisor-us-quinnipiac-poll/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">热门AI网关初创公司LiteLLM与备受争议的初创公司Delve分道扬镳</div>
+                    </div>
+                    <div class="news-content"> LiteLLM此前通过Delve获得了两项安全合规认证，但上周却遭到了某种极其恶劣的凭证窃取恶意软件的攻击。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/30/popular-ai-gateway-startup-litellm-ditches-controversial-startup-delve/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">Coatue前合伙人为一家企业级AI代理初创公司筹集了高达6500万美元的种子轮融资</div>
+                    </div>
+                    <div class="news-content"> 有几个因素吸引了投资者的目光，促使他们一开局就参与了这一轮大规模融资。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/30/former-coatue-partner-raises-huge-65m-seed-for-enterprise-ai-agent-startup/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">随着越来越多的美国人开始使用人工智能工具，表示信任这些结果的人却越来越少</div>
+                    </div>
+                    <div class="news-content"> 根据昆尼皮亚克大学最新民调显示，尽管美国人工智能应用正在增加，但公众信任度依然较低，大多数美国人对透明度、监管以及该技术对社会产生的更广泛影响表示担忧。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/30/ai-trust-adoption-poll-more-americans-adopt-tools-fewer-say-they-can-trust-the-results/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">我们在“2026年创业竞技场”中寻找什么，以及如何提交最出色的申请</div>
+                    </div>
+                    <div class="news-content"> 以下是我们对您提交的“Startup Battlefield 200”申请的要求，以及如何确保您的申请能体现这些要求。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/30/what-were-looking-for-in-startup-battlefield-2026-and-how-to-put-your-best-application-forward/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">Delve内部举报人再度发声，披露了关于“虚假合规”的收据</div>
+                    </div>
+                    <div class="news-content"> 就在Delve创始人发表长篇声明否认相关指控并承诺进行整改后不久，指控方又披露了更多所谓细节。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/30/delve-whistleblower-strikes-again-with-alleged-receipts-about-fake-compliance/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">Meta 开始在 Instagram 上测试付费订阅服务</div>
+                    </div>
+                    <div class="news-content"> Instagram 的高级功能包括：在不被发布者察觉的情况下查看动态，以及查看有多少人重新观看了你的动态。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/30/meta-starts-testing-a-premium-subscription-on-instagram/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">Bluesky的新AI工具Attie目前已是除J. D. Vance之外被屏蔽最多的账号</div>
+                    </div>
+                    <div class="news-content"> 短短几天内，已有超过12.5万名Bluesky用户屏蔽了Attie，这充分体现了用户群体的强烈态度。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/30/blueskys-new-ai-tool-attie-is-already-the-most-blocked-account-other-than-j-d-vance/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">苹果会向应用程序和网站隐藏你的电子邮件地址，但不会向警方隐藏</div>
+                    </div>
+                    <div class="news-content"> 近几个月来，联邦调查人员要求苹果公司提供客户记录，这凸显了电子邮件在隐私保护方面的局限性。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/30/apple-will-hide-your-email-address-from-apps-and-websites-but-not-cops/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">优步正收购柏林初创公司Blacklane，以强化其“Elite”服务</div>
+                    </div>
+                    <div class="news-content"> 这对Blacklane来说是一次引人注目的退出，该公司此前已从梅赛德斯-奔驰和Sixt等投资方处筹集了超过1亿美元的资金。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/03/30/uber-is-buying-berlin-startup-blacklane-to-bolster-its-elite-offering/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">韩国人工智能芯片初创公司Rebellions以23.4亿美元估值完成4亿美元融资，旨在挑战英伟达在人工智能推理芯片领域的地位，并计划进军美国市场</div>
+                    </div>
+                    <div class="news-content">由三星支持的Rebellions刚刚筹集了4亿美元，但这并非为了追逐热度。这家韩国人工智能芯片初创公司正致力于人工智能技术栈中一个特定领域——推理，该领域的重要性正逐渐超过训练。凭借23.4亿美元的估值和新获得的资金，该公司正致力于</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techstartups.com/2026/03/30/south-korean-ai-chip-startup-rebellions-raises-400m-at-2-34b-valuation-to-challenge-nvidia-in-ai-inference-chips-eyes-u-s-expansion/" target="_blank">TechStartups.com</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">温·加查利安希望限制菲律宾青少年的社交媒体使用</div>
+                    </div>
+                    <div class="news-content">菲律宾马尼拉讯——继印度尼西亚对16岁以下未成年人实施社交媒体禁令后，参议员温·加查利安为保护菲律宾青少年，试图限制他们使用数字平台。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.manilatimes.net/2026/03/30/news/win-gatchalian-wants-to-limit-filipino-youths-social-media-use/2310651" target="_blank">The Manila Times</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">随着印尼针对16岁以下人群的社交媒体禁令生效，当地对VPN的需求激增</div>
+                    </div>
+                    <div class="news-content">随着TikTok和Instagram等平台陆续推出严格的年龄验证措施，注重隐私的用户开始自行采取应对措施</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.techradar.com/vpn/vpn-privacy-security/vpn-interest-surges-in-indonesia-as-under-16-social-media-ban-takes-effect" target="_blank">TechRadar</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">印尼船只沉没，救援人员正在搜寻27名失踪人员</div>
+                    </div>
+                    <div class="news-content">救援队和渔民正在搜寻一艘在恶劣天气下遭遇巨浪袭击后沉没于印度尼西亚东部的客船。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.perthnow.com.au/news/disaster-and-emergency/rescuers-search-for-27-after-indonesian-boat-sinks-c-22071313" target="_blank">PerthNow</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">印度尼西亚东部一艘客船沉没，救援队正在搜寻27名失踪人员</div>
+                    </div>
+                    <div class="news-content">印度尼西亚帕卢（美联社）——周一，救援队正争分夺秒地搜寻27名失踪人员，此前一艘客船在前往东部某偏远村庄途中遭遇恶劣海况沉没……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://wtop.com/news/2026/03/rescue-teams-search-for-27-missing-after-a-passenger-boat-sinks-in-eastern-indonesia/" target="_blank">WTOP</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">印度尼西亚东部一艘客船在风浪中沉没，27人失踪</div>
+                    </div>
+                    <div class="news-content">据报道，客船“纳齐拉05号”在印度尼西亚北马鲁古省附近海域遭遇风浪沉没，救援队伍正全力搜寻27名失踪人员。该船于周日傍晚从塔利亚布岛启程前往凯马村。官员穆罕默德·里扎尔表示，巨浪击中船头后，该船约30分钟后沉没。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.freepressjournal.in/world/27-missing-after-passenger-boat-sinks-in-rough-seas-in-eastern-indonesia" target="_blank">Free Press Journal</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">印度尼西亚客船沉没，紧急搜救幸存者</div>
+                    </div>
+                    <div class="news-content">一艘名为“纳齐拉05号”的客船在前往印度尼西亚东部某村庄途中遭遇恶劣海况沉没，造成27人失踪。该船于周日从塔利亚布岛启航。周一，在船长于恶劣天气条件下与船东取得联系后，船东获悉了这一事件。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/business/3855865-urgent-search-for-survivors-as-passenger-boat-sinks-in-indonesia" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">印度尼西亚一艘观光船在惊涛骇浪中沉没，27人失踪</div>
+                    </div>
+                    <div class="news-content">一艘观光船在印度尼西亚东部近海沉没，目前仍有27人下落不明——我们将为您带来这则突发新闻的最新动态、图片及视频。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.mirror.co.uk/news/world-news/breaking-tourist-boat-sinks-horror-36943960" target="_blank">The Mirror</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
