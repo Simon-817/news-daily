@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-04-01</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-04-01</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">去中心化金融（DeFi）平台Drift在遭遇黑客攻击导致数百万加密货币被盗后，暂停了存取款服务</div>
+                    </div>
+                    <div class="news-content"> 区块链追踪数据显示，此次加密货币盗窃案涉案金额达数亿美元，目前看来极有可能成为2026年迄今为止规模最大的加密货币盗窃案。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/01/de-fi-platform-drift-suspends-deposits-and-withdrawals-after-millions-in-crypto-stolen-in-hack/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">Anthropic 删除了数千个 GitHub 仓库，试图撤回其泄露的源代码——该公司称此举纯属意外</div>
+                    </div>
+                    <div class="news-content"> Anthropic的高管表示这是一起意外，并撤回了大部分下架通知。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/01/anthropic-took-down-thousands-of-github-repos-trying-to-yank-its-leaked-source-code-a-move-the-company-says-was-an-accident/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">深陷困境的YC初创公司Delve的声誉进一步恶化</div>
+                    </div>
+                    <div class="news-content"> Delve面临新的指控，称其侵犯了客户Sim.ai的开源许可，具体表现为擅自使用该客户的工具并将其冒充为自有产品。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/01/the-reputation-of-troubled-yc-startup-delve-has-gotten-even-worse/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">“系统故障”导致百度自动驾驶出租车在中国瘫痪</div>
+                    </div>
+                    <div class="news-content"> 百度自动驾驶出租车上的乘客被困长达两小时。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/01/system-failure-paralyzes-baidu-robotaxis-in-china/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">一款名为“Sonder”的新约会应用，其注册流程故意设计得令人烦躁（而且确实奏效了）</div>
+                    </div>
+                    <div class="news-content"> Sonder 的个人主页完全没有固定框架，鼓励用户打造类似情绪板或数字拼贴画的作品。与其说是 LinkedIn，不如说是 MySpace。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/01/a-new-dating-app-sonder-has-a-deliberately-annoying-sign-up-process-and-its-working/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">第一季度初创企业融资额创下历史新高</div>
+                    </div>
+                    <div class="news-content"> 这一创纪录的季度融资额主要推动了OpenAI、Anthropic、xAI和Waymo这四笔巨额交易。但这也表明市场整体处于火热状态。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/01/startup-funding-shatters-all-records-in-q1/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">苹果发布针对旧款iPhone和iPad的安全补丁，以防范DarkSword攻击</div>
+                    </div>
+                    <div class="news-content"> 该安全更新可保护大量旧款iPhone和iPad免受与名为DarkSword的泄露黑客工具相关的攻击。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/01/apple-releases-security-fix-for-older-iphones-and-ipads-to-protect-against-darksword-attacks/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">Meta对天然气的大规模采购或将为南达科他州提供能源</div>
+                    </div>
+                    <div class="news-content"> Meta即将启用的Hyperion AI数据中心将由10座新建的天然气发电厂供电。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/01/metas-natural-gas-binge-could-power-south-dakota/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">Cameo 与 TikTok 合作以提升人气</div>
+                    </div>
+                    <div class="news-content"> Cameo 推出了一项新的 TikTok 集成功能，使美国创作者能够通过该应用提供个性化视频。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/01/cameo-partners-with-tiktok-to-boost-popularity/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">WhatsApp 向数百名安装了由政府间谍软件制造商制作的假应用的用户发送了通知</div>
+                    </div>
+                    <div class="news-content"> 这家隶属于Meta的公司表示，已查明约200名用户被诱骗安装了假冒的WhatsApp版本，而该版本实际上是意大利制造的间谍软件。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/01/whatsapp-notifies-hundreds-of-users-who-installed-a-fake-app-that-was-actually-government-spyware/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">Twitter联合创始人杰克·多尔西警告称，人工智能可能淘汰中层管理人员</div>
+                    </div>
+                    <div class="news-content">在一篇题为《从层级制到智能》的博客文章中，他与红杉资本合伙人罗洛夫·博塔（Roelof Botha）共同撰文，阐述了人工智能如何取代通常负责协调跨团队工作的多层管理架构。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://economictimes.indiatimes.com/tech/technology/ai-could-eliminate-middle-management-warns-twitter-cofounder-jack-dorsey/articleshow/129949526.cms" target="_blank">The Economic Times</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">Snap股价大涨14%，因Irenic建议进行改革以使股价增值7倍</div>
+                    </div>
+                    <div class="news-content">Irenic Capital建议关闭Specs部门，并用人工智能取代Snap超过五分之一的员工。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.cnbc.com/2026/03/31/snap-stock-activist-irenic-value.html" target="_blank">CNBC</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">激进投资者Irenic突击入股Snap，股价飙升</div>
+                    </div>
+                    <div class="news-content">激进投资者Irenic Capital Management周二表示，科技公司Snap的市值可能至少是当前估值的五倍，但需要削减成本、优化业务组合并更好地利用人工智能。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.reuters.com/sustainability/sustainable-finance-reporting/activist-investor-irenic-swoops-snap-with-new-stake-shares-surge-2026-03-31/" target="_blank">Reuters</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">Circulate Capital的大胆举措：在亚洲拓展循环供应链</div>
+                    </div>
+                    <div class="news-content">Circulate Capital 为其第二支专注于亚洲的基金筹集了 2.2 亿美元，旨在加强南亚和东南亚地区的循环供应链。该基金致力于推动塑料、电子产品和服装回收领域的增长。主要目标市场包括印度、印度尼西亚、泰国、越南和菲律宾，在此背景下，随着</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/business/3858862-circulate-capitals-bold-move-scaling-circular-supply-chains-across-asia" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">森林砍伐和厄尔尼诺现象加剧了印度尼西亚的雾霾风险</div>
+                    </div>
+                    <div class="news-content">印度尼西亚森林砍伐加剧，加之厄尔尼诺现象的影响，令人担忧2015年那场毁灭性的烟霾危机可能会重演。更多详情请访问straitstimes.com。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.straitstimes.com/asia/se-asia/deforestation-surge-and-el-nino-raise-fears-of-a-repeat-of-indonesias-2015-haze-crisis" target="_blank">The Straits Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">法国维和人员在黎巴嫩面临威胁</div>
+                    </div>
+                    <div class="news-content">驻黎巴嫩的法国维和人员遭遇了“不可接受的恐吓”，这促使法国呼吁联合国采取行动。印度尼西亚要求对三名联黎部队（UNIFIL）维和人员在以色列军事行动后死亡一事展开调查。三起涉及法国部队与伊</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/law-order/3858481-french-peacekeepers-face-threat-in-lebanon" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">印度在灵性旅游榜单中独占鳌头：从瓦拉纳西到马图拉；快来看看开启神圣之旅的五大目的地</div>
+                    </div>
+                    <div class="news-content">印度正迅速崛起为亚洲领先的灵性旅游中心，越来越多的游客寻求富有意义且以信仰为导向的体验。根据Agoda发布的2026年报告，目前近19%的印度游客正在计划以灵性探索和自我发现为核心的旅行，这使得</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.freepressjournal.in/lifestyle/india-leads-charts-in-spiritual-travel-from-varanasi-to-mathura-check-out-top-5-destinations-to-start-your-divine-journey" target="_blank">Free Press Journal</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">印度尼西亚将遣返一名苏格兰犯罪头目，该人因涉嫌谋杀和贩毒被西班牙通缉</div>
+                    </div>
+                    <div class="news-content">印度尼西亚登巴萨（美联社）——一名苏格兰犯罪头目周三将被遣返回西班牙，此前他在印度尼西亚度假胜地巴厘岛被捕……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://wtop.com/world/2026/04/indonesia-to-deport-scottish-crime-boss-wanted-by-spain-on-murder-and-drug-trafficking-charges/" target="_blank">WTOP</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">印尼维和人员遇难事件引发呼吁制定中东撤军计划</div>
+                    </div>
+                    <div class="news-content">议员们希望印尼向以色列施压以求得答复，并敦促雅加达重新考虑其派往黎巴嫩和加沙的维和任务。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.scmp.com/week-asia/politics/article/3348679/indonesian-peacekeepers-deaths-spur-calls-middle-east-exit-plan" target="_blank">South China Morning Post</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">在全球动荡之际，韩国与印度尼西亚加深双边关系</div>
+                    </div>
+                    <div class="news-content">韩国和印度尼西亚正在加强在国防、科技和供应链领域的合作。李在明总统和普拉博沃·苏比安托总统承诺深化两国战略伙伴关系，以应对中东冲突带来的不确定性，重点推进联合国防项目和能源供应合作。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/technology/3858299-south-korea-and-indonesia-forge-stronger-ties-amid-global-turmoil" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">中东战争扰乱市场之际，韩国与印度尼西亚扩大防务和能源领域合作</div>
+                    </div>
+                    <div class="news-content">韩国首尔（美联社）——周三，韩国和印度尼西亚同意在国防工业、技术和供应链领域扩大合作，两国领导人……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://wtop.com/world/2026/04/south-korea-and-indonesia-expand-cooperation-on-defense-and-energy-as-mideast-war-disrupts-markets/" target="_blank">WTOP</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">中东局势紧张之际，韩国与印度尼西亚加强经济联系</div>
+                    </div>
+                    <div class="news-content">随着两国领导人将双边关系提升至战略伙伴关系，韩国和印度尼西亚正在扩大在国防项目、技术及供应链领域的合作。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://apnews.com/article/south-korea-indonesia-defense-lee-subianto-supply-chain-5d634cee1e7a78f45a0bccc7e2f29652" target="_blank">The Associated Press</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
