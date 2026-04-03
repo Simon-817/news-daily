@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-04-02</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-04-02</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">随着伊朗局势动荡引发全球能源市场震荡，亚马逊向卖家征收“燃油附加费”</div>
+                    </div>
+                    <div class="news-content"> 这家电商巨头称该附加费是暂时的，但未能说明该政策何时会取消。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/02/amazon-hits-sellers-with-fuel-surcharge-as-iran-war-roils-global-energy-markets/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">远程医疗巨头Hims &amp; Hers表示，其客户支持系统遭到了黑客攻击</div>
+                    </div>
+                    <div class="news-content"> 这家美国远程医疗巨头表示，黑客于2月期间在数天内窃取了客户支持工单数据。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/02/telehealth-giant-hims-hers-says-its-customer-support-system-was-hacked/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">“阿耳忒弥斯2号”是美国宇航局最后一次不依赖硅谷的登月任务</div>
+                    </div>
+                    <div class="news-content"> 下次，SpaceX和Blue Origin将面临巨大压力。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/02/artemis-ii-is-nasas-last-moon-mission-without-silicon-valley/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">Gateway Capital宣布其二期基金完成首轮2500万美元的募资</div>
+                    </div>
+                    <div class="news-content"> 由达娜·古斯里（Dana Guthrie）创立、总部位于密尔沃基的风险投资公司Gateway Capital，现已开始为其规模为2500万美元的二期基金开展投资业务。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/02/gateway-capital-dana-guthrie-milwaukee-first-close-fund-ii/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">OpenAI 收购了备受瞩目的创始人主持商业脱口秀节目 TBPN</div>
+                    </div>
+                    <div class="news-content"> 硅谷备受追捧的科技播客《TBPN》将保持独立运营，尽管其由首席政治顾问克里斯·莱汉恩负责监督。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/02/openai-acquires-tbpn-the-buzzy-founder-led-business-talk-show/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">Flipboard 的新“社交网站”功能帮助出版商和创作者接入开放的社交网络</div>
+                    </div>
+                    <div class="news-content"> Flipboard 的社交网站将来自 Bluesky、Mastodon、Threads、YouTube、播客、博客和 RSS 订阅的个人资料及帖子整合到一个统一的共享平台中。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/02/flipboard-surf-social-websites-help-publishers-and-creators-tap-into-the-open-social-web/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">ElevenLabs 推出一款基于人工智能的音乐生成应用</div>
+                    </div>
+                    <div class="news-content"> ElevenMusic 允许用户通过文本提示来创作和混音歌曲。这款新应用表明，ElevenLabs 希望不仅仅是一家语音模型公司。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/02/elevenlabs-releases-a-new-ai-powered-music-generation-app/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">美国宇航局（NASA）的宇航员证明，发一封电子邮件确实是门“火箭科学”</div>
+                    </div>
+                    <div class="news-content"> 美国宇航局“阿耳忒弥斯二号”任务指挥官里德·怀斯曼在太空中遭遇了最“地球化”的麻烦：他的Outlook无法正常运行。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/02/nasa-artemis-microsoft-outlook-astronauts/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">微软推出三款新基础模型，向AI竞争对手发起挑战</div>
+                    </div>
+                    <div class="news-content"> MAI在六个月前成立后，便推出了能够将语音转录为文本，并生成音频和图像的模型。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/02/microsoft-takes-on-ai-rivals-with-three-new-foundational-models/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">汇款应用 Duc 导致数千份驾驶证和护照信息暴露在公开网络上</div>
+                    </div>
+                    <div class="news-content"> 一台暴露在外的亚马逊托管服务器允许任何人无需密码即可访问大量客户数据。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/02/canadian-money-transfer-app-duc-expose-drivers-licenses-passports-amazon-server/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">拉胡尔·甘地指责莫迪受特朗普操控，并批评阿萨姆邦首席部长</div>
+                    </div>
+                    <div class="news-content">拉胡尔·甘地批评莫迪总理，指称其受特朗普操控，并谴责阿萨姆邦首席部长散布仇恨言论。在一场公开集会上，甘地声称特朗普总统对莫迪施加了影响，并指出阿萨姆邦领导层在该邦选举前煽动了文化对立。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/politics/3860545-rahul-gandhi-accuses-modi-of-being-controlled-by-trump-criticizes-assam-cm" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">阿克谢·库玛尔在给《辛格姆》男星阿贾伊·德夫冈的生日祝福中亲吻了他：“这份友谊如此深厚……”</div>
+                    </div>
+                    <div class="news-content">阿克谢·库玛尔为老友阿贾伊·德夫甘发布了一条幽默的生日祝福，逗乐了粉丝们。阿克谢在社交媒体上分享了这一时刻，展示了……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://timesofindia.indiatimes.com/entertainment/hindi/bollywood/news/akshay-kumar-kisses-ajay-devgn-in-his-birthday-wish-for-the-singham-actor-dosti-itni-purani-/articleshow/129981348.cms" target="_blank">Times of India</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">容量与速度：TikTok为何搁置其第二个爱尔兰数据中心</div>
+                    </div>
+                    <div class="news-content">爱尔兰的数据中心基础设施无法满足TikTok日益增长的需求。结果是：扩建计划被搁置，不过该公司表示并未排除未来扩建的可能性。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.siliconrepublic.com/business/capacity-and-speed-why-tiktok-shelved-its-second-irish-data-centre" target="_blank">Siliconrepublic.com</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">那些风靡TikTok的AI水果泥视频，以及它们对我们产生的真实影响</div>
+                    </div>
+                    <div class="news-content">TikTok上的“水果爱情岛”在九天内收获了300万粉丝，将AI生成的垃圾内容变成了必看剧集，但随后又迅速崩盘，揭示了其背后的注意力机制。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.firstpost.com/lifestyle/fruit-love-island-broke-tiktok-now-other-ai-fruit-slop-and-indian-food-spinoffs-are-going-viral-13995951.html" target="_blank">Firstpost</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">《埃默代尔》演员伊莎贝尔·霍金斯在产后近况更新中表示“正在重建自我”</div>
+                    </div>
+                    <div class="news-content">维多利亚·萨格登经常在社交媒体上分享她作为母亲的生活点滴</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.manchestereveningnews.co.uk/news/tv/emmerdales-isabel-hodgins-says-rebuilding-33705866" target="_blank">Manchester Evening News</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">报道称：钢人队已获得柯克·考辛斯的自由球员去向决定</div>
+                    </div>
+                    <div class="news-content">四分卫柯克·考辛斯的经纪人迈克·麦卡锡在社交媒体上透露，这位四分卫即将与拉斯维加斯突袭者队签约。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://heavy.com/sports/nfl/pittsburgh-steelers/kirk-cousins-aaron-rodgers-nfl-news/" target="_blank">Heavy.</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">在《Dhurandhar 2》大获成功之际，社交媒体质疑迪皮卡·帕度柯妮对兰维尔·辛格演技的沉默</div>
+                    </div>
+                    <div class="news-content">《Dhurandhar 2》在票房上表现强劲。该片由阿迪提亚·达尔执导，主演阵容包括兰维尔·辛格、R·马达万、阿琼·兰帕尔、桑杰·达特、萨拉·阿琼和拉凯什·贝迪等。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.newsx.com/entertainment/amid-dhurandhar-2-success-social-media-questions-deepika-padukones-silence-on-ranveer-singhs-performance-192887/" target="_blank">NewsX</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">印度学生赴美就读人数下降6.9%：政府在联邦院表示</div>
+                    </div>
+                    <div class="news-content">目前有超过35万名印度学生在美国留学。这一数字已下降了6.9%。更严格的签证规定和更高的拒签率正在影响留学生人数。美国目前实施了全面的审查，包括对社交媒体的核查。印度当局正就此问题与美方进行磋商。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://economictimes.indiatimes.com/nri/study/indian-students-enrolment-to-us-institutions-drops-by-6-9-govt-in-rs/articleshow/129980834.cms" target="_blank">The Economic Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">尽管有“加密货币骗局”死亡谣言，乌龟乔纳森依然安然无恙</div>
+                    </div>
+                    <div class="news-content">关于这只乌龟死亡的传言在社交媒体上迅速传播，但纯属子虚乌有</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.independent.co.uk/news/uk/home-news/jonathan-tortoise-death-crypto-scam-b2950870.html" target="_blank">The Independent</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">KKR 对阵 SRH 2026 印度超级联赛（IPL）直播：如何观看今日加尔各答骑士队对阵海得拉巴日出队的比赛</div>
+                    </div>
+                    <div class="news-content">KKR 对阵 SRH IPL 2026 板球直播：今日加尔各答骑士队对阵海得拉巴日出队的比赛何时何地观看 - KKR 对阵 SRH IPL 2026 直播：加尔各答骑士队赢得掷币并选择先攻，迎战海得拉巴日出队……查看最新板球文章和直播比赛</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.lokmattimes.com/cricket/news/kkr-vs-srh-ipl-2026-live-cricket-streaming-when-and-where-to-watch-todays-kolkata-knight-riders-vs-sunrisers-hyderabad-match-a507/" target="_blank">Lokmat Times</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">印尼就禁止青少年使用社交媒体一事再次传唤谷歌和Meta</div>
+                    </div>
+                    <div class="news-content">印度尼西亚已向谷歌和Meta发出第二份传票。据称，这两家科技巨头无视了针对16岁以下用户的新社交媒体禁令。政府警告称，若不遵守规定将面临制裁。此举旨在保护儿童免受网络危害。Meta声称已获准延期，并将……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://economictimes.indiatimes.com/tech/technology/indonesia-issues-fresh-summons-for-google-meta-over-teen-social-media-ban/articleshow/129980265.cms" target="_blank">The Economic Times</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">2026年4月3日学校集会新闻头条：印度尼西亚地震、T20系列赛及其他英文新闻</div>
+                    </div>
+                    <div class="news-content">今日校园集会新闻头条：关注时事有助于学生提升批判性思维能力，并拓宽综合知识面。以下是4月1日的头条新闻，涵盖商业、体育、国际及本地新闻，重点报道了</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://zeenews.india.com/education/today-school-assembly-news-headlines-3-april-2026-latest-news-national-world-sports-election-important-update-3033089.html" target="_blank">Zee News</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">在全球舆论强烈反对之际，八个国家谴责以色列针对巴勒斯坦人的死刑法</div>
+                    </div>
+                    <div class="news-content">巴基斯坦、土耳其、埃及、印度尼西亚、约旦、卡塔尔、沙特阿拉伯和阿联酋的外长发表联合声明，谴责该举措，并警告称这反映了“以色列日益歧视性且不断升级的做法，这些做法正在巩固一种种族隔离制度”。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.moneycontrol.com/world/eight-countries-condemn-israel-s-death-penalty-law-targeting-palestinians-amid-global-backlash-article-13878181.html" target="_blank">Moneycontrol</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">印度尼西亚近海发生地震，导致建筑物倒塌，造成1人死亡，并引发小规模海啸</div>
+                    </div>
+                    <div class="news-content">周四，印度尼西亚北部部分地区发生7.4级地震，导致建筑物倒塌，造成至少一人死亡，并引发了一次小规模海啸。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://abc7.com/post/earthquake-off-indonesia-topples-buildings-kills-1-person-sets-small-tsunami/18827701/" target="_blank">KABC-TV</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">沙特阿拉伯、土耳其和印度尼西亚等伊斯兰国家谴责以色列的死刑法</div>
+                    </div>
+                    <div class="news-content">沙特阿拉伯、土耳其和印度尼西亚等伊斯兰国家在一份联合声明中，谴责以色列针对巴勒斯坦人颁布的新死刑法。| 国际新闻</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.hindustantimes.com/world-news/islamic-states-saudi-arabia-turkey-and-indonesia-condemn-israel-over-death-penalty-law-101775127007464.html" target="_blank">Hindustan Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">保持冷静，共度时光：从开斋节开始，Comfee Gusto 伴您享受每一刻</div>
+                    </div>
+                    <div class="news-content">印度尼西亚雅加达，2026年4月2日 /美通社/ -- 开斋节不仅仅是一场庆祝活动，更是家庭重焕生机的时刻。家家户户粉刷一新，挂上新窗帘，厨房里弥漫着粽子、鸡肉咖喱和炒辣椒酱的温馨气息。对许多人来说，这也是终于可以……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.manilatimes.net/2026/04/02/tmt-newswire/pr-newswire/stay-cool-stay-together-start-from-lebaran-comfee-gusto-comfort-every-moment/2313280" target="_blank">The Manila Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">穆斯林占多数的国家谴责以色列的死刑法</div>
+                    </div>
+                    <div class="news-content">巴基斯坦、土耳其、埃及、印度尼西亚、约旦、卡塔尔、沙特阿拉伯和阿联酋谴责以色列的新死刑措施，称其为“危险的升级”。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.perthnow.com.au/news/crime/muslim-majority-nations-slam-israels-death-penalty-law-c-22088875" target="_blank">PerthNow</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">印尼承诺维持低油价以维护经济增长与社会稳定</div>
+                    </div>
+                    <div class="news-content">尽管伊朗战争引发的石油冲击仍在持续，印度尼西亚仍将暂缓上调补贴燃油价格。财政部长普尔巴亚·尤迪·萨德瓦警告称，任何涨价举措都可能削弱经济增长并威胁社会稳定。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.bloomberg.com/news/articles/2026-04-02/indonesia-commits-to-low-fuel-prices-to-defend-growth-social-stability" target="_blank">Bloomberg</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">中国企业如何重塑印尼</div>
+                    </div>
+                    <div class="news-content">他们正在逃离国内激烈的竞争。更多内容请访问straitstimes.com。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.straitstimes.com/opinion/how-chinese-companies-are-reshaping-indonesia" target="_blank">The Straits Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
