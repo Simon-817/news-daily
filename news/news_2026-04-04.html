@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-04-04</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-04-04</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">Peter Thiel&amp;#8217;s big bet on solar-powered cow collars</div>
+                    </div>
+                    <div class="news-content"> Why did Founders Fund invest $220 million in cattle management startup Halter? </div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/04/unpacking-peter-thiels-big-bet-on-solar-powered-cow-collars/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">Embattled startup Delve has ‘parted ways’ with Y Combinator</div>
+                    </div>
+                    <div class="news-content"> The controversy around Delve appears to have cost the compliance startup its relationship with accelerator Y Combinator. </div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/04/embattled-startup-delve-has-parted-ways-with-y-combinator/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">Anthropic says Claude Code subscribers will need to pay extra for OpenClaw usage</div>
+                    </div>
+                    <div class="news-content"> It’s about to become more expensive for Claude Code subscribers to use Anthropic’s coding assistant with OpenClaw and other third-party tools. </div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/04/anthropic-says-claude-code-subscribers-will-need-to-pay-extra-for-openclaw-support/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">After fighting malware for decades, this cybersecurity veteran is now hacking drones</div>
+                    </div>
+                    <div class="news-content"> Mikko Hyppönen is one of the most recognizable faces of the cybersecurity industry. After fighting computer viruses, worms, and malware, for more than 35 years, he tells TechCrunch why he is now working on systems to stop killer drones. </div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/04/after-fighting-malware-for-decades-this-cybersecurity-veteran-is-now-hacking-drones/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">Noon raises $44 million from Chemistry, First Round Capital, Elevation Capital and others</div>
+                    </div>
+                    <div class="news-content">Startup bets on code-native design tools as AI accelerates software development</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.moneycontrol.com/news/business/startup/noon-raises-44-million-from-chemistry-first-round-capital-elevation-capital-and-others-13879793.html" target="_blank">Moneycontrol</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">Downed U.S. Drone Appears On TikTok Live As Iraqi Children Try To Sell It</div>
+                    </div>
+                    <div class="news-content">ZeroHedge - On a long enough timeline, the survival rate for everyone drops to zero</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.zerohedge.com/military/downed-us-drone-appears-tiktok-live-iraqi-children-try-sell-it" target="_blank">ZeroHedge</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">Gregg Wallace's downfall continues as star attempts to launch comeback on TikTok</div>
+                    </div>
+                    <div class="news-content">GREGG Wallace has attempted to make a career comeback with a 12-hour live cooking event on TikTok - one year on from being axed as MasterChef...</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thesun.ie/tv/16778275/gregg-wallace-returns-new-cooking-show/" target="_blank">The Irish Sun</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">Pindiz vs Islamabad United Live Score PSL 2026 Today Match Updates: IU Win Toss, Opt To Bowl; Lahore Rain In Focus</div>
+                    </div>
+                    <div class="news-content">RAP vs IU Live Score PSL 2026: Catch RAP vs IU Live Score, RAP vs IU live cricket updates and ball-by-by commentary of Rawalpindiz vs Islamabad United League match of the Pakistan Super League 2026 from Lahore here on NewsX. You can watch live streaming of RAP vs IU on OTT platform and mobile app Ta</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.newsx.com/live-updates/rap-vs-iu-live-score-psl-2026-today-cricket-match-full-scorecard-4-april-rawalpindiz-vs-islamabad-united-live-match-streaming-free-ott-tapmad-lahore-rain-gaddafi-stadium-193809/" target="_blank">NewsX</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">Pindiz vs Islamabad United Live Score PSL 2026 Today Match Updates: IU Need 158 Runs To Win</div>
+                    </div>
+                    <div class="news-content">RAP vs IU Live Score PSL 2026: Catch RAP vs IU Live Score, RAP vs IU live cricket updates and ball-by-by commentary of Rawalpindiz vs Islamabad United League match of the Pakistan Super League 2026 from Lahore here on NewsX. You can watch live streaming of RAP vs IU on OTT platform and mobile app Ta</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.newsx.com/live-updates/rap-vs-iu-live-score-psl-2026-today-cricket-match-full-scorecard-4-april-rawalpindiz-vs-islamabad-united-live-match-streaming-free-ott-tapmad-lahore-rain-conway-minhas-amir-193809/" target="_blank">NewsX</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">RCB vs CSK Match 11: Free Live Streaming, Pitch Report, Weather Report, Playing XI, Head-to-Head &amp; Match Preview - IPL 2026</div>
+                    </div>
+                    <div class="news-content">Full analysis of Royal Challengers Bengaluru (RCB) vs Chennai Super Kings (CSK) in IPL 2026 Match 11, including live streaming details, pitch report, weather conditions, predicted XIs, head-to-head stats, and match preview.</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://cricketaddictor.com/cricket-news/rcb-vs-csk-match-11-free-live-streaming-pitch-report-weather-report-playing-xi-head-to-head-match-preview-ipl-2026-427670/" target="_blank">Cricket Addictor</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">Alec Baldwin is brutally roasted by daughter over his 26-year age gap with wife Hilaria</div>
+                    </div>
+                    <div class="news-content">In a recent video shared to his Instagram, 68-year-old Alec's daughter couldn't help but poke fun at his and 42-year-old Hilaria's massive age difference.</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.dailymail.co.uk/lifestyle/article-15706159/alec-baldwin-roasted-daughter-age-gap-wife-hilaria.html" target="_blank">Daily Mail Online</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">Samajwadi Party Launches Digital Offensive To Counter BJP's Online Dominance Ahead Of 2027 UP Polls</div>
+                    </div>
+                    <div class="news-content">The Samajwadi Party is strengthening its digital presence ahead of the 2027 UP elections to counter BJP’s social media dominance. Backed by Akhilesh Yadav, the strategy includes building an influencer network, launching ‘Samajwadi Party TV’, and creating a digital cadre. The party is focusing on reg</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.freepressjournal.in/india/samajwadi-party-launches-digital-offensive-to-counter-bjps-online-dominance-ahead-of-2027-up-polls" target="_blank">Free Press Journal</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">'High trees catch a lot of wind' - From intense media scrutiny to social media abuse, the Classics bring out the pressure of expectation in Belgium</div>
+                    </div>
+                    <div class="news-content">Whether it's constant tactical questioning, boos on the roadside or abusive messages online, the Classics period can be an intense time, particularly for Belgian riders</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.cyclingnews.com/pro-cycling/high-trees-catch-a-lot-of-wind-from-intense-media-scrutiny-to-social-media-abuse-the-classics-bring-out-the-pressure-of-expectation-in-belgium/" target="_blank">Cyclingnews</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">Did President Trump have a hand in writing the latest White House East Wing court filing?</div>
+                    </div>
+                    <div class="news-content">The government's legal bid to continue East Wing construction has the hallmarks of President Trump's social media posts.</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.cbsnews.com/news/east-wing-trump-administration-court-filing-appeal-construction/" target="_blank">CBS News</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📭</div>
+                    <div>今日暂无相关报道</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
