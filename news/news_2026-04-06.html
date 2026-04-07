@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-04-06</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-04-06</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">OpenAI的前员工们正通过一只规模可能达1亿美元的新基金进行低调投资</div>
+                    </div>
+                    <div class="news-content"> Zero Shot是一家与OpenAI关系密切的新创风险投资基金，目前正计划为其首支基金筹集1亿美元。该基金已开始进行部分投资。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/06/openai-alums-have-been-quietly-investing-from-a-new-potentially-100m-fund/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">油价并非推动二手电动车销量的唯一因素</div>
+                    </div>
+                    <div class="news-content"> 最新的电动汽车销量数据呈现出一幅黯淡的景象——至少对于新电动汽车而言是如此。而二手电动汽车的销量则呈现出截然相反的趋势。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/06/gas-prices-arent-the-only-factor-fueling-used-ev-sales/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">谷歌悄然推出了一款支持离线使用的AI语音输入应用</div>
+                    </div>
+                    <div class="news-content"> 谷歌新推出的“离线优先”语音输入应用采用了Gemma AI模型，旨在与Wispr Flow等应用一较高下。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/06/google-quietly-releases-an-offline-first-ai-dictation-app-on-ios/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">Netflix正通过一款全新的独立应用进军儿童游戏领域</div>
+                    </div>
+                    <div class="news-content"> Netflix表示，该应用程序让孩子们能够访问一个不断扩充的儿童游戏库。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/06/netflix-launches-a-standalone-app-for-kids-games/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">安全监管机构为何终止了对特斯拉远程泊车功能的调查</div>
+                    </div>
+                    <div class="news-content"> 美国国家公路交通安全管理局（NHTSA）已结束对特斯拉“智能召回”功能的调查，称仅有极少数案例导致了事故，且未造成人员受伤。特斯拉还发布了一系列软件更新。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/06/tesla-actually-smart-summon-nhtsa-investigation-smart-parking/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">伊朗威胁“星际之门”人工智能数据中心</div>
+                    </div>
+                    <div class="news-content"> 随着美伊冲突不断升级，伊朗表示将对与美国有关的数据中心发动新一轮导弹袭击。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/06/iran-threatens-stargate-ai-data-centers/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">苹果公司正准备将App Store之争重新诉诸最高法院</div>
+                    </div>
+                    <div class="news-content"> 苹果计划请求最高法院复审其与Epic Games在App Store上的纠纷，因为该公司正对一项限制其对第三方支付收取费用的裁决提出异议。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/06/apple-epic-games-lawsuit-supreme-court-appeal-app-store-commission/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">观看这段视频，了解招聘面试官是如何识破一名冒充IT人员的朝鲜人的</div>
+                    </div>
+                    <div class="news-content"> 一名疑似朝鲜籍的求职者在参加远程面试时，被要求侮辱该国领导人，当场显得不知所措。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/06/watch-this-video-of-how-a-job-interviewer-exposes-a-north-korean-fake-it-worker/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">朝鲜对互联网上使用最广泛的开源项目之一实施的劫持，很可能酝酿了数周之久</div>
+                    </div>
+                    <div class="news-content"> 在一场持续已久的网络攻击行动中，朝鲜黑客通过入侵一名顶级开发者的计算机，向一个广受欢迎的开源项目植入了恶意更新。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/06/north-koreas-hijack-of-one-of-the-webs-most-used-open-source-projects-was-likely-weeks-in-the-making/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">OpenAI对人工智能经济的愿景：公共财富基金、机器人税以及每周四天工作制</div>
+                    </div>
+                    <div class="news-content"> 在政策制定者就人工智能的经济影响展开讨论之际，OpenAI提议对人工智能利润征税、设立公共财富基金并扩大社会保障网，以应对失业和不平等问题，从而将再分配与资本主义相结合。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/06/openais-vision-for-the-ai-economy-public-wealth-funds-robot-taxes-and-a-four-day-work-week/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">随着人工智能重塑就业与财富格局，OpenAI呼吁实行每周4天工作制并开征资本税</div>
+                    </div>
+                    <div class="news-content">该公司在题为《智能时代的产业政策：以人为本的理念》的政策文件中警告称，除非各国政府及早通过新的经济框架进行干预，否则人工智能可能会大幅重塑劳动力市场并导致财富集中。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.businesstoday.in/technology/story/openai-calls-for-4-day-workweek-capital-taxes-as-ai-reshapes-jobs-and-wealth-524283-2026-04-06" target="_blank">Business Today</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">EastPoint：首尔2026将于今年9月召集全球领袖，共商数字资产与人工智能经济</div>
+                    </div>
+                    <div class="news-content">由首席执行官西蒙·金（Simon Kim）领导的全球Web3风险投资公司Hashed将与Bloomingbit于9月28日在首尔联合举办“EastPoint:Seoul 2026”。今年已是第二届的EastPoint是一个汇聚政策制定者、金融机构、企业、区块链行业领军人物及学者的平台</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techbullion.com/eastpointseoul-2026-to-convene-global-leaders-oenn-digital-assets-and-ai-economy-this-september/" target="_blank">TechBullion</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">Upbit与ICEx签署战略谅解备忘录，以加强印度尼西亚的数字资产基础设施</div>
+                    </div>
+                    <div class="news-content">Upbit与ICEx签署战略谅解备忘录，以加强印度尼西亚的数字资产基础设施</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thehindubusinessline.com/brandhub/pr-release/upbit-and-icex-sign-strategic-mou-to-fortify-indonesias-digital-asset-infrastructure/article70829610.ece" target="_blank">The Hindu Business Line</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">因主力缺阵，新西兰队在比利·简·金杯赛中面临艰巨挑战</div>
+                    </div>
+                    <div class="news-content">新西兰队长马修·海尔在去年夺冠后，谈到了2026年比利·简·金杯亚洲/大洋洲赛区即将面临的挑战。面对印度和印度尼西亚等强劲对手，新西兰队在缺少明星球员孙露露的情况下必须调整战术，同时强调团队文化和国家精神。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/sports-games/3863810-new-zealand-faces-tough-road-at-billie-jean-king-cup-amidst-key-absence" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">“是导弹还是UFO？”：巨大火球撞击印尼港口，政府机构发布澄清声明</div>
+                    </div>
+                    <div class="news-content">目击者称看到一道泛着蓝白色光芒、拖着长尾巴的光带。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.financialexpress.com/trending/missile-or-ufo-massive-fireball-slams-into-indonesia-port-govt-agency-issues-clarification/4196951/" target="_blank">The Financial Express</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">外星飞船还是太空垃圾？神秘物体照亮印尼夜空，引发UFO猜测</div>
+                    </div>
+                    <div class="news-content">一段目前在社交媒体上疯传的视频显示，一个明亮的物体在印度尼西亚上空缓慢坠落，引发了人们的猜测，称其“速度太慢，不像是流星”，可能是某种试图降落地球的物体。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.republicworld.com/science/alien-buzz-or-space-trash-mystery-object-lights-up-indonesia-sky-fuels-ufo-theories" target="_blank">Republic World</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">快问快答：印度尼西亚部分地区上空是否出现了流星雨？</div>
+                    </div>
+                    <div class="news-content">对许多人来说，这确实是一幅令人叹为观止的景象。神秘的火光划过天际，目击者们既惊愕又恐惧。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thestar.com.my/news/true-or-not/2026/04/06/quickcheck-did-a-meteor-shower-appear-over-parts-of-indonesia" target="_blank">The Star</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">印尼部长表示，该国将允许航空公司将票价上调最多13%</div>
+                    </div>
+                    <div class="news-content">印度尼西亚高级经济部长艾尔朗加·哈塔托周一告诉记者，该国将允许航空公司通过提高燃油附加费来上调机票价格，同时免除部分航空相关税费。……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.marketscreener.com/news/indonesia-to-allow-airlines-to-raise-fares-by-up-to-13-minister-says-ce7e51d2df8ef22d" target="_blank">MarketScreener</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">印度尼西亚上调航空燃油附加费及机票价格</div>
+                    </div>
+                    <div class="news-content">印度尼西亚周一宣布将航空燃油附加费上调28个百分点，并表示将允许航空公司将其受政府限制的国内机票价格上调最多13%。随着中东战争导致全球油价飙升，经济部长艾尔朗加·哈</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://economictimes.indiatimes.com/nri/latest-updates/indonesia-raises-aviation-fuel-surcharge-flight-ticket-prices/articleshow/130055382.cms" target="_blank">The Economic Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">缅甸新任总统敏昂莱在印度尼西亚面临种族灭绝指控</div>
+                    </div>
+                    <div class="news-content">该投诉由一名逃离缅甸的罗兴亚妇女以及数名印尼人士提出。更多详情请访问straitstimes.com。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.straitstimes.com/asia/se-asia/myanmars-new-president-min-aung-hlaing-faces-genocide-complaint-in-indonesia" target="_blank">The Straits Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
