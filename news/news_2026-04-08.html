@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-04-08</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-04-08</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">微软锁定账户后，WireGuard VPN 开发者无法发布软件更新</div>
+                    </div>
+                    <div class="news-content"> 这家广受欢迎的开源VPN开发商是第二家公开指责微软在未通知的情况下锁定其账户，并阻止其向用户推送软件更新的知名开发商。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/08/wireguard-vpn-developer-cant-ship-software-updates-after-microsoft-locks-account/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">得克萨斯州一辆自动驾驶汽车撞死了一只母鸭，引发了社区居民的愤怒</div>
+                    </div>
+                    <div class="news-content"> 一辆位于奥斯汀附近的Avride自动驾驶汽车撞上了一只鸭子，引发了社区的强烈反响。据一名目击者称，该车既没有减速，也没有丝毫迟疑，直接碾了过去。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/08/avride-self-driving-car-austin-kills-duck-mueller/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">Poke 让使用 AI 代理变得像发送短信一样简单</div>
+                    </div>
+                    <div class="news-content"> Poke 通过短信将 AI 助手带给普通用户，无需复杂的设置、应用程序或技术知识，即可处理各项任务并实现自动化。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/08/poke-makes-ai-agents-as-easy-as-sending-a-text/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">Canva通过收购Simtheory和Ortto，进一步加码人工智能和营销自动化领域</div>
+                    </div>
+                    <div class="news-content"> Canva表示，这些收购将增强其在代理式人工智能、数据基础设施、营销自动化和客户互动方面的实力。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/08/canva-doubles-down-on-ai-and-marketing-automation-with-simtheory-ortto-acquisitions/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">AWS负责人解释了为何同时向Anthropic和OpenAI投资数十亿美元并不构成利益冲突</div>
+                    </div>
+                    <div class="news-content"> 他解释说，AWS在应对竞争方面有着根深蒂固的文化，因为这家云计算巨头也与自己的合作伙伴展开竞争。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/08/aws-boss-explains-why-investing-billions-in-both-anthropic-and-openai-is-an-ok-conflict/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">亚马逊将停止对旧款Kindle设备的支持</div>
+                    </div>
+                    <div class="news-content"> 亚马逊本周通知Kindle用户，将停止对2012年及更早发布的所有电子阅读器的支持，这意味着这些设备几乎无法加载任何新内容。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/08/amazon-to-end-support-for-older-kindle-devices-2012/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">Meta在对其人工智能进行“彻底改造”之际，推出了Muse Spark模型</div>
+                    </div>
+                    <div class="news-content"> 这是Meta旗下由前Scale AI首席执行官亚历山大·王（Alexandr Wang）领导的“超级智能实验室”（Superintelligence Labs）发布的首款模型。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/08/meta-debuts-the-muse-spark-model-in-a-ground-up-overhaul-of-its-ai/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">一伙“雇佣黑客”组织被发现正针对安卓设备和iCloud备份发起攻击</div>
+                    </div>
+                    <div class="news-content"> 安全研究人员揭露了一起由雇佣黑客团伙发起的间谍活动，该团伙利用安卓间谍软件和网络钓鱼手段窃取iCloud凭证并入侵受害者的设备。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/08/hack-for-hire-group-caught-targeting-android-devices-and-icloud-backups/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">Tubi 是首家在 ChatGPT 内推出原生应用的流媒体平台</div>
+                    </div>
+                    <div class="news-content"> Tubi 成为首个在 ChatGPT（这款被数百万用户用来获取答案的人工智能聊天机器人）中提供应用集成的流媒体服务。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/08/tubi-is-the-first-streamer-to-launch-a-native-app-within-chatgpt/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">大众汽车已在洛杉矶开始测试其自动驾驶微型巴士，为与优步的合作做准备</div>
+                    </div>
+                    <div class="news-content"> 大众汽车旗下子公司MOIA America在推出商业化机器人出租车服务之前，仍需经历漫长而曲折的监管审批过程。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/08/volkswagen-moia-uber-los-angeles-testing-self-driving-microbuses-id-buzz/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">Chick-fil-A员工因在TikTok视频中晃动胸部遭解雇，该视频观看量已超700万次</div>
+                    </div>
+                    <div class="news-content">八名Chick-fil-A员工称，他们因在一段TikTok视频中晃动胸部而被解雇，该视频的观看量已超过700万次——其中包括他们的上司。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://nypost.com/2026/04/08/us-news/chick-fil-a-staffers-fired-for-jiggling-chests-in-tiktok-video-seen-more-than-7m-times/" target="_blank">New York Post</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">斯塔福德郡陶瓷狗是如何从俗气变身时尚的</div>
+                    </div>
+                    <div class="news-content">社交媒体上的“千禧祖母族”正发现，这些维多利亚时代的经典单品能为任何室内空间增添一抹俏皮感</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thetimes.com/life-style/property-home/article/how-ceramic-staffordshire-dogs-went-from-kitsch-to-cool-36nshwtld" target="_blank">The Sunday Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">“一个把摄像头对准你脸的混蛋”：智能眼镜应该录制影像吗？</div>
+                    </div>
+                    <div class="news-content">鉴于智能眼镜的发展遇到了诸多问题，一家公司正采取不同的策略，并对Meta发起攻势。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://petapixel.com/2026/04/08/a-douchebag-with-a-camera-on-your-face-should-smart-glasses-record-imagery/" target="_blank">PetaPixel</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">巴塞罗那对阵马德里竞技直播：欧冠四分之一决赛何时何地在线及电视直播</div>
+                    </div>
+                    <div class="news-content">巴塞罗那对阵马德里竞技直播：以下是观看欧洲冠军联赛四分之一决赛直播及在线观看的时间和平台详情。| 足球新闻</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.hindustantimes.com/sports/football/barcelona-vs-atletico-madrid-live-streaming-when-and-where-to-watch-ucl-quarterfinal-live-online-and-on-tv-101775655820698.html" target="_blank">Hindustan Times</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">游客无视“请勿靠近”的标识，争相与高地牛合影</div>
+                    </div>
+                    <div class="news-content">游客们继续无视警告，仍不顾劝阻，靠近伊丽莎白女王乡村公园里那群在TikTok上走红的高地牛。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://metro.co.uk/2026/04/08/tourists-ignore-signs-stay-back-grab-selfies-highland-cows-27899031/" target="_blank">Metro.co.uk</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">一位风情万种的高尔夫球星在Instagram上发表了一条措辞犀利的评论，透露自己已与美国足球名将克里斯蒂安·普利西奇分手</div>
+                    </div>
+                    <div class="news-content">职业高尔夫球手亚历克萨·梅尔顿周二发布了一组球场照片，其中包括她在球车上和球车前摆姿势的照片，以及挥杆的照片。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.dailymail.co.uk/sport/football/article-15715511/alexa-melton-christian-pulisic-split.html" target="_blank">Daily Mail Online</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">欧洲发生12吨巧克力货物被盗事件后，KitKat安排送货卡车由SUV严密护送</div>
+                    </div>
+                    <div class="news-content">这段由KitKat加拿大官方账号在Instagram上发布的视频显示，一辆红色卡车两侧紧挨着多辆车，几乎没有留出空间让其他车辆靠近</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.telegraphindia.com/world/kitkat-puts-delivery-truck-under-tight-suv-escort-after-12-tonne-chocolate-shipment-theft-in-europe/cid/2155209" target="_blank">Telegraph India</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">托里·斯佩林详述了那场涉及她四个孩子的“惊险”车祸</div>
+                    </div>
+                    <div class="news-content">托里·斯佩林在住院治疗后，就一起涉及七名儿童（其中四名是她的亲生子女）的车祸打破了沉默。这位演员周二（4月7日）在Instagram上发文称，当时她正在加利福尼亚州特梅库拉驾驶自己的SUV，一名“疯狂、极度超速”的司机撞上了他们，</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.independent.co.uk/tv/lifestyle/tori-spelling-car-accident-kids-video-b2953757.html" target="_blank">The Independent</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">MLB球星保罗·斯肯斯（Paul Skenes）的女友莉薇·邓恩（Livvy Dunne）透露，在获得《湾畔救生员》（Baywatch）这一标志性角色之前，她曾被HBO剧集《白莲花》（The White Lotus）拒之门外。</div>
+                    </div>
+                    <div class="news-content">国际体育新闻：前路易斯安那州立大学体操运动员、社交媒体红人奥利维亚·邓恩近日谈到了她在好莱坞错失的第一个机会。这位23岁的姑娘表示，她曾……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://timesofindia.indiatimes.com/sports/international-sports/mlb-star-paul-skenes-girlfriend-livvy-dunne-reveals-getting-rejected-for-hbo-the-white-lotus-before-landing-iconic-baywatch-role/articleshow/130115228.cms" target="_blank">Times of India</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">“自然奇观”：稀有雪莲花引爆网络；这种每8年才开一次花的喜马拉雅花卉引发热议</div>
+                    </div>
+                    <div class="news-content">一段展示珍稀雪莲花的视频在社交媒体上广为流传，吸引了众多网友的目光。这种植物生长在喜马拉雅山脉和天山山脉等极高海拔地区，需5至8年才能成熟，且一生仅开花一次。雪莲花以药用价值著称，其美丽与</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.freepressjournal.in/viral/natures-marvel-rare-snow-lotus-bloom-captivates-internet-himalayan-flower-that-blooms-only-once-in-8-years-goes-viral" target="_blank">Free Press Journal</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">券商评级：金达尔不锈钢（买入）</div>
+                    </div>
+                    <div class="news-content">该公司通过其合资企业开发的位于印度尼西亚的120万吨（mt）不锈钢熔炼车间（SMS）已提前投产</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thehindubusinessline.com/markets/brokers-call-jindal-stainless-buy/article70838054.ece" target="_blank">The Hindu Business Line</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">投资者敦促采取行动，以消除镍矿开采中的森林砍伐及人权风险</div>
+                    </div>
+                    <div class="news-content">镍是大多数电动汽车电池的关键成分，它能以相对较低的成本提供高能量密度和长续航里程。但这种矿物的开采对森林砍伐和当地社区造成的破坏性影响——特别是在印度尼西亚和菲律宾——正日益引起关注。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.reuters.com/sustainability/society-equity/investors-push-action-end-deforestation-human-rights-risks-nickel-mining--ecmii-2026-04-08/" target="_blank">Reuters</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">希腊效仿澳大利亚，禁止未成年人使用社交媒体</div>
+                    </div>
+                    <div class="news-content">科技新闻：希腊宣布将禁止15岁以下儿童使用社交媒体，加入了澳大利亚、丹麦和印度尼西亚等国的行列。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://timesofindia.indiatimes.com/technology/tech-news/greece-follows-australia-bans-social-media-for-under-15s-from-this-date/articleshow/130113100.cms" target="_blank">Times of India</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">印度尼西亚欢迎伊朗停火，呼吁各方尊重主权</div>
+                    </div>
+                    <div class="news-content">雅加达：印度尼西亚欢迎伊朗战争中的停火，并呼吁各方尊重主权、领土完整和外交。外交部发言人伊冯娜·梅温坎于周三（4月8日）表示</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/04/08/indonesia-welcomes-iran-ceasefire-calls-for-all-parties-to-respect-sovereignty" target="_blank">The Star</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">印度尼西亚驱逐了一名因涉毒罪名被西班牙通缉的苏格兰犯罪头目</div>
+                    </div>
+                    <div class="news-content">印尼移民官员周三表示，该国已将英国逃犯史蒂文·莱昂斯遣返。莱昂斯上个月在度假胜地巴厘岛被捕，他涉嫌在西班牙从事跨国贩毒和洗钱活动。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thelocal.es/20260408/indonesia-deports-scottish-crime-boss-wanted-in-spain-on-drug-charges" target="_blank">The Local Spain</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">最新画面显示，戴着手铐的史蒂文·莱昂斯正被从印度尼西亚遣返至阿姆斯特丹</div>
+                    </div>
+                    <div class="news-content">现年45岁的史蒂文·莱昂斯今天抵达阿姆斯特丹，预计将被引渡至西班牙，他目前在西班牙的通缉名单上。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.dailyrecord.co.uk/news/scottish-news/new-footage-shows-cuffed-steven-36984115" target="_blank">Daily Record</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">印度尼西亚欢迎美国</div>
+                    </div>
+                    <div class="news-content">印尼欢迎美伊停火——雅加达，4月 印尼周三对美国与伊朗宣布的停火表示欢迎，称其为…… 仅在 lokmattimes.com 获取最新国际新闻</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.lokmattimes.com/international/indonesia-welcomes-us-iran-ceasefire/" target="_blank">Lokmat Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">犯罪头目史蒂文·莱昂斯被从巴厘岛遣返至阿姆斯特丹</div>
+                    </div>
+                    <div class="news-content">史蒂文·莱昂斯上个月在印尼某机场被拦下后被拘留。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.bbc.com/news/articles/ce35kly8xzyo" target="_blank">BBC News</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">印度尼西亚提议禁止电子烟，因缉毒机构指出含有毒品的烟油检测结果令人震惊</div>
+                    </div>
+                    <div class="news-content">国家禁毒局今年2月公布的实验室检测结果显示，在341份电子烟液样本中，至少有35份检测出含有违禁物质，包括大麻相关化合物、甲基苯丙胺以及根据印尼卫生法规被列为麻醉药物的异丙酚。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.channelnewsasia.com/asia/indonesia-ban-vapes-narcotics-drugs-cannabis-6043336" target="_blank">CNA</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">印度尼西亚这座火山有3个湖泊。它们的颜色不断变化</div>
+                    </div>
+                    <div class="news-content">弗洛雷斯岛上的凯利穆图山拥有三座火山口湖，其变幻的色彩与火山活动及当地的宗教信仰息息相关。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.ndtv.com/travel/this-volcano-in-indonesia-has-3-lakes-their-colours-keep-changing-11327755" target="_blank">NDTV.com</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
