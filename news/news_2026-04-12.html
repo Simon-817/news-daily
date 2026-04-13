@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-04-12</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-04-12</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">特朗普政府官员可能正在鼓励银行测试Anthropic公司的Mythos模型</div>
+                    </div>
+                    <div class="news-content"> 这份报告尤其令人惊讶，因为美国国防部最近刚将Anthropic列为供应链风险。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/12/trump-officials-may-be-encouraging-banks-to-test-anthropics-mythos-model/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">据报道，苹果正在为即将推出的智能眼镜测试四种设计方案</div>
+                    </div>
+                    <div class="news-content"> 这款眼镜标志着苹果公司曾雄心勃勃的计划出现了一步倒退，该计划原本要求苹果推出多种混合现实和增强现实设备。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/12/apple-reportedly-testing-four-designs-for-upcoming-smart-glasses/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">X表示将减少对点击诱饵账号的支付</div>
+                    </div>
+                    <div class="news-content"> 据X公司产品负责人尼基塔·比尔称，该公司正在减少对那些用“点击诱饵”和“连珠炮式”新闻聚合“淹没时间线”的账号的支付。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/12/x-says-its-reducing-payments-to-clickbait-accounts/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">TechCrunch Mobility：究竟是谁在争相挖角自动驾驶领域的人才？</div>
+                    </div>
+                    <div class="news-content"> 欢迎回到 TechCrunch Mobility，这里是您了解未来交通发展的枢纽，而如今，人工智能在其中发挥的作用比以往任何时候都更为重要。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/12/techcrunch-mobility-who-is-poaching-all-the-self-driving-vehicle-talent/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">从大型语言模型到幻觉，这是一份关于常见人工智能术语的简明指南</div>
+                    </div>
+                    <div class="news-content"> 人工智能的兴起带来了大量新词和俚语。以下是一份词汇表，其中收录了您可能会遇到的一些最重要词汇和短语的释义。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/12/artificial-intelligence-definition-glossary-hallucinations-guide-to-common-ai-terms/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">在HumanX大会上，大家都在谈论Claude</div>
+                    </div>
+                    <div class="news-content"> 在旧金山这场以人工智能为主题的大会上，Anthropic 成为了全场的焦点。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/12/at-the-humanx-conference-everyone-was-talking-about-claude/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">Slate Auto：关于这家由贝索斯支持的电动汽车初创公司，你需要了解的一切</div>
+                    </div>
+                    <div class="news-content"> Slate Auto于2025年4月横空出世。以下时间轴概述了其起源、支持者、产品及其他最新详情。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/12/slate-auto-everything-you-need-to-know-about-the-bezos-backed-ev-startup/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">“不只是Meta的问题”：前Facebook高管查马斯·帕利哈皮蒂亚回应某科技从业者对H-1B签证的抨击</div>
+                    </div>
+                    <div class="news-content">Social Capital首席执行官查马斯·帕利哈皮蒂亚（Chamath Palihapitiya）谈到了技术娴熟的人工智能工程师与科技行业其他从业者之间日益扩大的鸿沟，并警告称这可能导致小型企业倒闭。他还批评了Meta等公司中H-1B签证持有者的高薪和工作条件，</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.financialexpress.com/shorts/trending/not-just-meta-issue-ex-facebook-veteran-chamath-palihapitiya-reacts-to-techies-viral-h-1b-rant-4204710/" target="_blank">The Financial Express</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">海得拉巴国王队对阵伊斯兰堡联队掷硬币结果更新，2026年巴基斯坦超级联赛：HYK将在卡拉奇先投球；查看首发阵容</div>
+                    </div>
+                    <div class="news-content">海得拉巴国王队对阵伊斯兰堡联队，2026年巴基斯坦超级联赛（PSL）：查看海得拉巴国王队对阵伊斯兰堡联队的掷币结果、直播、首发阵容及直播信息</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.outlookindia.com/sports/cricket/hyderabad-kingsmen-vs-islamabad-united-match-report-pakistan-super-league-2026-psl-match-21-toss-playing-xis" target="_blank">Outlook India</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">视频：一位古怪的TikTok博主在一段疯传的视频中声称，修剪整齐的草坪具有种族主义色彩且“源于白人至上主义”，并要求我们让杂草重新生长</div>
+                    </div>
+                    <div class="news-content">一段在TikTok上疯传的视频引发了广泛嘲讽，起因是一位用户声称，维护一片整洁美观的草坪是“种族主义”且“源于白人至上主义”。这段视频由TikTok用户@softchaoschannel（网名JustJaim，使用she/they代词）于本周早些时候发布，开头是……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thegatewaypundit.com/2026/04/watch-looney-tiktoker-claims-well-kept-grass-lawns/" target="_blank">The Gateway Pundit</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">Z世代的抗议活动促成一名记者在尼泊尔获释</div>
+                    </div>
+                    <div class="news-content">记者罗尚·波卡雷尔因在其YouTube频道“Hades”上对尼泊尔总理巴伦德拉·沙阿使用辱骂性言论而被捕，在Z世代活动人士的压力下，他于四天后获释。这一事件凸显了言论自由与政府感知到的</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/law-order/3871449-gen-z-activism-secures-journalists-release-in-nepal" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">特朗普称美国海军将封锁霍尔木兹海峡</div>
+                    </div>
+                    <div class="news-content">特朗普在4月12日凌晨发布的一条社交媒体帖文中表示，美国将封锁该航线，这标志着这场已持续六周多的战争进一步升级。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://eu.oklahoman.com/story/news/world/2026/04/12/strait-hormuz-blockade-us-navy-trump/89578769007/" target="_blank">The Oklahoman</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">贾斯汀·比伯在2026年科切拉音乐节上带来一场充满怀旧气息的演出，回顾了自己的流行音乐历程，令全场惊艳</div>
+                    </div>
+                    <div class="news-content">贾斯汀·比伯在2026年科切拉音乐节上的压轴演出极具怀旧色彩，将昔日金曲与早期职业生涯的影像素材巧妙融合。这场别出心裁、风格简约的演出虽引发了粉丝们的两极评价，却也彰显了他从YouTube新星蜕变为全球流行巨星的漫长历程。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.livemint.com/entertainment/justin-bieber-stuns-coachella-2026-with-a-nostalgia-fueled-set-celebrating-his-pop-journey-fans-react-11775999707124.html" target="_blank">Livemint</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">VinFast推出面向驾驶员的电动汽车租赁计划</div>
+                    </div>
+                    <div class="news-content">VinFast 已在其面向印度尼西亚和菲律宾网约车及运输服务司机的电动汽车使用模式中新增了租赁选项。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://manilastandard.net/business/314725918/vinfast-launches-ev-rental-program-for-drivers.html" target="_blank">manilastandard.net</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">印度解除出口禁令后，多个国家将从印度进口小麦</div>
+                    </div>
+                    <div class="news-content">印度已解除小麦出口禁令，此举引起了埃及、印度尼西亚、缅甸和孟加拉国等国的关注。外贸总局即将分配小麦出口配额。尽管供应受到干扰，但本年度的小麦出口前景依然乐观，预计……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.financialexpress.com/shorts/economy/several-countries-to-import-wheat-from-india-after-ban-on-shipment-lifted-4204842/" target="_blank">The Financial Express</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">从伪造的PAN卡到假护照：查谟和克什米尔警方揭露“虔诚军”遍布全印度的后勤网络</div>
+                    </div>
+                    <div class="news-content">查谟和克什米尔警方联合中央机构，拘留了来自哈里亚纳邦和拉贾斯坦邦的数名人员，指控其为“虔诚军”恐怖分子提供虚假身份。此前，一名名为乌马尔的巴基斯坦恐怖分子利用在斋浦尔获取的伪造护照逃往印度尼西亚，此后此次打击行动范围进一步扩大。此次行动……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://economictimes.indiatimes.com/news/defence/from-fake-pan-cards-to-forged-passports-jammu-and-kashmir-police-unravels-lets-pan-india-logistical-web/articleshow/130206145.cms" target="_blank">The Economic Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">改革或消亡：面对中国出口的强势攻势，亚洲工厂必须整顿自身，否则就只能撤离</div>
+                    </div>
+                    <div class="news-content">亚洲制造业正夹在美国关税与中国廉价出口产品之间。泰国、印度尼西亚、印度等地的工厂已受到冲击。这些国家的政策制定者必须解决导致其竞争力不足的根本性成本结构问题。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.livemint.com/opinion/online-views/reform-asian-factories-chinese-export-aggression-manufacturing-us-tariffs-india-indonesia-11775965803415.html" target="_blank">Livemint</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">再想想：有史以来记录到的最响亮的声音并非来自核爆炸——它被3000英里外的人听见，并绕地球飞行了四圈</div>
+                    </div>
+                    <div class="news-content">有史以来最响的声音源自一次自然事件。1883年印度尼西亚喀拉喀托火山爆发时，声压级高达惊人的310分贝。这巨大的声响在数千英里外都能听见。爆炸产生的压力波绕地球环绕了数圈。在如此极端的声压级下，声学……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://economictimes.indiatimes.com/us/news/think-again-the-loudest-sound-ever-recorded-wasnt-from-any-nuclear-blast-it-was-heard-3000-miles-away-and-circled-earth-four-times/articleshow/130204158.cms" target="_blank">The Economic Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">随着厄尔尼诺现象临近，印度尼西亚对持续干旱保持警惕</div>
+                    </div>
+                    <div class="news-content">目前，印度尼西亚大部分地区正进入4月至6月的旱季。更多详情请访问straitstimes.com。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.straitstimes.com/asia/se-asia/indonesia-on-alert-for-prolonged-dry-season-as-el-nino-nears" target="_blank">The Straits Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">印尼多名妇女因踩踏《古兰经》面临监禁</div>
+                    </div>
+                    <div class="news-content">根据印尼的亵渎法，如果这两名女子被定罪，将面临五年监禁。更多详情请访问straitstimes.com。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.straitstimes.com/asia/se-asia/indonesian-women-face-jail-for-stepping-on-quran" target="_blank">The Straits Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">在印度尼西亚，恐怖电影海报引发对儿童自杀的担忧</div>
+                    </div>
+                    <div class="news-content">心理学家警告称，在心理健康问题日益严峻的背景下，像《我必须死》这类具有挑衅性的海报可能会引发自杀念头。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.scmp.com/week-asia/health-environment/article/3349702/indonesia-horror-film-posters-trigger-child-suicide-fears" target="_blank">South China Morning Post</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">印度队在比利·简·金杯赛上的坎坷之旅：错失良机的七天</div>
+                    </div>
+                    <div class="news-content">由队长维沙尔·乌帕尔率领的印度网球队在比利·简·金杯赛上度过了艰难的一周，由于开局不利，最终未能晋级世界组附加赛。尽管在对阵韩国的比赛中强势收官，但此前输给泰国和印度尼西亚的比赛，使得本次征程成为一次错失良机的征程。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/sports-games/3871084-indias-bumpy-ride-in-the-billie-jean-king-cup-a-week-of-missed-chances" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
