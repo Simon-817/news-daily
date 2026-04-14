@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-04-13</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-04-13</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">一名亚马逊仓库员工在俄勒冈州的一处仓库工作时不幸身亡</div>
+                    </div>
+                    <div class="news-content"> 尽管亚马逊曾面临仓库安全问题，但该公司表示，这起死亡事件与工作无关。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/13/an-amazon-warehouse-worker-died-on-the-job-at-oregon-facility/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">OpenAI 已收购人工智能个人理财初创公司 Hiro</div>
+                    </div>
+                    <div class="news-content"> 此次收购表明，OpenAI正在为ChatGPT开发一项新功能：财务规划。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/13/openai-has-bought-ai-personal-finance-startup-hiro/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">优步和Nuro开始在旧金山测试高端机器人出租车服务</div>
+                    </div>
+                    <div class="news-content"> 作为测试的一部分，优步员工现在可以叫一辆Lucid自动驾驶出租车。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/13/uber-nuro-san-francisco-testing-premium-robotaxi-service/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">微软将于下月正式停用其Outlook Lite应用</div>
+                    </div>
+                    <div class="news-content"> Outlook Lite 于 2022 年推出，是常规 Outlook 应用的轻量版，专为存储空间有限的安卓手机以及网络连接较慢的地区设计。该应用此前已计划停止服务。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/13/microsoft-is-officially-killing-its-outlook-lite-app-next-month/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">数千份珍贵的音乐会录音现已登陆互联网档案馆——立即收听</div>
+                    </div>
+                    <div class="news-content"> 来自芝加哥的超级乐迷阿达姆·雅各布斯自20世纪80年代以来一直录制自己参加的音乐会，积累了超过10,000盘磁带的收藏。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/13/thousands-of-rare-concert-recordings-are-landing-on-the-internet-archive-listen-now/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">IBM支付1700万美元罚款，以了结美国司法部针对其多元化、公平与包容（DEI）项目的诉讼</div>
+                    </div>
+                    <div class="news-content"> IBM于上周五与美国司法部就其涉嫌从事“非法DEI行为”的指控达成了一项价值1700万美元的和解协议。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/13/ibm-pays-17m-fine-to-end-doj-suit-over-dei-programs/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">微软正在开发另一个类似 OpenClaw 的智能体</div>
+                    </div>
+                    <div class="news-content"> 这些新功能将面向企业客户，其安全控制措施比以风险高著称的开源 OpenClaw 代理更为完善。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/13/microsoft-is-working-on-yet-another-openclaw-like-agent/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">斯坦福大学的一份报告指出，人工智能领域内部人士与普通大众之间的隔阂日益加深</div>
+                    </div>
+                    <div class="news-content"> 斯坦福大学最新的AI指数显示，专家与公众之间的认知差距正在扩大，人们对就业、医疗保健和经济问题的担忧日益加剧。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/13/stanford-report-highlights-growing-disconnect-between-ai-insiders-and-everyone-else/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">联邦调查局宣布破获一起针对数千名受害者的网络钓鱼犯罪活动</div>
+                    </div>
+                    <div class="news-content"> 据称，网络犯罪分子利用W3LL钓鱼工具包对全球超过17,000名受害者实施攻击，窃取了他们的密码和多因素认证码。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/13/fbi-announces-takedown-of-phishing-operation-that-targeted-thousands-of-victims/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">Booking.com证实黑客获取了客户数据</div>
+                    </div>
+                    <div class="news-content"> 这家旅游巨头通知客户，在一次安全事件中，他们的个人数据（包括姓名、电子邮件地址和电话号码）可能已被访问。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/13/booking-com-confirms-hackers-accessed-customers-data/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">《海滩前任》节目中的海伦·布里格斯（30岁）和切特·约翰逊（35岁）宣布，他们将在六年内迎来第五个孩子，众多名人好友纷纷送上祝福</div>
+                    </div>
+                    <div class="news-content">这对电视名人夫妇已有五个孩子：5岁的奥森、4岁的埃尔维斯、2岁的皮奇以及9个月大的哈尼。周日，他们在Instagram上发布了一条温馨的帖子。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.dailymail.co.uk/tvshowbiz/article-15728949/Ex-Beach-Helen-Briggs-Chet-Johnson-announce-expecting-fifth-child.html" target="_blank">Daily Mail Online</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">普里娅·萨奇德夫纪念桑杰·卡普尔逝世一周年：我们的故事尚未结束</div>
+                    </div>
+                    <div class="news-content">普里娅·萨奇德夫·卡普尔在Instagram上分享了充满情感的回忆，以此纪念与已故丈夫桑杰·卡普尔的第九个结婚纪念日。她发布了婚纱照和一封手写信，表达了两人之间的羁绊在丈夫离世后依然延续。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.indiatoday.in/movies/celebrities/story/priya-sachdev-kapur-marks-first-anniversary-after-sunjay-kapur-death-our-story-isnt-over-2895613-2026-04-13" target="_blank">India Today</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">Meta打造AI版马克·扎克伯格与员工互动</div>
+                    </div>
+                    <div class="news-content">Meta正在开发一个马克·扎克伯格的人工智能版本，以便代替他与员工互动。点击此处了解更多详情</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://financialpost.com/financial-times/meta-builds-ai-mark-zuckerberg" target="_blank">Financial Post</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">Meta推出马克·扎克伯格的AI版本，以便与员工互动</div>
+                    </div>
+                    <div class="news-content">Meta的首席执行官亲自参与了其动画AI的训练和测试工作。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://arstechnica.com/ai/2026/04/meta-spins-up-ai-version-of-mark-zuckerberg-to-engage-with-employees/" target="_blank">Ars Technica</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">特朗普批评教皇利奥十四世，并发布了一张自己酷似基督的图片</div>
+                    </div>
+                    <div class="news-content">在社交媒体上批评教皇数小时后，特朗普总统发布了一张照片，照片中他身着圣经风格的长袍，正将治愈之手按在一位卧床不起的男子身上。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.silive.com/politics/2026/04/trump-posts-image-of-himself-as-christlike-figure-hours-after-assailing-pope.html" target="_blank">Staten Island Advance</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">赛·阿比扬卡就将作为演员加盟AGS娱乐公司新片的传闻打破沉默</div>
+                    </div>
+                    <div class="news-content">知名泰米尔语电影制作公司AGS Entertainment已签约21岁的音乐作曲家Sai Abhyankkar，参与其下一部作品的制作。粉丝们原以为他可能会开启演艺生涯，但Abhyankkar在社交媒体上澄清，他将负责该片的配乐工作。尽管他尚未有电影作品上映，</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://indianexpress.com/shorts/entertainment/tamil/sai-abhyankkar-dismisses-acting-debut-rumours-with-one-word-10634383/" target="_blank">The Indian Express</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">吉滕德拉博士宣布推出面向社交媒体的科技类新闻人工智能平台</div>
+                    </div>
+                    <div class="news-content">新德里，4月13日：联邦科技部、地球科学部国务部长（独立负责），兼总理办公室、人事、公众申诉与养老金、原子能及航天部国务部长吉滕德拉·辛格博士今日审查了阿努桑丹国家研究基金会（</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.dailyexcelsior.com/dr-jitendra-announces-ai-platform-for-social-media-versions-of-technology-related-stories/" target="_blank">Daily Excelsior</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">一名21岁的理学学士在读学生指控遭强奸和敲诈；案件已在瓜瓦尔登记立案</div>
+                    </div>
+                    <div class="news-content">在瓜廖尔，一名21岁的理学学士专业学生指控称，一名她在Instagram上结识的男子谎报身份，与她建立恋爱关系后多次对其实施性侵，导致她怀孕三个月。她还指控对方勒索5万卢比，并胁迫她堕胎和改信宗教。警方已</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.freepressjournal.in/bhopal/21-year-old-bsc-student-alleges-rape-and-extortion-case-registered-in-gwalior" target="_blank">Free Press Journal</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">随着这位明星的Netflix真人秀节目上线，《萨利什风云》中角色的年龄终于揭晓</div>
+                    </div>
+                    <div class="news-content">美国社交媒体红人萨利什·马特（Salish Matter）与身为摄影师的父亲乔丹·马特（Jordan Matter）一同家喻户晓。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.walesonline.co.uk/lifestyle/tv/salish-matters-age-unveiled-stars-33762458" target="_blank">South Wales Echo</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">中东和平架构：在动荡的世界中前行</div>
+                    </div>
+                    <div class="news-content">虽然人际冲突可能促进个人成长，但处理不当的群体间或国家间的分歧往往会升级为暴力和流血冲突。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://zeenews.india.com/world/architecture-of-peace-in-middle-east-navigating-a-world-in-unrest-3036995.html" target="_blank">Zee News</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📭</div>
+                    <div>今日暂无相关报道</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
