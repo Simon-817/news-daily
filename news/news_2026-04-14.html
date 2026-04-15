@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-04-14</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-04-14</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">据报道，AI数据中心初创公司Fluidstack在估值达到75亿美元数月后，正就新一轮10亿美元融资进行谈判，估值将达180亿美元</div>
+                    </div>
+                    <div class="news-content"> 据报道，在与Anthropic达成一笔价值500亿美元的数据中心建设协议后，Fluidstack的融资进展顺利。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/14/ai-datacenter-startup-fluidstack-in-talks-for-1b-round-at-18b-valuation-months-after-hitting-7-5b-says-report/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">有人在数十个WordPress插件中植入了后门，这些插件被数千个网站所使用</div>
+                    </div>
+                    <div class="news-content"> 据称，数十个WordPress插件在被出售给新企业所有者后，遭人劫持用于传播恶意软件。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/14/someone-planted-backdoors-in-dozens-of-wordpress-plugins-used-in-thousands-of-websites/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">Anthropic联合创始人证实，该公司曾向特朗普政府简要介绍了Mythos项目</div>
+                    </div>
+                    <div class="news-content"> 在本周举行的Semafor世界经济峰会上，Anthropic联合创始人杰克·克拉克在接受采访时解释了该公司为何在起诉美国政府的同时，仍与其保持合作关系。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/14/anthropic-co-founder-confirms-the-company-briefed-the-trump-administration-on-mythos/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">随着Waymo开始测试，伦敦距离推出首项机器人出租车服务又近了一步</div>
+                    </div>
+                    <div class="news-content"> 如果英国政府批准，Waymo的商业服务将在测试结束后正式推出。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/14/london-gets-closer-to-its-first-robotaxi-service-as-waymo-begins-testing/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">YouTube 直播现将在用户活跃度高峰期暂停投放广告，以保持直播氛围</div>
+                    </div>
+                    <div class="news-content"> 到目前为止，避免看到广告的唯一方法就是付费订阅 YouTube Premium。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/14/youtube-livestreams-will-now-hold-back-ads-during-peak-engagement-to-protect-the-vibe/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">马克斯·霍达克（Max Hodak）创立的Science Corp.公司正准备将首个传感器植入人类大脑</div>
+                    </div>
+                    <div class="news-content"> 如果该设备被证实有效，它有望帮助治疗多种神经系统疾病。其早期应用之一可能是向受损的大脑或脊髓细胞输送温和的电刺激，以促进其修复。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/14/max-hodaks-science-corp-is-preparing-to-place-its-first-sensor-in-a-human-brain/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">谷歌在 Chrome 中新增 AI 技能，助您保存常用工作流程</div>
+                    </div>
+                    <div class="news-content"> 谷歌正在为Chrome浏览器添加“技能”功能，让用户能够在不同网站间保存和重复使用AI提示词。该功能基于Gemini与浏览器的集成。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/14/google-adds-ai-skills-to-chrome-to-help-you-save-favorite-workflows/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">奖励类应用Freecash是如何通过欺诈手段登上应用商店榜首的</div>
+                    </div>
+                    <div class="news-content"> 在TechCrunch联系寻求置评后，Freecash已被从苹果App Store下架。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/14/how-the-rewards-app-freecash-scammed-its-way-to-the-top-of-the-app-stores/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">金融风险管理平台Pillar在由a16z领投的轮融资中筹集了2000万美元种子轮资金</div>
+                    </div>
+                    <div class="news-content"> Pillar 希望为中小企业提供功能强大、符合机构级标准的工具。他表示，我们的目标是让套期保值像支付或会计软件一样触手可及、无处不在。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/14/financial-risk-management-platform-pillar-raises-20m-seed-in-round-led-by-a16z/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">再过几周，StrictlyVC旧金山站将汇聚来自TDK Ventures、Replit等公司的领军人物</div>
+                    </div>
+                    <div class="news-content"> 今年首场StrictlyVC大会转眼间就要在旧金山举行了。4月30日，届时我们将迎来阵容强大的演讲嘉宾阵容，目前仍有少量门票可供预订，请立即注册！</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/14/join-the-first-strictlyvc-of-2026-in-sf-with-leaders-from-tdk-ventures-and-replits-co-founder/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">鉴于Unity Software与Meta Platforms达成的VR合作，该股应买入、卖出还是持有？</div>
+                    </div>
+                    <div class="news-content">Unity和Meta刚刚延长了双方的VR合作关系。随着Vector股价飙升以及IronSource退出市场，现在U股究竟该买入、卖出还是持有？</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.barchart.com/story/news/1297635/is-unity-software-stock-a-buy-sell-or-hold-on-vr-partnership-with-meta-platforms" target="_blank">Barchart</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">Blackpink成员Rose和Lisa被拍到在BIGBANG的“Brothers”科切拉音乐节演出中跟着哼唱；粉丝们激动不已</div>
+                    </div>
+                    <div class="news-content">Blackpink成员Rose和Lisa被拍到在2026年科切拉音乐节上为BIGBANG的演出助威。两人在这场大型音乐节上的视频在社交媒体上疯传，引发粉丝热议。韩语，Times Now</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.timesnownews.com/entertainment-news/korean/blackpinks-rose-lisa-spotted-singing-along-at-brothers-bigbangs-coachella-performance-fans-cant-keep-calm-article-154076036" target="_blank">Times Now</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">克里斯·布朗将与亚瑟·阿什联手开启北美巡演：目前已知详情如下</div>
+                    </div>
+                    <div class="news-content">两位最具传奇色彩的R&amp;B音乐人克里斯·布朗和亚瑟·阿什在Instagram上联合宣布，即将开启名为“The R&amp;B Tour”的联合巡演。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.al.com/live-entertainment/2026/04/chris-brown-to-team-up-with-usher-for-joint-north-american-tour-heres-everything-we-know-so-far.html" target="_blank">AL.com</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">马哈拉施特拉邦：阿姆拉瓦蒂性丑闻引发强烈愤慨，350段涉及未成年人的不雅视频在网上曝光</div>
+                    </div>
+                    <div class="news-content">马哈拉施特拉邦阿姆拉瓦蒂县帕拉特瓦达发生的一起令人震惊的性丑闻，在该地区引发了恐慌。据报道，社交媒体上流传的近350段不雅视频已激起当地居民的强烈愤慨。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.indiatvnews.com/maharashtra/amravati-sex-scandal-sparks-massive-outrage-as-350-objectionable-videos-of-minors-surface-online-in-maharashtra-2026-04-14-1037528" target="_blank">India TV News</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">多米尼恩公司计划对南卡罗来纳州贝茨堡-利斯维尔地区实施停电</div>
+                    </div>
+                    <div class="news-content">“我们已经把所知的一切都告诉了大家，”莱克星顿县的这座小镇在社交媒体上发文称。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.postandcourier.com/columbia/news/batesburg-leesville-sc-dominion-power-outage/article_8f518e57-826e-4a9d-9fbe-8fb7471fe06d.html" target="_blank">Charleston Post and Courier</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">主人担心救援犬在日托中心交不到朋友——然后看到了这些照片</div>
+                    </div>
+                    <div class="news-content">社交媒体用户们对这些混乱的照片赞不绝口，开玩笑说，既然露比有了自己的团队，她现在就是“拍照小分队的领队”了。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.newsweek.com/owner-fears-rescue-dog-wont-make-friends-daycare-then-sees-photos-11824827" target="_blank">Newsweek</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">据报道称切尔西希望引进一名新的左边锋后，亚历杭德罗·加纳乔从自己的TikTok账号上删除了切尔西的相关视频，并转发了曼联球迷呼吁他回归的帖子。</div>
+                    </div>
+                    <div class="news-content">亚历杭德罗·加纳乔可能自去年夏天离队以来首次对阵曼联，但他是否希望自己还能留在俱乐部呢？</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.dailymail.co.uk/sport/football/article-15732193/Alejandro-Garnacho-WIPES-Chelsea-videos-TikTok-account-reposts-Man-United-fans-calling-return-reports-claimed-Blues-want-new-left-winger.html" target="_blank">Daily Mail Online</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">瓦伦·达万回应网红指控：称其要求为《既然年轻，就该谈恋爱》首支预告片刷假评论</div>
+                    </div>
+                    <div class="news-content">瓦伦·达万对Instagram网红西姆兰·巴特作出回应，后者此前声称这位演员要求为电影《既然年轻，就该去爱》的首款预告片发布虚假评论。该片将于2026年5月22日登陆院线。宝莱坞，Times Now</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.timesnownews.com/entertainment-news/bollywood/varun-dhawan-reacts-to-influencer-claiming-actor-demanding-fake-reviews-for-hai-jawani-toh-ishq-hona-hai-first-look-article-154076537" target="_blank">Times Now</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">谢菲尔德联队球员宣布怀上主教练克里斯·怀尔德的女儿</div>
+                    </div>
+                    <div class="news-content">这位谢菲尔德联队的球星和他的伴侣在社交媒体上宣布了怀孕的消息。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.sportbible.com/football/football-news/sheffield-united-chris-wilder-pregnancy-062394-20260414" target="_blank">SPORTbible</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">Primepoint 完成 1000 万美元种子轮融资，用于推进能够读取并理解施工图纸的智能平台</div>
+                    </div>
+                    <div class="news-content">这款由Meta、微软、谷歌和Webcor资深专家打造的AI原生工具，已获得Navitas Capital、Penny Jar Capital、NextView Ventures、GS Futures、Aglaé Ventures以及天使投资人Yann LeCun博士的投资。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.manilatimes.net/2026/04/14/tmt-newswire/globenewswire/primepoint-closes-10m-seed-round-to-advance-intelligence-platform-that-reads-and-understands-construction-drawings/2319439" target="_blank">The Manila Times</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📭</div>
+                    <div>今日暂无相关报道</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
