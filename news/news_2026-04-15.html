@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-04-15</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-04-15</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">亚马逊支持的X-energy提交IPO申请，拟筹集最高8亿美元</div>
+                    </div>
+                    <div class="news-content"> 核能初创企业X-energy今日开启路演，向潜在投资者推介其首次公开募股计划。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/15/amazon-backed-x-energy-files-to-raise-up-to-800m-in-ipo/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">福特电动汽车与技术主管将离开该公司</div>
+                    </div>
+                    <div class="news-content"> 道格·菲尔德曾在苹果和特斯拉任职，2021年加入福特。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/15/ford-ev-and-tech-chief-leaving-automaker/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">等等，他们真的还能拆分Live Nation吗？</div>
+                    </div>
+                    <div class="news-content"> 联邦陪审团裁定Live Nation作为垄断企业存在违法行为，但该公司上个月刚与美国司法部达成了一项初步和解协议。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/15/wait-could-they-still-actually-break-up-live-nation/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">Monarch Tractor的破产以被卡特彼勒收购告终</div>
+                    </div>
+                    <div class="news-content"> 这家初创公司面临着来自经销商、农民以及一位联合创始人的日益增大的压力，后者抱怨称Monarch的技术无法正常运作。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/15/monarch-tractors-collapse-ends-in-with-an-acquisition-by-caterpillar/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">OpenAI 更新了其 Agents SDK，以帮助企业构建更安全、功能更强大的智能代理</div>
+                    </div>
+                    <div class="news-content"> 随着代理型人工智能的日益普及，OpenAI 已扩展了其代理构建工具包的功能。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/15/openai-updates-its-agents-sdk-to-help-enterprises-build-safer-more-capable-agents/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">全文实录：与阿隆·德苏扎关于新闻业中的异议与人工智能的对话</div>
+                    </div>
+                    <div class="news-content"> 编者按：鉴于德索萨的提案以透明度和问责制为核心，我们特此发布2026年4月14日双方对话的完整文字记录。为确保清晰度并控制篇幅，本文记录已略作编辑。您可点击此处阅读相关报道。阿隆·德索萨：我……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/15/full-transcript-conversation-with-aron-dsouza-on-objection-and-ai-in-journalism/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">Hightouch 凭借其基于人工智能的营销工具，年经常性收入（ARR）突破 1 亿美元</div>
+                    </div>
+                    <div class="news-content"> 这家初创公司表示，在推出面向营销人员的AI代理平台后，其年度经常性收入（ARR）在短短20个月内增长了7000万美元。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/15/hightouch-reaches-100m-arr-fueled-by-marketing-tools-powered-by-ai/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">LinkedIn的数据表明，招聘人数下降不能归咎于人工智能……至少目前还不能</div>
+                    </div>
+                    <div class="news-content"> 领英表示，自2022年以来招聘量下降了20%，但将这一放缓归咎于利率上升——而非人工智能。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/15/linkedin-data-shows-ai-isnt-to-blame-for-hiring-decline-yet/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">联邦政府将要求数据中心提供电费账单</div>
+                    </div>
+                    <div class="news-content"> 美国能源信息署首次表示，将要求数据中心披露其能源使用详情。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/15/feds-will-require-data-centers-to-show-their-power-bills/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">AI learning app Gizmo levels up with 13M users and a $22M investment</div>
+                    </div>
+                    <div class="news-content"> Gizmo 是一家基于人工智能的学习平台，目前已吸引超过 1300 万用户，并刚刚完成了 2200 万美元的 A 轮融资。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/15/ai-learning-app-gizmo-levels-up-with-13m-users-and-a-22m-investment/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">由Susquehanna风险投资公司领投，获得风险投资支持的品牌分析平台GobbleCube完成1500万美元融资</div>
+                    </div>
+                    <div class="news-content">消费品牌分析平台GobbleCube已完成1500万美元融资，本轮融资由Susquehanna风险投资公司领投，现有投资者InfoEdge Ventures和Kae Capital（通过其Winner’s Fund基金参与投资）跟投。该公司计划将这笔资金用于产品开发、团队</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://economictimes.indiatimes.com/tech/funding/ai-backed-brand-analytics-platform-gobblecube-raises-15-million-funding-led-by-susquehanna-venture-capital/articleshow/130265710.cms" target="_blank">The Economic Times</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">Anthropic, Cursor backer Accel raises $5 billion for big AI bets</div>
+                    </div>
+                    <div class="news-content">风险投资公司Accel已募集50亿美元新资金，其中40亿美元将用于其第五期“Leaders”基金，专门投资于后期阶段的人工智能初创企业。另外6.5亿美元将投入一个“侧车基金”，以增加对重大投资的配置。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://economictimes.indiatimes.com/tech/artificial-intelligence/anthropic-cursor-backer-accel-raises-5-billion-for-big-ai-bets/articleshow/130285490.cms" target="_blank">The Economic Times</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">伊朗、阿联酋和沙特外长有望在德里举行的金砖国家外长会议上面对面会晤</div>
+                    </div>
+                    <div class="news-content">印度目前担任金砖国家（BRICS）轮值主席国。该组织共有11个成员国，包括巴西、俄罗斯、中国、南非、埃及、埃塞俄比亚、印度尼西亚、阿联酋、伊朗和沙特阿拉伯。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://theprint.in/diplomacy/iranian-emirati-fms-saudis-likely-to-come-face-to-face-at-brics-foreign-ministers-meet-in-delhi/2905781/" target="_blank">ThePrint</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">霍尔木兹海峡之后，美国是否将目光投向马六甲海峡？为何这一战略要冲对印度和中国至关重要 | 深度解析</div>
+                    </div>
+                    <div class="news-content">美国与印度尼西亚最近签署的一项防务协议，加剧了外界对华盛顿可能正在关键航道上扩大其战略影响力的猜测。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.moneycontrol.com/world/after-hormuz-is-us-eyeing-malacca-next-why-this-choke-point-matters-to-india-and-china-explained-article-13889977.html" target="_blank">Moneycontrol</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">美国在霍尔木兹海峡之后是否将目光投向了马六甲海峡？这条航线对印度为何如此重要？</div>
+                    </div>
+                    <div class="news-content">在美国封锁霍尔木兹海峡之后，华盛顿如今又与印度尼西亚签署了一项防务协议，将行动范围扩展至马六甲海峡。这条航线是全球最繁忙的海运通道之一，全球23%的贸易量由此通过。这也为印度提供了施加影响力的机会</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.firstpost.com/explainers/is-us-eyeing-the-strait-of-malacca-after-hormuz-why-does-this-route-matter-to-india-14000832.html" target="_blank">Firstpost</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">印尼外交部表示，该国正在考虑美国的飞越提案</div>
+                    </div>
+                    <div class="news-content">任何形式的合作“均须遵循适用的国家机制和程序”。更多详情请访问straitstimes.com。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.straitstimes.com/asia/se-asia/indonesia-considering-us-overflight-proposal-foreign-ministry-says" target="_blank">The Straits Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">随着中东局势风险加剧，印度尼西亚转向俄罗斯寻求石油供应</div>
+                    </div>
+                    <div class="news-content">随着地缘政治风险不断升级，印度尼西亚正着手增加从俄罗斯进口原油，以实现供应多元化，并降低受中东地区供应中断影响的风险。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://oilprice.com/Latest-Energy-News/World-News/Indonesia-Turns-to-Russia-for-Oil-as-Middle-East-Risks-Mount.html" target="_blank">OilPrice</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">在地缘政治紧张局势下，印度尼西亚正考虑美国的飞越提案</div>
+                    </div>
+                    <div class="news-content">印度尼西亚外交部正在考虑美国关于军事飞越的提议，并强调任何协议都必须符合国家主权。此举对地区局势具有深远影响，特别是在南海局势紧张的背景下。该提议出台的时机恰逢一项新的国防计划</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/law-order/3874688-indonesia-weighs-us-overflight-proposal-amid-geopolitical-tensions" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">鉴于毒品问题日益严峻，印度尼西亚禁毒局寻求加强对电子烟的管控</div>
+                    </div>
+                    <div class="news-content">卫生专家支持这项禁令，而电子烟行业从业者则警告称此举将引发经济连锁反应。更多详情请访问straitstimes.com。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.straitstimes.com/asia/se-asia/indonesias-narcotics-agency-seeks-tighter-vape-control-amid-drug-concerns" target="_blank">The Straits Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">“观察员通胀”：印尼内阁秘书针对分析师的言论引发热议</div>
+                    </div>
+                    <div class="news-content">“这些观察员的数据与事实不符。他们的数据是错误的，”内阁秘书泰迪·因德拉·维贾亚在4月10日的新闻发布会上表示。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.channelnewsasia.com/asia/indonesia-cabinet-secretary-teddy-wijaya-target-analysts-observers-6058171" target="_blank">CNA</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">印尼引领东南亚140亿美元游戏市场机遇，而各品牌在本地化方面却进展缓慢</div>
+                    </div>
+                    <div class="news-content">印度尼西亚正逐渐成为东南亚游戏经济中的主导力量，然而许多品牌仍未能将这一规模优势转化为有效的营销策略。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.marketing-interactive.com/indonesia-leads-sea-s-us-14b-gaming-opportunity-as-brands-lag-in-localisation" target="_blank">Marketing Interactive</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">印尼品牌“Kenangan Coffee”登陆台湾，首家门店落户新光三越</div>
+                    </div>
+                    <div class="news-content">印尼咖啡连锁品牌“Kenangan Coffee”已正式进军台湾市场，随着其在台北开设首家门店，标志着其国际扩张开启了新篇章。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.marketing-interactive.com/indonesia-s-kenangan-coffee-lands-in-taiwan-with-first-outlet-at-shin-kong-mitsukoshi" target="_blank">Marketing Interactive</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
