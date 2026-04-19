@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-04-18</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-04-18</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">特斯拉将机器人出租车服务引入达拉斯和休斯顿</div>
+                    </div>
+                    <div class="news-content"> 据特斯拉在社交媒体上发布的一条消息显示，该公司正将自动驾驶出租车服务扩展至达拉斯和休斯顿。该帖子仅简短写道：“自动驾驶出租车服务现已在达拉斯和休斯顿上线 🤠”，并附有一段14秒的视频，视频中显示特斯拉车辆在前排没有人类监视员或驾驶员的情况下行驶。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/18/tesla-brings-its-robotaxi-service-to-dallas-and-houston/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">风投大亨罗恩·康威表示自己患有一种“罕见癌症”</div>
+                    </div>
+                    <div class="news-content"> 康威写道，他“将暂时退出部分日常工作”，但他会“继续支持”其公司SV Angel投资的创业者。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/18/vc-ron-conway-says-he-has-a-rare-form-of-cancer/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">人工智能芯片初创公司Cerebras提交IPO申请</div>
+                    </div>
+                    <div class="news-content"> 近几个月来，该公司宣布与亚马逊网络服务（AWS）达成协议，将在亚马逊的数据中心使用Cerebras芯片，此外还与OpenAI达成了一项据称价值超过100亿美元的交易。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/18/ai-chip-startup-cerebras-files-for-ipo/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">Anthropic与特朗普政府的关系似乎正在缓和</div>
+                    </div>
+                    <div class="news-content"> 尽管五角大楼最近将Anthropic列为供应链风险，但该公司仍在与特朗普政府的高层官员进行接触。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/18/anthropics-relationship-with-the-trump-administration-seems-to-be-thawing/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">App Store 再次迎来蓬勃发展，而人工智能或许正是原因所在</div>
+                    </div>
+                    <div class="news-content"> Appfigures 的最新数据显示，2026年新应用发布量激增，这表明人工智能工具可能正在推动移动软件行业的繁荣。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/18/the-app-store-is-booming-again-and-ai-may-be-why/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">教皇利奥十四世警告称，人工智能可能在全球范围内传播“恐惧与暴力”</div>
+                    </div>
+                    <div class="news-content">教皇利奥十四世周五在喀麦隆首都雅温得向师生发表讲话，就人工智能问题发出了迄今为止最严厉的警告，称这项技术存在……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thenews.com.pk/latest/1399437-pope-leo-xiv-warns-ai-could-spread-fear-and-violence-worldwide" target="_blank">The News International</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">当“我”遇上AI：科技精英的财富顾问在AI热潮中蜕变为价值数十亿美元的巨头</div>
+                    </div>
+                    <div class="news-content">Iconiq是一家为全球精英提供服务的私人财富管理公司，如今已成为风险投资领域的一支重要力量。该公司正大力押注人工智能初创企业，投资额达数十亿美元。Iconiq计划为其风险投资部门再筹集数十亿美元资金。其早期的人工智能投资已展现出强劲的回报。该公司旨在</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://economictimes.indiatimes.com/news/international/business/when-i-meets-ai-tech-elites-wealth-adviser-turns-multibillion-dollar-force-in-ai-frenzy/articleshow/130341975.cms" target="_blank">The Economic Times</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">安德森·霍洛维茨（Andreessen Horowitz）合伙人布莱恩·金离职，将创立一家新的人工智能公司</div>
+                    </div>
+                    <div class="news-content">布莱恩·金于2020年11月加入这家硅谷风投公司，主要专注于消费科技和人工智能应用领域。在a16z任职期间，金主导并参与了多项早期投资，通常集中在种子轮和A轮阶段。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://economictimes.indiatimes.com/tech/technology/andreessen-horowitz-partner-bryan-kim-departs-to-launch-new-ai-focused-fund/articleshow/130340217.cms" target="_blank">The Economic Times</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">这位科技界精英的财富顾问，正向人工智能领域投入数十亿美元</div>
+                    </div>
+                    <div class="news-content">Iconiq正积极进军风险投资领域，向Anthropic等人工智能初创企业投资数十亿美元。凭借其全球顶尖的人脉网络，该公司将创业者与实力雄厚的投资者紧密连接，在应对风险、利益冲突以及科技行业日益高涨的野心之余，仍能实现可观的回报。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://economictimes.indiatimes.com/tech/artificial-intelligence/iconiq-go-to-wealth-adviser-for-techs-elite-is-putting-billions-into-ai/articleshow/130339049.cms" target="_blank">The Economic Times</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">中国商汤科技将通过配售筹集4.15亿美元，用于支持人工智能业务扩张</div>
+                    </div>
+                    <div class="news-content">新加坡讯——中国人工智能（AI）软件公司商汤科技周五表示，将通过以每股1.91港元的价格配售17亿股新B类股，筹集约32.5亿港元（合4.152亿美元），用于支持人工智能基础设施的扩建、生成式人工智能的研究以及营运资金。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.manilatimes.net/2026/04/18/business/foreign-business/chinas-sensetime-to-raise-415-million-in-share-placing-to-fund-ai-expansion/2323015" target="_blank">The Manila Times</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">教皇利奥的非洲之行：在政治紧张局势中捍卫和平</div>
+                    </div>
+                    <div class="news-content">教皇利奥目前正在进行一次重要的非洲之行，他澄清说，尽管双方关系紧张，但自己最近的言论并非针对美国总统唐纳德·特朗普。在特朗普于社交媒体上发表批评之际，他重申了自己倡导和平的信息，并继续就战争和不平等等全球性问题发表看法。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/politics/3878987-pope-leos-africa-tour-defending-peace-amid-political-tensions" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">美国司法部否认协助法国对X公司的调查</div>
+                    </div>
+                    <div class="news-content">在法国当局突击搜查埃隆·马斯克旗下的社交媒体平台X的巴黎办公室后，美国司法部拒绝协助法国当局对该平台展开调查。据《华尔街日报》援引美国司法部国际事务办公室的一封信函报道，该部门做出了这一决定。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/law-order/3878961-us-doj-denies-aid-in-french-probe-of-x" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">托特纳姆热刺 vs 布莱顿：首发阵容、赛前预测、直播信息，以及在美国如何观看及在哪里观看</div>
+                    </div>
+                    <div class="news-content">英超联赛本周末重燃战火，托特纳姆热刺队将在新任主帅罗伯托·德泽尔比的带领下迎来首场主场赛事。热刺将在托特纳姆热刺球场迎战布莱顿。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.yardbarker.com/soccer/articles/tottenham_vs_brighton_lineups_predictions_live_streaming_how_where_to_watch_in_the_usa/s1_17615_43742916" target="_blank">Yardbarker</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">一位网红称自己不小心用车撞到了儿子</div>
+                    </div>
+                    <div class="news-content">凯莉·霍普顿-琼斯在一篇详细描述该事件的社交媒体帖子中，讲述了“我们一生中最糟糕的一天”所发生的事情。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.nbcboston.com/news/national-international/parenting-influencer-accidentally-ran-over-son-with-car/3935775/" target="_blank">NBC10 Boston</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">海德拉巴日出者对阵金奈超级国王队比赛记分牌，2026年印度超级联赛精彩集锦：埃尚·马林加、尼蒂什·库马尔·雷迪表现抢眼，SRH以10分优势战胜CSK！</div>
+                    </div>
+                    <div class="news-content">SRH 对阵 CSK 2026 年印度超级联赛实时比分：请在此处通过 NewsX 获取 2026 年印度超级联赛海得拉巴太阳神队对阵金奈超级国王队的实时比分、板球赛事动态以及球球解说。您还可以在 JioHotstar 上观看海得拉巴对阵金奈的直播。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.newsx.com/live-updates/sunrisers-hyderabad-vs-chennai-super-kings-match-scorecard-ipl-2026-highlights-eshan-malinga-nitish-kumar-reddy-shine-as-srh-wins-by-10-runs-against-csk-201182/" target="_blank">NewsX</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">直播 | 2026年IPL SRH对阵CSK今日比赛动态：阿比谢克·夏尔马出局，钦奈超级国王队强势反弹</div>
+                    </div>
+                    <div class="news-content">SRH 对阵 CSK 2026 年印度超级联赛实时比分：请在此处通过 NewsX 获取 2026 年印度超级联赛海得拉巴太阳神队对阵金奈超级国王队的实时比分、板球赛事动态以及球球解说。您还可以在 JioHotstar 上观看海得拉巴对阵金奈的直播。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.newsx.com/live-updates/srh-vs-csk-live-score-ipl-2026-today-cricket-match-full-scorecard-18-april-watch-sunrisers-hyderabad-vs-chennai-super-kings-live-streaming-free-ott-jiohotstar-heinrich-klaasen-ipl-match-201182/" target="_blank">NewsX</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">直播 | 海得拉巴日出者队 vs 钦奈超级国王队 比赛记分牌，2026年印度超级联赛实时更新：杰米·奥弗顿为CSK贡献三记三振，超级国王队需再得195分才能获胜！</div>
+                    </div>
+                    <div class="news-content">SRH 对阵 CSK 2026 年印度超级联赛实时比分：请在此处通过 NewsX 获取 2026 年印度超级联赛海得拉巴太阳神队对阵金奈超级国王队的实时比分、板球赛事动态以及球球解说。您还可以在 JioHotstar 上观看海得拉巴对阵金奈的直播。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.newsx.com/live-updates/sunrisers-hyderabad-vs-chennai-super-kings-match-scorecard-ipl-2026-live-score-today-cricket-18-april-watch-srh-vs-csk-live-streaming-free-ott-jiohotstar-jamie-overton-heinrich-klaasen-201182/" target="_blank">NewsX</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">直播 | 海得拉巴日出者队 vs 钦奈超级国王队 IPL 2026 今日比赛动态：CSK 赢得掷币并选择先攻 SRH</div>
+                    </div>
+                    <div class="news-content">SRH 对阵 CSK 2026 年印度超级联赛实时比分：请在此处通过 NewsX 获取 2026 年印度超级联赛海得拉巴太阳神队对阵金奈超级国王队的实时比分、板球赛事动态以及球球解说。您还可以在 JioHotstar 上观看海得拉巴对阵金奈的直播。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.newsx.com/live-updates/srh-vs-csk-live-score-ipl-2026-today-cricket-match-full-scorecard-18-april-watch-sunrisers-hyderabad-vs-chennai-super-kings-live-streaming-free-ott-jiohotstar-hyderabad-toss-201182/" target="_blank">NewsX</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">许多长寿秘诀都是骗人的。但其中有两个窍门或许确实有些道理</div>
+                    </div>
+                    <div class="news-content">作者：玛德琳·霍尔科姆，CNN（CNN）——你有烦恼吗？市面上大概总有一款产品声称能帮你解决——尤其是在长寿领域。社交媒体、实体店和网络广告上充斥着各种方案、产品、保健品和策略，承诺能让人长命百岁、永葆青春。它</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://abc17news.com/cnn-health/2026/04/18/a-lot-of-longevity-strategies-are-snake-oil-but-two-hacks-may-have-something-to-them/" target="_blank">ABC17News.com</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">武装创始人正在颠覆风险投资行业？</div>
+                    </div>
+                    <div class="news-content">印度风险投资家手握数十亿资金，但传统的融资模式正面临颠覆。得益于人工智能和成本降低，创始人如今只需更少的资金就能建立并扩展业务。这种转变降低了创始人对风险投资的依赖。该行业的未来取决于其适应这一变化的能力。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://economictimes.indiatimes.com/opinion/et-commentary/ai-armed-founders-disrupting-venture-capitalism/articleshow/130322494.cms" target="_blank">The Economic Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">Bapanas 确保为印度尼西亚的豆腐和天贝生产商提供充足的大豆供应</div>
+                    </div>
+                    <div class="news-content">印度尼西亚国家食品局（Bapanas）已确保向豆腐和豆豉生产商供应大豆，以维持业务连续性并保持产品价格的可负担性。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/04/18/bapanas-ensures-a-sufficient-soybean-supply-for-tofu-and-tempeh-producers-in-indonesia" target="_blank">The Star</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">联合国宣布去年是罗兴亚难民伤亡最惨重的一年</div>
+                    </div>
+                    <div class="news-content">联合国表示，去年是罗兴亚难民从孟加拉国或缅甸乘船穿越印度洋前往印度尼西亚和马来西亚途中伤亡最惨重的一年。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/04/18/un-declares-last-year-was-deadliest-for-rohingya-refugees" target="_blank">The Star</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">一名从弱势客户那里盗取数千英镑的Nationwide银行出纳员，因Facebook上晒出的奢华度假照片而东窗事发</div>
+                    </div>
+                    <div class="news-content">凯莉·克肖在建筑协会担任收银员，月薪仅为1400英镑，却在Facebook上炫耀自己的旅行经历，包括前往迪拜、马尔代夫和印度尼西亚的行程。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.dailymail.co.uk/news/article-15744299/Nationwide-cashier-stole-thousands-vulnerable-customers-caught-Facebook-pictures-lavish-holidays.html" target="_blank">Daily Mail Online</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">在战时，印度尼西亚和海湾国家不能仅靠软实力</div>
+                    </div>
+                    <div class="news-content">随着美伊冲突引发的紧张局势持续动摇中东局势，印度尼西亚与海湾合作委员会（GCC）各国正在扩大在文化、教育及创意产业等领域的合作……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.middleeastmonitor.com/20260418-indonesia-and-the-gulf-must-do-more-than-soft-power-in-a-time-of-war/" target="_blank">Middle East Monitor</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">印尼一名初中教师因学生试用3D打印步枪致死案被列为嫌疑人</div>
+                    </div>
+                    <div class="news-content">雅加达：廖内省锡亚克县警方已将Sains Tahfiz伊斯兰中心初级中学的一名女教师列为嫌疑人，指控其在一名学生为科学项目测试3D打印步枪时死亡的案件中存在过失。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/04/18/indonesia-junior-high-school-teacher-named-suspect-in-death-of-student-testing-3d-printed-rifle" target="_blank">The Star</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">伊朗危机中中国邪恶计划曝光，印尼附近发现神秘装置，印度局势日益紧张……</div>
+                    </div>
+                    <div class="news-content">令人惊讶的是，该设备似乎配备了中国制造的装置，这引发了印度的担忧，并对美国构成了直接挑战。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.india.com/news/world/why-india-us-in-tension-after-chinese-device-found-in-indonesia-near-malacca-called-asian-hormuz-updates-8385456/" target="_blank">India.com</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">尽管中东战事不断，印尼朝觐团的出发工作仍按计划进行</div>
+                    </div>
+                    <div class="news-content">雅加达：尽管美以两国正对伊朗发动战争，但印度尼西亚的朝觐团出发计划仍按计划进行。目前各项准备工作已进入最后阶段，首批朝觐者定于4月22日启程，当局正全力推进各项安全措施。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/04/18/indonesian-haj-departures-on-track-amid-middle-east-war" target="_blank">The Star</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">印度尼西亚正与俄罗斯探讨能源合作</div>
+                    </div>
+                    <div class="news-content">印度尼西亚正与俄罗斯探讨能源合作——雅加达，4月18日 印度尼西亚正与俄罗斯探讨潜在的能源合作，包括开发炼油厂的计划以及…… 仅在 lokmattimes.com 获取最新国际新闻</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.lokmattimes.com/international/indonesia-explores-energy-cooperation-with-russia/" target="_blank">Lokmat Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">维基媒体将在面临封锁威胁后与印尼方面举行会谈</div>
+                    </div>
+                    <div class="news-content">雅加达——维基媒体基金会周五表示，将与印尼政府进行磋商。此前，雅加达方面威胁要封锁维基百科，原因是该机构认为印尼的注册规定“偏离了国际人权准则”。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.manilatimes.net/2026/04/18/world/asia-oceania/wikimedia-to-hold-talks-with-indonesia-after-block-threat/2322938" target="_blank">The Manila Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
