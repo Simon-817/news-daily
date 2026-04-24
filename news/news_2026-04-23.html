@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-04-23</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-04-23</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">鲍勃·伊格尔离开迪士尼后重返Thrive Capital担任顾问</div>
+                    </div>
+                    <div class="news-content"> 这位前迪士尼首席执行官持有Thrive的股份，并曾担任该公司的风险投资合伙人。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/23/bob-iger-rejoins-thrive-capital-as-advisor-after-disney-exit/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">当局逮捕了一名特种部队士兵，据称他在涉及马杜罗行动的Polymarket押注中获利40万美元</div>
+                    </div>
+                    <div class="news-content"> 这名士兵被指控利用政府机密信息在预测市场Polymarket上进行投注。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/23/authorities-arrest-special-forces-soldier-who-allegedly-made-400k-on-polymarket-bet-involving-maduro-operation/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">红木材料公司在裁员和重组期间失去首席运营官</div>
+                    </div>
+                    <div class="news-content"> 据TechCrunch获悉，特斯拉前高管克里斯·利斯特即将退休，此外，在近期重组期间，至少还有三位副总裁已离开红木公司。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/23/redwood-materials-loses-coo-amid-layoffs-restructuring/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">以下是正在采取措施禁止儿童使用社交媒体的国家</div>
+                    </div>
+                    <div class="news-content"> 澳大利亚是首个于2025年底颁布禁令的国家，旨在减轻年轻用户在社交媒体上可能面临的压力和风险，包括网络欺凌、社交媒体成瘾以及遭遇不法分子的风险。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/23/social-media-ban-children-countries-list/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">布雷特·泰勒（Bret Taylor）旗下的Sierra收购了由Y Combinator投资的人工智能初创公司Fragment</div>
+                    </div>
+                    <div class="news-content"> 由技术专家布雷特·泰勒（Bret Taylor）创立的人工智能客服初创公司Sierra今日宣布，已收购由Y Combinator投资的法国初创公司Fragment。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/23/bret-taylors-sierra-buys-yc-backed-ai-startup-fragment/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">Instagram 正在测试一款名为“Instants”的新应用，用于分享会自动消失的照片</div>
+                    </div>
+                    <div class="news-content"> 该应用允许用户与朋友分享限时照片，这些照片只能查看一次，并在24小时内保持可见。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/23/instagram-tests-a-new-instants-app-for-sharing-disappearing-photos/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">来认识一下 Noscroll——这款 AI 机器人能帮你代劳“末日刷屏”</div>
+                    </div>
+                    <div class="news-content"> Noscroll 希望通过一个能为你浏览互联网的 AI 机器人，来解决“末日滚动”的问题。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/23/meet-noscroll-an-ai-bot-that-does-your-doomscrolling-for-you/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">特朗普提名的美国网络安全与基础设施安全局（CISA）局长人选请求退出</div>
+                    </div>
+                    <div class="news-content"> 在经历了动荡不安的一年以及临时领导层的混乱局面后，肖恩·普兰基已请求撤回其竞选美国网络安全局局长的提名。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/23/trumps-pick-to-run-us-cyber-agency-cisa-asks-to-drop-out/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">“不要停止招聘人才——要停止招聘不合适的人才，”Artisan创始人表示</div>
+                    </div>
+                    <div class="news-content"> Artisan 或许因其大胆的“停止雇佣人类”宣传活动而闻名，但现实是，每位创始人若想实现业务扩张，都必须组建一支合适的团队。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/23/dont-stop-hiring-humans-stop-hiring-the-wrong-humans-artisans-founder-says/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">OpenAI 发布了 GPT-5.5，使该公司距离打造一款 AI “超级应用”又近了一步</div>
+                    </div>
+                    <div class="news-content"> OpenAI表示，其最新模型在众多领域都具备更强大的能力。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/23/openai-chatgpt-gpt-5-5-ai-model-superapp/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">以下是正在采取措施禁止儿童使用社交媒体的国家</div>
+                    </div>
+                    <div class="news-content"> 澳大利亚是首个于2025年底颁布禁令的国家，旨在减轻年轻用户在社交媒体上可能面临的压力和风险，包括网络欺凌、社交媒体成瘾以及遭遇不法分子的风险。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/23/social-media-ban-children-countries-list/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">Instagram 正在测试一款名为“Instants”的新应用，用于分享会自动消失的照片</div>
+                    </div>
+                    <div class="news-content"> 该应用允许用户与朋友分享限时照片，这些照片只能查看一次，并在24小时内保持可见。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/23/instagram-tests-a-new-instants-app-for-sharing-disappearing-photos/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">美国在印度洋扣押另一艘与伊朗有关的油轮，并发布了视频</div>
+                    </div>
+                    <div class="news-content">五角大楼发布了一段视频，画面显示美方人员登上了油轮“Majestic X”号，这为此次行动提供了难得的实地视角。该船是在斯里兰卡与印度尼西亚之间的印度洋海域被拦截的。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.indiatoday.in/world/story/us-seizes-iran-linked-oil-tanker-majestic-x-indian-ocean-shares-video-2900580-2026-04-23" target="_blank">India Today</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">印尼表示，随着油价上涨导致供应趋紧，俄罗斯将供应1.5亿桶原油</div>
+                    </div>
+                    <div class="news-content">俄罗斯已同意以特惠价格向印度尼西亚供应1亿桶原油。更多详情请访问straitstimes.com。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.straitstimes.com/asia/se-asia/indonesia-says-russia-will-supply-150-million-barrels-of-oil-as-higher-prices-tighten-supply" target="_blank">The Straits Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">印尼外长表示，印尼不会在马六甲海峡征收关税</div>
+                    </div>
+                    <div class="news-content">印尼外交部长苏吉奥诺发表上述言论的前一天，财政部长普尔巴亚·尤迪·萨德瓦曾暗示雅加达方面可能对通过马六甲海峡的船舶征收费用。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.channelnewsasia.com/asia/indonesia-not-impose-tariffs-strait-malacca-foreign-minister-sugiono-6076516" target="_blank">CNA</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">美国在印度洋扣押另一艘与伊朗有关的油轮，并发布了视频</div>
+                    </div>
+                    <div class="news-content">五角大楼发布了一段视频，画面显示美方人员登上了油轮“Majestic X”号，这为此次行动提供了难得的实地视角。该船是在斯里兰卡与印度尼西亚之间的印度洋海域被拦截的。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.indiatoday.in/world/story/us-seizes-iran-linked-oil-tanker-majestic-x-indian-ocean-shares-video-2900580-2026-04-23" target="_blank">India Today</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">印尼关注伊朗将马六甲海峡商业化的策略</div>
+                    </div>
+                    <div class="news-content">印度尼西亚外交部长普尔巴亚·尤达·萨德瓦提议效仿伊朗对霍尔木兹海峡船只征收的税费，对航行于马六甲海峡的船只征收类似税费</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://sputnikglobe.com/20260423/indonesia-eyes-irans-strategy-to-monetize-malacca-strait-1124029413.html" target="_blank">Sputnik News</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">伊朗战争促使东南亚就马六甲海峡征收通行费一事展开讨论</div>
+                    </div>
+                    <div class="news-content">印度尼西亚财政部长提出了这一构想。新加坡和马来西亚对此表示反对。泰国则看到了机遇。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://fortune.com/2026/04/23/iran-war-strait-malacca-singapore-malaysia-indonesia-thailand-hormuz-tolls/" target="_blank">Fortune</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">印尼的新食品标签“早该出台了”，但它们能否帮助遏制日益严重的肥胖问题？</div>
+                    </div>
+                    <div class="news-content">印尼民众欢迎这一旨在减少糖、盐和脂肪摄入的新标签制度，但专家警告称，这并非“万能良方”。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.scmp.com/week-asia/health-environment/article/3351170/indonesias-new-food-labels-are-long-overdue-can-they-help-fight-rising-obesity" target="_blank">South China Morning Post</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">复星健康在2026年亚太全球健康论坛上强化区域影响力，展示“中国方案”并斩获三项大奖</div>
+                    </div>
+                    <div class="news-content">印度尼西亚雅加达，2026年4月23日 /美通社/ -- 复星医疗在雅加达君悦酒店举行的“2026年GlobalHealth亚太医疗洞察与领导力论坛”上崭露头角，该论坛与“2026年GlobalHealth亚太医疗奖”同期举办。复星医疗由此加入了医疗健康领域的杰出领袖行列。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.manilatimes.net/2026/04/23/tmt-newswire/pr-newswire/fosun-health-strengthens-regional-presence-at-globalhealth-asia-pacific-forum-2026-showcasing-china-solution-and-winning-three-major-awards/2326824" target="_blank">The Manila Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">印度游客在巴厘岛偷窃吹风机和门垫被抓；网友呼吁“吊销他们的护照” | 视频</div>
+                    </div>
+                    <div class="news-content">本月，四名印度游客在印度尼西亚巴厘岛被抓获，当时他们正从一家酒店偷取吹风机、门垫、电视遥控器、泳池毛巾、和服式浴袍及餐具等物品。不过，当局并未对他们采取任何法律行动。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.indiatvnews.com/trending/news/indian-tourists-caught-stealing-hairdryer-doormat-in-bali-netizens-say-cancel-their-passport-watch-2026-04-23-1038625" target="_blank">India TV News</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">深度解析：霍尔木兹海峡危机将全球最大“瓶颈”——马六甲海峡推至聚光灯下</div>
+                    </div>
+                    <div class="news-content">曼谷4月23日（路透社）——霍尔木兹海峡的封锁迫使亚洲决策者正视其他海上咽喉要道的安全问题，其中包括马六甲海峡——这是全球最繁忙的国际贸易水道。什么是马六甲海峡？这条长900公里（5</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.al-monitor.com/originals/2026/04/explainer-hormuz-crisis-throws-spotlight-worlds-largest-chokepoint-malacca-strait" target="_blank">Al-Monitor</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
