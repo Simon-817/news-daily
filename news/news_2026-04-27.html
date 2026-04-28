@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-04-27</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-04-27</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">据报道，面向影迷的社交平台Letterboxd正在寻找新买家</div>
+                    </div>
+                    <div class="news-content"> 据Semafor报道，Letterboxd的潜在买家包括CNBC和MS NOW的母公司Versant，以及好莱坞媒体公司The Ankler。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/27/letterboxd-sale-film-social-media-semafor-versant-ankler/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">美国联邦贸易委员会报告称，2025年消费者因社交媒体诈骗损失21亿美元</div>
+                    </div>
+                    <div class="news-content"> 该机构报告称，社交媒体诈骗造成的损失增加了八倍，且社交媒体诈骗造成的损失高于诈骗分子用于联系消费者的任何其他手段。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/27/consumers-lost-2-1-billion-to-social-media-scams-in-2025-ftc-reports/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">OpenAI 通过与亚马逊达成 500 亿美元交易，化解了微软面临的法律风险</div>
+                    </div>
+                    <div class="news-content"> OpenAI 已从其最大股东微软那里争取到重大让步，这将使其能够在 AWS 上销售产品，而微软则通过一项收入分成协议获得更多现金。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/27/openai-ends-microsoft-legal-peril-over-its-50b-amazon-deal/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">DeepMind的戴维·西尔弗刚刚筹集了11亿美元，用于开发一种无需人类数据即可学习的人工智能</div>
+                    </div>
+                    <div class="news-content"> 由前DeepMind研究员大卫·西尔弗（David Silver）于数月前创立的英国人工智能实验室Ineffable Intelligence，已获得11亿美元融资，估值达51亿美元。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/27/deepminds-david-silver-just-raised-1-1b-to-build-an-ai-that-learns-without-human-data/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">一名涉嫌为中国实施网络攻击的黑客被引渡至美国</div>
+                    </div>
+                    <div class="news-content"> 徐泽伟被指控参与了一个中国政府黑客组织，该组织入侵了数千家美国机构，并窃取了与新冠疫情相关的研究资料。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/27/hacker-who-allegedly-carried-out-cyberattacks-for-china-is-extradited-to-u-s/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">投资者在Skye的iPhone人工智能主屏幕应用发布前给予支持</div>
+                    </div>
+                    <div class="news-content"> Skye的新款AI应用甚至在正式发布前就吸引了投资者——这表明人们对具备更强AI意识的iPhone表现出浓厚兴趣。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/27/investors-back-skye-signull-labs-ai-home-screen-app-for-iphone-ahead-of-launch/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">数据中心需求导致天然气发电厂成本飙升66%</div>
+                    </div>
+                    <div class="news-content"> 随着数据中心的电力需求激增，天然气发电厂的建设成本在两年内几乎翻了一番，建设周期也延长了23%。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/27/data-center-demand-drives-66-surge-in-natural-gas-power-plant-costs/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">欧洲为何力图摒弃美国软件，转而拥抱自主技术？</div>
+                    </div>
+                    <div class="news-content"> 欧洲各国政府正寻求减少对美国科技供应商的依赖。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/27/whats-behind-europes-efforts-to-ditch-u-s-software-in-favor-of-sovereign-tech/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">中国在历时数月的调查后叫停了Meta公司价值20亿美元的马努斯岛交易</div>
+                    </div>
+                    <div class="news-content"> 中国已责令Meta撤销其对Manus的数十亿美元收购交易，这可能给扎克伯格在人工智能代理领域的发展带来挫折。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/27/china-vetoes-metas-2b-manus-deal-after-months-long-probe/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">OpenAI 可能正在研发一款手机，其应用将被人工智能代理取代</div>
+                    </div>
+                    <div class="news-content"> 关于OpenAI的硬件计划一直传闻不断，其中包括推出一款入耳式耳机。行业分析师郭明錤的一份最新报告指出，这家AI公司可能正与联发科、高通和立讯科技合作开发一款智能手机。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/27/openai-could-be-making-a-phone-with-ai-agents-replacing-apps/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">在全球融资额创下3309亿美元历史新高的背景下，风险投资领跑增长</div>
+                    </div>
+                    <div class="news-content">全球融资额创下3309亿美元纪录，印度有望迎来人工智能驱动的风险投资增长——新德里，4月27日 随着全球……印度有望迎来由人工智能驱动的风险投资（VC）投资热潮。仅在lokmattimes.com获取最新商业新闻</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.lokmattimes.com/business/india-set-for-ai-led-venture-capital-growth-as-global-funding-hits-record-3309-billion/" target="_blank">Lokmat Times</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">旧金山，这座世界人工智能之都，在经济上却表现欠佳</div>
+                    </div>
+                    <div class="news-content">人工智能正蓬勃发展。其核心地带并非 | 国际新闻</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.hindustantimes.com/world-news/san-francisco-ai-capital-of-the-world-is-an-economic-laggard-101777261033249.html" target="_blank">Hindustan Times</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">为何印尼的生物柴油政策可能推高印度的食用油价格</div>
+                    </div>
+                    <div class="news-content">印度尼西亚的生物燃料政策可能会导致全球食用油供应趋紧。以下是该政策如何推高印度食用油价格并影响进口的情况。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://indianexpress.com/article/explained/explained-economics/why-indonesia-biofuel-push-cooking-oil-expensive-india-10658727/" target="_blank">The Indian Express</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">红外线相机拍到苏门答腊猩猩在印度尼西亚利用树冠桥穿越一条公共道路</div>
+                    </div>
+                    <div class="news-content">环保人士表示，有人首次拍到一只苏门答腊猩猩利用一座人造树冠桥穿越印尼岛上的一条公共道路</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.breitbart.com/news/camera-trap-shows-sumatra-orangutan-using-a-canopy-bridge-to-cross-a-public-road-in-indonesia/" target="_blank">Breitbart News Network</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">研究人员等待两年，终于拍到了红毛猩猩穿越树冠桥的首次影像</div>
+                    </div>
+                    <div class="news-content">在印度尼西亚，一只苏门答腊猩猩被远程摄像机拍到正在使用树冠桥，这是该物种有史以来的首次。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://petapixel.com/2026/04/27/researchers-wait-two-years-to-capture-first-ever-footage-of-orangutan-crossing-a-canopy-bridge/" target="_blank">PetaPixel</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">印尼首都附近发生列车相撞事故，造成至少3人死亡</div>
+                    </div>
+                    <div class="news-content">周一，印度尼西亚首都郊外发生一起列车相撞事故，造成至少3人死亡 印度尼西亚首都附近发生列车相撞事故，造成至少3人死亡</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.breitbart.com/news/trains-collide-near-indonesias-capital-killing-at-least-3-people/" target="_blank">Breitbart News Network</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">正在计划巴厘岛之旅吗？印度旅客落地签规定详解</div>
+                    </div>
+                    <div class="news-content">计划前往巴厘岛和印度尼西亚的印度旅客现在可以使用“落地签”服务。该服务允许短期停留最长30天，并可选择再延长30天。申请手续可在抵达时办理，也可在出行前通过在线申请完成。必备文件</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://economictimes.indiatimes.com/nri/visit/planning-a-bali-trip-visa-on-arrival-rules-for-indian-travellers-explained/articleshow/130552900.cms" target="_blank">The Economic Times</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">印尼总统普拉博沃改组内阁，任命新部长</div>
+                    </div>
+                    <div class="news-content">雅加达：（马新社）印度尼西亚总统普拉博沃·苏比安托于周一（4月27日）对内阁进行了改组，任命了新部长和高级官员，此举旨在加强关键部门的领导力量。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/04/27/indonesia039s-prabowo-reshuffles-cabinet-appoints-new-ministers" target="_blank">The Star</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">印度尼西亚任命工会领袖出任新任环境部长</div>
+                    </div>
+                    <div class="news-content">《美国新闻与世界报道》是大学、研究生院、医院、共同基金和汽车排名领域的公认权威。您可以追踪民选官员动态、查询健康状况，并获取政治、商业、健康和教育领域的实用资讯。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.usnews.com/news/world/articles/2026-04-27/indonesia-appoints-labour-union-chief-as-new-environment-minister" target="_blank">U.S. News & World Report</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">索尼将PS5、PS5 Pro和PS Portal在另外六个国家涨价归咎于全球经济压力</div>
+                    </div>
+                    <div class="news-content">索尼将在韩国、新加坡、马来西亚、泰国、印度尼西亚、菲律宾和越南上调PS5、PS5 Pro及PlayStation Portal的价格。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://wccftech.com/ps5-ps5-pro-ps-portal-price-increase-asia-korea/" target="_blank">Wccftech</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">印度纺织业代表团成功访问印度尼西亚，标志着该行业迈入新时代</div>
+                    </div>
+                    <div class="news-content">印度ITME协会成功率领其首个纺织工程行业商务代表团访问了印度尼西亚。在为期四天的访问中，代表团走访了万隆等主要工业中心，促进了印度纺织机械制造商与印尼行业之间的对话，并探讨了合作机遇。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/entertainment/3888287-indian-textile-industry-enters-new-era-with-successful-delegation-to-indonesia" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">埃弗纺织贸易代表团访问印度尼西亚</div>
+                    </div>
+                    <div class="news-content">印度TEI代表团与印度驻印度尼西亚大使桑迪普·查克拉沃尔蒂阁下、各位尊贵的演讲嘉宾及行业代表共同出席。印度ITME协会自豪地宣布，其首届纺织工程行业商务代表团对印度尼西亚的访问已圆满结束，此次访问旨在……</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.tribuneindia.com/news/business/india-itme-society-leads-first-ever-textile-trade-business-delegation-to-indonesia-2-2/" target="_blank">The Tribune</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
