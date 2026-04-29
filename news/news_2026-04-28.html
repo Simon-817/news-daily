@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <title>行业早报 - 2026-04-28</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-date {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section-body {
+            padding: 8px 0;
+        }
+
+        .news-item {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-rank {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            margin-left: 44px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .news-meta {
+            margin-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .news-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 16px 12px 32px; }
+            .stats-grid { gap: 8px; }
+            .stat-number { font-size: 22px; }
+            .news-title { font-size: 15px; }
+            .news-content { margin-left: 40px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">
+                <div class="brand-icon">📰</div>
+                <span>News Daily</span>
+            </div>
+            <div class="nav-date">2026-04-28</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🔥</div>
+                <div class="section-title">
+                    <h2>全网热度 Top10</h2>
+                    <p>互联网科技新闻精选</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">在OpenAI的庭审中，马斯克重提了一段旧日情谊</div>
+                    </div>
+                    <div class="news-content"> 马斯克此前曾在采访中以及向作家沃尔特·艾萨克森讲述过这个故事，后者将其写入了马斯克的畅销传记中，但周二是他首次在宣誓后公开讲述此事。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/28/at-his-openai-trial-musk-relitigates-an-old-friendship/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">亚马逊已在AWS上推出OpenAI的新产品</div>
+                    </div>
+                    <div class="news-content"> 在OpenAI说服微软同意终止独家合作协议的次日，AWS宣布推出一系列OpenAI模型服务，其中包括一项新的代理服务。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/28/amazon-is-already-offering-new-openai-products-on-aws/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">亚马逊在商品页面推出基于人工智能的语音问答功能</div>
+                    </div>
+                    <div class="news-content"> 亚马逊的新功能“加入聊天”可让您就产品提出问题，并获得由人工智能驱动的语音回复。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/28/amazon-launches-an-ai-powered-audio-qa-experience-on-product-pages/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">Match Group向面向男同性恋者的约会应用Sniffies投资1亿美元</div>
+                    </div>
+                    <div class="news-content"> 这款应用是Match Group为重新点燃移动用户对网络恋爱的热情所做的最新尝试。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/28/match-group-invests-100-million-in-sniffies-a-cruising-app-for-gay-men/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">在Anthropic拒绝后，谷歌扩大了五角大楼对其人工智能系统的访问权限</div>
+                    </div>
+                    <div class="news-content"> 在Anthropic拒绝允许美国国防部将其人工智能技术用于国内大规模监控和自主武器之后，谷歌已与该部门签署了一份新合同。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/28/google-expands-pentagons-access-to-its-ai-after-anthropics-refusal/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">据报道，Paragon并未配合意大利当局对间谍软件攻击事件的调查</div>
+                    </div>
+                    <div class="news-content"> 尽管承诺协助查明针对意大利记者和活动人士的黑客攻击事件的真相，但据报道，这家以色列裔美国间谍软件制造商Paragon尚未回应当局的信息请求。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/28/paragon-is-not-collaborating-with-italian-authorities-probing-spyware-attacks-report-says/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">美国最高法院在备受争议的“地理围栏”搜查令使用问题上似乎意见分歧</div>
+                    </div>
+                    <div class="news-content"> 美国最高法院预计将就警方是否可以通过对科技巨头数据库进行大范围筛查来锁定犯罪嫌疑人一事作出裁决。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/28/scotus-chatrie-geofence-search-warrant-ruling-arguments/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">澳大利亚强制要求大型科技公司为新闻付费，否则将面临2.25%的税费</div>
+                    </div>
+                    <div class="news-content"> 平台与媒体机构达成的协议越多，支付的费用就越少。如果足够多的协议得以落实，实际费率将降至1.5%，这有望为澳大利亚新闻业带来2亿至2.5亿澳元的资金回流。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/28/australia-forces-big-tech-firms-to-pay-for-news-or-face-a-2-25-tax/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">Lovable 在 iOS 和 Android 平台推出其情绪编码应用</div>
+                    </div>
+                    <div class="news-content"> 该应用程序让开发者能够随时随地编写网络应用和网站代码。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/28/lovable-launches-its-vibe-coding-app-on-ios-and-android/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">10</div>
+                        <div class="news-title">获得《创智赢家》投资的初创公司Scholly创始人起诉其收购方萨莉美</div>
+                    </div>
+                    <div class="news-content"> 克里斯·格雷以非法解雇为由起诉了收购其初创公司的萨莉美公司，并指控该公司通过一家子公司出售学生数据。萨莉美公司否认了这些指控，并誓言将予以抗辩。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/28/founder-of-shark-tank-backed-startup-scholly-sues-his-acquirer-sallie-mae/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📱</div>
+                <div class="section-title">
+                    <h2>社交/直播行业</h2>
+                    <p>社交平台与直播动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">在印度哪里可以观看巴黎圣日耳曼对阵拜仁慕尼黑的欧冠半决赛直播——体育新闻</div>
+                    </div>
+                    <div class="news-content">巴黎圣日耳曼对阵拜仁慕尼黑的印度直播：查看比赛时间、电视频道以及如何观看2026年欧洲冠军联赛这场对决的直播。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.financialexpress.com/sports/psg-vs-bayern-munich-live-streaming-where-to-watch-uefa-champions-league-semi-final-on-tv-online/4220398/" target="_blank">The Financial Express</a></span>
+                        <span class="tag">社交</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">特朗普称伊朗希望美国尽快开放霍尔木兹海峡</div>
+                    </div>
+                    <div class="news-content">华盛顿4月28日（路透社）——美国总统唐纳德·特朗普周二表示，伊朗称其正处于崩溃边缘，并希望美国在伊朗理顺领导层期间开放霍尔木兹海峡。从特朗普的社交媒体帖子中尚不清楚伊朗是通过何种方式传达这一信息的。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.al-monitor.com/originals/2026/04/trump-says-iran-wants-us-open-hormuz-strait-soon-possible" target="_blank">Al-Monitor</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">亚历克斯·科拉在发布“开心！”一文两天后遭红袜队解雇，随后就波士顿一事发表新声明</div>
+                    </div>
+                    <div class="news-content">在被波士顿红袜队解雇后不久，亚历克斯·科拉曾在社交媒体上发布了一些语焉不详的帖子，如今他发表了一份新声明，感谢球迷在他担任主教练期间给予的支持。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://bleacherreport.com/articles/25423294-alex-cora-drops-new-statement-boston-after-red-sox-firing-2-days-after-happy-post" target="_blank">Bleacher Report</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">《美国好声音》明星迪伦·卡特去世，年仅24岁</div>
+                    </div>
+                    <div class="news-content">乡村音乐巨星丽贝卡·麦金泰尔曾在该选秀节目中担任卡特的导师，她在Instagram上发布了一段感人至深的悼念视频。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.huffpost.com/entry/dylan-carter-the-voice-contestant-dead-at-24_n_69f0a2f7e4b06bfb7c464fc9" target="_blank">HuffPost</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">YouTube 正在测试一项由人工智能驱动的搜索功能，该功能会显示引导式答案</div>
+                    </div>
+                    <div class="news-content">YouTube 正在向美国 Premium 订阅用户推出一项新的 AI 搜索功能，用户可选择是否启用该功能。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://techcrunch.com/2026/04/28/youtube-is-testing-an-ai-powered-search-feature-that-shows-guided-answers/" target="_blank">TechCrunch</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">吉米·金梅尔为自己关于梅拉尼娅·特朗普看起来像个寡妇的玩笑辩护</div>
+                    </div>
+                    <div class="news-content">在特朗普总统和梅拉尼娅·特朗普都在社交媒体上对他大加抨击后，吉米·金梅尔对他在脱口秀开场白中讲的那个笑话进行了澄清。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.cinemablend.com/television/jimmy-kimmel-defends-joke-melania-trump-looking-like-widow" target="_blank">CinemaBlend</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">7</div>
+                        <div class="news-title">特朗普再次呼吁ABC解雇吉米·金梅尔——因其讲了一个令人不适的笑话</div>
+                    </div>
+                    <div class="news-content">“像金梅尔这样的人，不应该有机会每晚闯入我们的家中散播仇恨，”梅拉尼娅·特朗普在一篇社交媒体帖子中写道。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.boston.com/news/tv/2026/04/28/trumps-call-for-abc-to-fire-jimmy-kimmel-again-after-morbid-joke/" target="_blank">Boston.com</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">8</div>
+                        <div class="news-title">红袜队解雇亚历克斯·科拉数日后，他向波士顿告别</div>
+                    </div>
+                    <div class="news-content">“波士顿，我们会想念你的，”亚历克斯·科拉周二上午在社交媒体上写道。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.masslive.com/redsox/2026/04/alex-cora-says-goodbye-to-boston-days-after-red-sox-fired-him.html" target="_blank">MassLive</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">9</div>
+                        <div class="news-title">HyugaLife在A轮融资中筹集了10亿卢比</div>
+                    </div>
+                    <div class="news-content">健康与养生电商平台HyugaLife在由风投公司IvyCap Ventures领投的A轮融资中筹集了10亿卢比。Sach表示：“我们将通过扩大经实验室检测的产品线，同时投资于人工智能驱动的智能、个性化技术，进一步强化我们的真实性保证。”</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/technology/3888958-hyugalife-raises-rs-100-crore-in-series-a-funding-round" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">融资</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🇮🇩</div>
+                <div class="section-title">
+                    <h2>印尼热点</h2>
+                    <p>东南亚市场动态</p>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">1</div>
+                        <div class="news-title">救援人员从印度尼西亚火车脱轨事故现场寻获最后几名遇难者，该事故造成15人死亡，数十人受伤</div>
+                    </div>
+                    <div class="news-content">救援人员周二完成了从一节受损的通勤列车车厢中转移遇难者的工作，并确认在印度尼西亚首都郊外发生的这起事故造成15人死亡，遇难者均为女性。事故发生于周一，当时一列长途列车在贝卡西东站撞上了停靠的通勤列车尾部车厢。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/business/3889522-rescuers-recover-last-victims-from-indonesia-train-wreck-that-killed-15-injured-dozens" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">2</div>
+                        <div class="news-title">RPT-更新5：印尼通勤列车相撞事故死亡人数升至15人，救援人员已完成疏散工作</div>
+                    </div>
+                    <div class="news-content">周一深夜，在雅加达郊外的贝卡西，一列通勤列车与一列长途列车发生碰撞，其中一节女性专用车厢遭受了最严重的冲击。印度尼西亚基础设施高级部长阿古斯·哈里穆尔蒂·尤多约诺向记者表示，死亡人数已升至</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.devdiscourse.com/article/business/3889519-rpt-update-5-indonesia-commuter-train-crash-toll-rises-to-15-as-rescuers-complete-evacuation" target="_blank">Devdiscourse</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">3</div>
+                        <div class="news-title">印度尼西亚发生火车相撞事故，造成15名女性死亡</div>
+                    </div>
+                    <div class="news-content">发生碰撞事故的这节车厢是专供女性乘坐的，这是为了防止骚扰而采取的常见措施。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.breakingnews.ie/world/train-crash-in-indonesia-leaves-15-women-dead-1892688.html" target="_blank">BreakingNews.ie</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">4</div>
+                        <div class="news-title">SMU在印度尼西亚设立子公司，旨在加速人工智能领域的人才培养和就业能力提升</div>
+                    </div>
+                    <div class="news-content">新加坡/雅加达（印度尼西亚），4月28日：新加坡管理大学（SMU）正式成立其子公司SMU印尼，此举标志着该校在技术变革迅猛的时代，致力于加强印度尼西亚人才储备并提升就业能力的长期战略承诺。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.tribuneindia.com/news/business/smu-establishes-subsidiary-in-indonesia-to-accelerate-talent-development-and-employability-in-ai-driven-economy/" target="_blank">The Tribune</a></span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">5</div>
+                        <div class="news-title">快讯：致命列车相撞事故后，印尼亟需全面整顿铁路安全</div>
+                    </div>
+                    <div class="news-content">在周一（4月27日）发生导致15人死亡、数十人受伤的列车相撞事故后，专家呼吁采取多项措施，其中包括为长途列车和通勤列车设置专用轨道。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.channelnewsasia.com/commentary/indonesia-bekasi-train-accident-safety-overhaul-separate-tracks-level-crossings-6086221" target="_blank">CNA</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-rank">6</div>
+                        <div class="news-title">印度尼西亚发生列车相撞事故，造成至少15人死亡、84人受伤</div>
+                    </div>
+                    <div class="news-content">印尼救援人员正在与时间赛跑，从这起造成至少15人死亡、数十人受伤（其中大多为女性）的列车事故中营救幸存者。</div>
+                    <div class="news-meta">
+                        <span class="news-source">源自：<a href="https://www.upi.com/Top_News/World-News/2026/04/28/Indonesia-Jakarta-train-crash-15-killed/8991777364854/" target="_blank">UPI News</a></span>
+                        <span class="tag">科技</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div style="font-size: 13px; opacity: 0.7;">K姐 · 每日10:00推送 · 由 OpenClaw 智能生成</div>
+    </footer>
+</body>
+</html>
